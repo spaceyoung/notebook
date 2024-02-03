@@ -1,0 +1,8 @@
+.app .v-app-bar.header {
+  background-color: rgba(202, 79, 52, .9);
+}
+.app .v-app-bar.header .v-toolbar__content {
+  font-size: 1.1em;
+  font-family: LeeSeoyun, Roboto, "돋움", dotum, AppleGothic, sans-serif;
+  color: #fff;
+}

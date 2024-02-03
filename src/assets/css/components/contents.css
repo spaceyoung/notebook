@@ -1,0 +1,294 @@
+/******************************
+            LAYOUT
+******************************/
+.app .contents {
+  height: 100vh;
+  max-height: 100vh;
+  border-left: 2px solid #ca4f34;
+  background-color: rgba(255, 255, 255, .6);
+  position: relative;
+  overflow: hidden;
+}
+.contents .view {
+  background-color: transparent;
+  overflow-y: scroll;
+}
+.contents .view::-webkit-scrollbar {
+  width: 8px;
+}
+.contents .view::-webkit-scrollbar-thumb {
+  background: #ca4f34;
+  border-radius: 4px;
+}
+.contents .view::-webkit-scrollbar-track {
+  background: #e4d4cf;
+  border-radius: 4px;
+}
+.contents .book-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px 60px;
+  background-color: transparent;
+}
+.contents .book-item {
+  display: flex;
+  width: calc((100% - 60px) / 2);
+  border-radius: 0;
+  background-color: transparent;
+}
+
+
+/******************************
+          COMPONENTS
+******************************/
+/* -------------------- COMMON -------------------- */
+.contents .contents-wrap {
+  flex-grow: 1;
+}
+.contents .book-none {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-size: 2em;
+  font-family: LeeSeoyun, Roboto, "돋움", dotum, AppleGothic, sans-serif;
+  text-align: center;
+}
+.contents .book-none p span {
+  display: block;
+}
+.contents .v-field {
+  background-color: #f9f6ed;
+}
+.contents .book-caption {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 1.1em;
+  line-height: 1.5;
+  letter-spacing: -1px;
+  color: #555;
+}
+.contents .book-caption .v-icon {
+  font-size: 1.4em;
+}
+.contents .book-caption em {
+  font-weight: 400;
+  font-size: .9em;
+  color: #bbb;
+}
+.contents .book-buttons .v-btn.modify-button {
+  border-color: #ca4f34;
+  color: #fff;
+  background-color: #ca4f34;
+}
+.contents .close-button .v-btn {
+  min-width: 52px;
+}
+.contents .close-button .v-btn .v-btn__overlay {
+  background-color: transparent;
+}
+.contents .modify-overlay {
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+}
+.contents .modify-overlay .modify-overlay-button {
+  font-size: .95em;
+}
+.contents .modify-overlay .modify-overlay-button:hover {
+  background-color: #ca4f34;
+}
+.contents .modify-overlay .modify-overlay-button:hover span {
+  color: #fff;
+}
+
+/* -------------------- Loading -------------------- */
+.contents .loading {
+  background-color: rgba(255, 255, 255, .9);
+  position: absolute;
+  z-index: 100;
+}
+.contents .loading .loading-text {
+  font-size: 1.8em;
+  font-family: LeeSeoyun, Roboto, "돋움", dotum, AppleGothic, sans-serif;
+  text-align: center;
+  color: #333;
+}
+
+/* -------------------- BookInfo -------------------- */
+.contents .book-cover {
+  flex-grow: 0;
+  width: 147px;
+  height: 200px;
+  border: 1px solid #555;
+  border-radius: 0;
+}
+.contents .book-info {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  flex-shrink: 1;
+  overflow: hidden;
+}
+.contents .book-info span {
+  display: block;
+  font-size: 1.1em;
+  line-height: 1.5;
+  letter-spacing: -1px;
+  color: #777;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  transition: all .3s;
+}
+.contents .book-info em {
+  font-weight: 500;
+  color: #555;
+}
+.contents .book-info .book-title {
+  display: -webkit-box;
+  font-weight: 700;
+  font-size: 1.2em;
+  line-height: 1.4;
+  letter-spacing: -1px;
+  color: #333;
+  white-space: normal;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  transition: all .3s;
+}
+.contents .book-info .book-author {
+  font-weight: 600;
+  color: #555;
+}
+.contents .book-info .book-publisher,
+.contents .book-info .book-pubdate {
+  display: inline;
+}
+.contents .book-info .book-publisher::after {
+  content: ' ｜ ';
+}
+.contents .book-info .book-progress .book-reading-start,
+.contents .book-info .book-progress .book-reading-end {
+  font-size: 1em;
+}
+.contents .book-info .book-progress .book-progress-bar {
+  border: 1px solid #333;
+}
+.contents .book-info .book-progress .book-progress-percent {
+  font-size: .85em;
+  text-align: right;
+  color: #ca4f34;
+}
+.contents .book-info .book-record-button {
+  justify-content: end;
+}
+
+/* -------------------- BookDesc -------------------- */
+.contents .book-desc p {
+  border-radius: 8px;
+  line-height: 1.5;
+  letter-spacing: -1px;
+  color: #777;
+  background-color: #f9f6ed;
+}
+
+/* -------------------- ReadingDate -------------------- */
+.contents .book-date {
+  display: flex;
+  flex-wrap: wrap;
+}
+.contents .book-date .book-date-start,
+.contents .book-date .book-date-end {
+  width: 50%;
+}
+.contents .book-date .v-input {
+  width: 75%;
+}
+
+/* -------------------- ReadingDate -------------------- */
+.contents .book-reading-page > div {
+  display: flex;
+}
+.contents .book-reading-page > div > span {
+  align-self: center;
+  flex-grow: 1;
+}
+.contents .book-reading-page .v-input {
+  flex-grow: 0;
+}
+.contents .book-reading-page .book-page {
+  color: #777;
+}
+
+/* -------------------- Rate -------------------- */
+.contents .book-rate .v-rating {
+  color: #777;
+}
+
+
+/******************************
+      max-width: 1279px;
+******************************/
+@media all and (max-width: 1279px) {
+  .app .contents {
+    height: auto;
+    min-height: calc(100vh - 538px);
+    max-height: none;
+    border-top: 2px solid #ca4f34;
+    border-left: none;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+  }
+  .contents .view {
+    overflow-y: auto;
+  }
+}
+
+
+/******************************
+      max-width: 959px;
+******************************/
+@media all and (max-width: 959px) {
+  .contents .book-list {
+    gap: 20px 60px;
+  }
+  .contents .book-item {
+    width: 100%;
+  }
+}
+
+
+/******************************
+      max-width: 599px;
+******************************/
+@media all and (max-width: 599px) {
+  .app .contents {
+    min-height: calc(100vh - 488px);
+  }
+  .contents .book-list {
+    gap: 15px 60px;
+  }
+  .contents .book-date {
+    gap: 48px;
+  }
+  .contents .book-date .book-date-start,
+  .contents .book-date .book-date-end {
+    width: 100%;
+  }
+  .contents .book-cover {
+    width: 114px;
+    height: 155px;
+  }
+  .contents .book-buttons {
+    gap: 15px 20px;
+  }
+  .contents .book-buttons .v-btn {
+    width: calc((100% - 20px) / 2);
+  }
+  .contents .book-buttons .v-btn.modify-button {
+    order: -1;
+    width: 100%;
+  }
+}

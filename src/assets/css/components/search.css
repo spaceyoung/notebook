@@ -1,0 +1,41 @@
+.search {
+  display: flex;
+  align-items: center;
+}
+.search .inner {
+  width: 75%;
+}
+.search .sec-header .sec-title {
+  font-size: 3.8em;
+  line-height: 1;
+}
+.search .search-form .v-field {
+  background-color: rgba(255, 255, 255, .5);
+}
+
+
+/******************************
+      max-width: 1279px;
+******************************/
+@media all and (max-width: 1279px) {
+  .search {
+    height: 450px;
+  }
+}
+
+
+/******************************
+      max-width: 599px;
+******************************/
+@media all and (max-width: 599px) {
+  .search {
+    height: 400px;
+  }
+  .search .sec-header .sec-title {
+    font-size: 3.2em;
+  }
+  .search .sec-header .sec-sub-title,
+  .search .sec-header .sec-desc {
+    font-size: 1.5em;
+  }
+}

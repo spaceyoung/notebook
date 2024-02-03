@@ -1,0 +1,151 @@
+@charset "UTF-8";
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+/* font-family: Pretendard; */
+@import url('https://webfontworld.github.io/heungkuk/LeeSeoyun.css');
+/* font-family: 'LeeSeoyun'; */
+
+/******************************
+            COMMON
+******************************/
+:root {
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  color-scheme: light dark;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+body {
+  min-width: 360px;
+  min-height: 100vh;
+  font-weight: 400;
+  line-height: 1.5;
+  font-family: Pretendard, Roboto, "돋움", dotum, AppleGothic, sans-serif;
+  letter-spacing: -1px;
+  color: #777;
+  place-items: center;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+img, input, select, textarea {
+  display: block;
+}
+body::-webkit-scrollbar {
+  display: none;
+}
+
+
+/******************************
+              MAIN
+******************************/
+/* -------------------- MAIN COMMON -------------------- */
+.sec-header {
+  text-align: center;
+}
+.sec-header .sec-title {
+  font-size: 2em;
+  font-family: LeeSeoyun, Roboto, "돋움", dotum, AppleGothic, sans-serif;
+  color: #111;
+  transition: all .3s;
+}
+.sec-header .sec-sub-title,
+.sec-header .sec-desc {
+  font-size: 1.7em;
+  line-height: 1.2;
+  font-family: LeeSeoyun, Roboto, "돋움", dotum, AppleGothic, sans-serif;
+  color: #555;
+  transition: all .3s;
+}
+.sec-header .sec-desc em {
+  color: #ca4f34;
+}
+
+/* -------------------- v-btn -------------------- */
+button.v-btn {
+  border-color: #bbb;
+  letter-spacing: -1px;
+  color: #555;
+  transition: all .3s;
+}
+button.v-btn:not(.modal .modal-box .modal-button .v-btn, .reading-tabs .v-btn, .book-rate .v-rating .v-btn, .book-buttons .v-btn.modify-button):hover {
+  border-color: #ca4f34;
+  color: #ca4f34;
+}
+button.v-btn:not(.book-rate .v-rating .v-btn, .reading-tabs .v-btn):hover .v-icon {
+  color: #ca4f34;
+  transition: all .3s;
+}
+button.v-btn .v-btn__overlay {
+  background-color: #000;
+}
+
+/* -------------------- v-chip -------------------- */
+.v-chip-group .v-slide-group__content {
+  gap: 15px;
+}
+.v-chip-group .v-chip {
+  border-color: #bbb;
+  color: #777;
+  transition: all .3s;
+}
+.v-chip-group .v-chip:not(.v-chip.v-chip--selected):hover {
+  border-color: #ca4f34;
+  color: #ca4f34;
+}
+.v-chip-group .v-chip--selected {
+  border-color: #ca4f34;
+  font-weight: 500;
+  color: #fff;
+  background-color: #ca4f34;
+}
+.v-chip-group .v-chip:not(.v-chip--selected) .v-chip__overlay {
+  background-color: #000;
+}
+
+/* -------------------- v-field -------------------- */
+.v-field .v-icon {
+  color: #ca4f34;
+}
+.v-field .v-field__input {
+  letter-spacing: -1px;
+  color: #555;
+}
+
+/* -------------------- v-messages -------------------- */
+.v-messages .v-messages__message {
+  font-size: 1.1em;
+  letter-spacing: -1px;
+}
+
+
+/******************************
+      max-width: 599px;
+******************************/
+@media all and (max-width: 599px) {
+  :root {
+    font-size: 15px;
+  }
+  .sec-header .sec-title {
+    font-size: 1.8em;
+  }
+  .v-chip-group .v-slide-group__content {
+    gap: 10px;
+  }
+}
+
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #777;
+  }
+}

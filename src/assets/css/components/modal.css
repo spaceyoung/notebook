@@ -1,0 +1,24 @@
+.modal .v-row {
+  justify-content: center;
+}
+.modal .modal-box {
+  justify-content: center;
+  text-align: center;
+}
+.modal .modal-box .modal-title {
+  color: #333;
+}
+.modal .modal-box .modal-desc {
+  font-size: 1em;
+  line-height: 1.5;
+  letter-spacing: -1px;
+  color: #777;
+}
+.modal .modal-box .modal-button {
+  justify-content: center;
+}
+.modal .modal-box .modal-button .v-btn {
+  border-color: #ca4f34;
+  color: #fff;
+  background-color: #ca4f34;
+}
