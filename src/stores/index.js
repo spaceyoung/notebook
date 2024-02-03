@@ -7,7 +7,7 @@ import { collection, doc, setDoc, deleteDoc, updateDoc } from "firebase/firestor
 
 
 export const useNotebookStore = defineStore("notebook", () => {
-  const ttbKey = "ttbcheo4150851003";
+  const ttbKey = import.meta.env.VITE_ALADIN_APP_KEY;
   const baseURL = `/api/ItemSearch.aspx?ttbkey=${ttbKey}&MaxResults=50&SearchTarget=Book&output=JS&Cover=Big&Version=20131101&Querytype=`;
   const DetailBaseURL = `/api/ItemLookUp.aspx?ttbkey=${ttbKey}&itemIdType=ISBN13&output=JS&Cover=Big&Version=20131101&ItemId=`;
 
