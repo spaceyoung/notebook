@@ -5,11 +5,11 @@
       <p>검색 결과가 존재하지 않아요😢</p>
     </div>
 
-    <template>
+    <!-- <template>
       <v-data-table-server v-model:items-per-page="itemsPerPage" :headers="headers" :items-length="totalItems"
         :items="serverItems" :loading="loading" :search="search" item-value="name"
         @update:options="loadItems"></v-data-table-server>
-    </template>
+    </template> -->
 
     <!-- <v-infinite-scroll mode="manual" @load="load">
       <v-list class="book-list px-0 py-8 pa-sm-8">
@@ -35,7 +35,7 @@
       </v-list>
     </v-infinite-scroll> -->
 
-    <!-- <v-list class="book-list px-0 py-8 pa-sm-8">
+    <v-list class="book-list px-0 py-8 pa-sm-8">
       <v-card v-for="searchBookItem in searchBookList" :key="searchBookItem.isbn" class="book-item pa-1 pa-sm-3"
         variant="flat">
         <v-img :src="searchBookItem.cover" :alt="searchBookItem.title" class="book-cover mr-6 mr-sm-8" cover />
@@ -55,7 +55,7 @@
           </v-card-actions>
         </div>
       </v-card>
-    </v-list> -->
+    </v-list>
   </div>
 </template>
 
