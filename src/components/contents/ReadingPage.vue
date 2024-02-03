@@ -6,7 +6,7 @@
     <div>
       <v-text-field v-model.number="book.readingPage" @blur="autoReadingDone"
         oninput="this.value = this.value.replace(/[^0-9]/g, '')" :rules="numberRule" class="mr-5" placeholder="읽은 페이지 수"
-        hint="숫자만 입력 가능합니다." variant="solo" flat persistent-hint />
+        hint="숫자만 입력 가능해요." variant="solo" flat persistent-hint />
       <span class="book-page"> / {{ book.page }}쪽</span>
     </div>
   </div>
