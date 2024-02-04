@@ -277,6 +277,17 @@
   .contents .book-date .book-date-end {
     width: 100%;
   }
+  .v-picker.v-sheet.v-date-picker{
+    display: block;
+    width: auto;
+  }
+  .v-picker.v-sheet.v-date-picker .v-date-picker-month{
+    min-width: 0;
+  }
+  .v-picker.v-sheet.v-date-picker .v-date-picker-month__day{
+    width: 40px;
+    height: 40px;
+  }
   .contents .book-cover {
     width: 114px;
     height: 155px;
