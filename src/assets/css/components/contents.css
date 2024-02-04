@@ -207,7 +207,7 @@
   width: 75%;
 }
 
-/* -------------------- ReadingDate -------------------- */
+/* -------------------- ReadingPage -------------------- */
 .contents .book-reading-page > div {
   display: flex;
 }
@@ -232,6 +232,9 @@
       max-width: 1279px;
 ******************************/
 @media all and (max-width: 1279px) {
+  /******************************
+              LAYOUT
+  ******************************/
   .app .contents {
     height: auto;
     min-height: calc(100vh - 538px);
@@ -251,9 +254,14 @@
       max-width: 959px;
 ******************************/
 @media all and (max-width: 959px) {
+  /******************************
+              LAYOUT
+  ******************************/
   .contents .book-list {
     gap: 20px 60px;
   }
+
+
   .contents .book-item {
     width: 100%;
   }
@@ -264,12 +272,38 @@
       max-width: 599px;
 ******************************/
 @media all and (max-width: 599px) {
+  /******************************
+              LAYOUT
+  ******************************/
   .app .contents {
     min-height: calc(100vh - 488px);
   }
   .contents .book-list {
     gap: 15px 60px;
   }
+
+  /******************************
+            COMPONENTS
+  ******************************/
+  /* -------------------- COMMON -------------------- */
+  .contents .book-buttons {
+    gap: 15px 20px;
+  }
+  .contents .book-buttons .v-btn {
+    width: calc((100% - 20px) / 2);
+  }
+  .contents .book-buttons .v-btn.modify-button {
+    order: -1;
+    width: 100%;
+  }
+
+  /* -------------------- BookInfo -------------------- */
+  .contents .book-cover {
+    width: 114px;
+    height: 155px;
+  }
+
+  /* -------------------- ReadingDate -------------------- */
   .contents .book-date {
     gap: 48px;
   }
@@ -287,19 +321,5 @@
   .v-picker.v-sheet.v-date-picker .v-date-picker-month__day{
     width: 40px;
     height: 40px;
-  }
-  .contents .book-cover {
-    width: 114px;
-    height: 155px;
-  }
-  .contents .book-buttons {
-    gap: 15px 20px;
-  }
-  .contents .book-buttons .v-btn {
-    width: calc((100% - 20px) / 2);
-  }
-  .contents .book-buttons .v-btn.modify-button {
-    order: -1;
-    width: 100%;
   }
 }
