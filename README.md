@@ -1,12 +1,50 @@
-<<<<<<< HEAD
-# notebook
-독서 기록 서비스 공책
-=======
-# Vue 3 + Vite
+# 📕 책으로 기록하는 공간, 공책
+### 나만의 독서 기록장
+##### 2024.01.10 ~ 진행 중
+<br>
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+### 📃 개요
+> **공책 Note, Book**은 도서 검색 및 기록을 통해 자신만의 독서 기록을 관리할 수 있는 웹 앱입니다.
+>
+> 2024년 새해 목표 중 하나로 '독서 습관 기르기'를 계획했고, 이에 대한 기록 및 동기부여와 CRUD 기능을 직접 구현하고 Open API와 연계해 확장하기 위해 기획한 프로젝트입니다.
+> 
+> 해당 프로젝트를 통해 기본적인 **데이터 처리 기능**과 **SPA 프레임워크의 이점**을 알고 경험할 수 있었고, 다른 프레임워크와 라이브러리에도 관심을 갖게 되었습니다.
+<br>
 
-## Recommended IDE Setup
+### 🛠 사용 기술
+> JavaScript /
+> Vue.js /
+> Vuetify3 /
+> Vue Router /
+> Axios /
+> Pinia /
+> Firebase
+<br>
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
->>>>>>> 489ee97 (🎉 Initial commit)
+### ✨ 구현 기능
+> - 알라딘 Open API를 활용한 도서 검색 기능
+> - DB를 통한 독서 기록 정보 CRUD 기능
+> - 웹 앱을 고려한 반응형 디자인
+<br>
+
+### 💣 트러블 슈팅
+> - **도서 검색 결과 랜덤 출력**
+>
+> <table>
+  <tr>
+    <th width="100">문제 배경</th>
+    <td>같은 검색어를 입력해도 검색 시마다 검색 결과 리스트 순서가 일정하지 않고 랜덤하게 뒤바뀌는 현상 발생.</td>
+  </tr>
+  <tr>
+    <th>문제 원인</th>
+    <td>검색 결과 데이터를 받아와 저장하는 과정에서 순차적 처리가 이루어지지 않음.</td>
+  </tr>
+  <tr>
+    <th>해결 과정</th>
+    <td>async await으로 불러온 검색 결과 순서가 일정했기에, 받아온 데이터를 forEach 문으로 배열에 저장하는 과정에 문제가 있다고 판단. 반복문의 비동기 처리에 관하여 찾아본 결과, forEach 문은 순차 처리를 하지 않는다는 것을 깨닫고 for…of 문으로 바꾸어 문제 해결.</td>
+  </tr>
+  <tr>
+    <th>알게 된 점</th>
+    <td>forEach 문의 동작 원리와 배열에 비동기 작업을 실행할 때의 순차 처리와 병렬 처리 방법을 알게 됨.</td>
+  </tr>
+</table>
