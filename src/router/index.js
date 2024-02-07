@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHashHistory } from 'vue-router';
 
 import Home from '@/views/Home.vue';
 import SearchResult from '@/views/SearchResult.vue';
@@ -7,7 +7,7 @@ import Modify from '@/views/Modify.vue';
 import EndModify from '@/views/EndModify.vue';
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory('/notebook/'),
   routes: [
     { path: '/', name: 'home', component: Home },
     { path: '/searchresult', name: 'searchResult', component: SearchResult },
