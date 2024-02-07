@@ -1,6 +1,7 @@
 .search {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
 }
 .search .inner {
   width: 75%;
