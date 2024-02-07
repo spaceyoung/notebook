@@ -1,6 +1,6 @@
 <template>
   <Loading v-if="isLoading" />
-  <div v-else class="search-result view">
+  <div v-else class="search-result contents-wrap view">
     <div v-if="searchBookList.length === 0" class="book-none">
       <p>검색 결과가 존재하지 않아요😢</p>
     </div>

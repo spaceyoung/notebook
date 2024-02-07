@@ -1,5 +1,5 @@
 <template>
-  <div class="loading d-flex justify-center align-center w-100 h-100 ma-n8">
+  <div class="loading w-100 h-100 mx-n4 my-n8 ma-n8">
     <div class="loading-box">
       <Vue3Lottie :animationData="LoadingAnimation" class="loading-lottie" loop autoplay />
       <span class="loading-text d-block">불러오는 중...</span>

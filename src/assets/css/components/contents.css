@@ -55,6 +55,7 @@
   font-size: 2em;
   font-family: LeeSeoyun, Roboto, "돋움", dotum, AppleGothic, sans-serif;
   text-align: center;
+  transition: all .3s;
 }
 .contents .book-none p span {
   display: block;
@@ -107,6 +108,9 @@
 
 /* -------------------- Loading -------------------- */
 .contents .loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: rgba(255, 255, 255, .9);
   position: absolute;
   z-index: 100;
@@ -239,7 +243,7 @@
   ******************************/
   .app .contents {
     height: auto;
-    min-height: calc(100vh - 538px);
+    min-height: calc(100vh - 514px);
     max-height: none;
     border-top: 2px solid #ca4f34;
     border-left: none;
@@ -248,6 +252,14 @@
   }
   .contents .view {
     overflow-y: auto;
+  }
+
+  /******************************
+            COMPONENTS
+  ******************************/
+  /* -------------------- COMMON -------------------- */
+  .contents .book-none {
+    font-size: 1.8em;
   }
 }
 
@@ -262,8 +274,6 @@
   .contents .book-list {
     gap: 20px 60px;
   }
-
-
   .contents .book-item {
     width: 100%;
   }
@@ -278,7 +288,7 @@
               LAYOUT
   ******************************/
   .app .contents {
-    min-height: calc(100vh - 488px);
+    min-height: calc(100vh - 464px);
   }
   .contents .book-list {
     gap: 15px 60px;
@@ -288,6 +298,9 @@
             COMPONENTS
   ******************************/
   /* -------------------- COMMON -------------------- */
+  .contents .book-none {
+    font-size: 1.6em;
+  }
   .contents .book-buttons {
     gap: 15px 20px;
   }
