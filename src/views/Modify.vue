@@ -1,5 +1,5 @@
 <template>
-  <v-card class="modify view d-flex flex-column px-0 py-10 px-sm-8 px-lg-15 py-lg-5" variant="flat">
+  <v-card class="modify view px-0 py-10 px-sm-8 px-lg-15 py-lg-5" variant="flat">
     <BookInfo :book="myReadingItem" />
     <BookDesc :book="myReadingItem" />
     <v-form class="mb-13">
@@ -11,12 +11,12 @@
       <Sentence v-if="myReadingItem.readingState === '독서 완료'" :book="myReadingItem" />
       <Review v-if="myReadingItem.readingState === '독서 완료'" :book="myReadingItem" />
     </v-form>
-    <v-card-actions class="book-buttons flex-wrap">
+    <v-card-actions class="book-buttons">
       <v-btn class="delete-button ma-0 mr-sm-auto px-8" variant="outlined" size="large" @click="deleteRecord">삭제하기</v-btn>
       <v-btn class="cancel-button ma-0 px-8" variant="outlined" size="large" @click="cancelRecord">취소하기</v-btn>
       <v-btn class="modify-button ma-0 ml-sm-5 px-8" variant="outlined" size="large" @click="modifyRecord">수정하기</v-btn>
     </v-card-actions>
-    <v-card-actions class="close-button flex-0-0 align-self-end order-first pa-0">
+    <v-card-actions class="close-button pa-0">
       <v-btn class="pa-0" size="large" @click="cancelRecord">
         <v-icon icon="mdi-window-close" size="x-large" />
       </v-btn>
@@ -74,4 +74,8 @@ const modifyRecord = () => {
 };
 </script>
 
-<style></style>
+<style scoped>
+.modify .book-buttons {
+  flex-wrap: wrap;
+}
+</style>

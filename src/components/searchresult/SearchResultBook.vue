@@ -50,7 +50,7 @@
           </v-card-text>
           <v-card-actions class="book-record-button pa-0">
             <router-link :to="{ name: 'record/id', params: { id: searchBookItem.isbn } }">
-              <v-btn class="px-4" variant="outlined">기록하기</v-btn>
+              <v-btn class="px-4" variant="outlined" size="large">기록하기</v-btn>
             </router-link>
           </v-card-actions>
         </div>
@@ -66,13 +66,13 @@ import Loading from '@/components/contents/Loading.vue';
 const isLoading = computed(() => useNotebookStore().isLoading);
 const searchBookList = computed(() => useNotebookStore().searchBookList);
 
-const data = reactive({ items: Array.from({ length: 30 }, (v, k) => searchBookList) });
-const load = ({ done }) => {
-  setTimeout(() => {
-    data.items.push(Array.from({ length: 30 }, searchBookList));
-    done('ok');
-  }, 1000);
-};
+// const data = reactive({ items: Array.from({ length: 30 }, (v, k) => searchBookList) });
+// const load = ({ done }) => {
+//   setTimeout(() => {
+//     data.items.push(Array.from({ length: 30 }, searchBookList));
+//     done('ok');
+//   }, 1000);
+// };
 </script>
 
 <style scoped>
@@ -81,5 +81,14 @@ const load = ({ done }) => {
   white-space: normal;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
+}
+
+/******************************
+      max-width: 599px;
+******************************/
+/* -------------------- BookInfo -------------------- */
+.contents .book-info .book-author {
+  display: block;
+  white-space: nowrap;
 }
 </style>

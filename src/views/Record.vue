@@ -1,5 +1,5 @@
 <template>
-  <v-card class="record view d-flex flex-column px-0 py-10 px-sm-8 px-lg-15 py-lg-5" variant="flat">
+  <v-card class="record view px-0 py-10 px-sm-8 px-lg-15 py-lg-5" variant="flat">
     <BookInfo :book="recordBook" />
     <BookDesc :book="recordBook" />
     <v-form class="mb-13">
@@ -11,11 +11,11 @@
       <Sentence v-if="recordBook.readingState === '독서 완료'" :book="recordBook" />
       <Review v-if="recordBook.readingState === '독서 완료'" :book="recordBook" />
     </v-form>
-    <v-card-actions class="book-buttons justify-center">
+    <v-card-actions class="book-buttons">
       <v-btn class="cancel-button ma-0 px-8" variant="outlined" size="large" @click="cancelRecord">취소하기</v-btn>
-      <v-btn class="record-button ma-0 ml-5 px-8" variant="outlined" size="large" @click="addRecord">기록하기</v-btn>
+      <v-btn class="record-button ma-0 ml-sm-5 px-8" variant="outlined" size="large" @click="addRecord">기록하기</v-btn>
     </v-card-actions>
-    <v-card-actions class="close-button flex-0-0 align-self-end order-first pa-0">
+    <v-card-actions class="close-button pa-0">
       <v-btn class="pa-0" size="large" @click="cancelRecord">
         <v-icon icon="mdi-window-close" size="x-large" />
       </v-btn>
@@ -65,4 +65,8 @@ const addRecord = () => {
 };
 </script>
 
-<style></style>
+<style scoped>
+.record .book-buttons {
+  justify-content: center;
+}
+</style>

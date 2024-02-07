@@ -12,6 +12,8 @@
   overflow: hidden;
 }
 .contents .view {
+  display: flex;
+  flex-direction: column;
   background-color: transparent;
   overflow-y: scroll;
 }
@@ -37,6 +39,12 @@
   width: calc((100% - 60px) / 2);
   border-radius: 0;
   background-color: transparent;
+}
+.contents .close-button {
+  flex-grow: 0;
+  flex-shrink: 0;
+  align-self: end;
+  order: -1;
 }
 
 
@@ -80,6 +88,7 @@
   font-size: .9em;
   color: #bbb;
 }
+.contents .book-buttons .v-btn.record-button,
 .contents .book-buttons .v-btn.modify-button {
   border-color: #ca4f34;
   color: #fff;
@@ -189,6 +198,14 @@
 }
 .contents .book-info .book-record-button {
   justify-content: end;
+}
+.contents .book-info .book-record-button .v-btn {
+  border-color: #ca4f34;
+  background-color: #ca4f34;
+}
+.contents .book-info .book-record-button .v-btn__content {
+  font-size: 1em;
+  color: #fff;
 }
 
 /* -------------------- BookDesc -------------------- */
@@ -316,6 +333,15 @@
   .contents .book-cover {
     width: 114px;
     height: 155px;
+  }
+  .contents .book-info span {
+    font-size: 1.05em;
+  }
+  .contents .book-info .book-title {
+    font-size: 1.1em;
+  }
+  .contents .book-info .book-progress .book-progress-percent {
+    font-size: .8em;
   }
 
   /* -------------------- ReadingDate -------------------- */

@@ -18,9 +18,9 @@
               <span class="book-pubdate">{{ myReadingItem.pubDate }}</span>
             </v-card-text>
             <div class="book-progress">
-              <span class="book-reading-start mb-2"><em class="mr-2">독서 시작</em>{{ myReadingItem.formattedStartDate
+              <span class="book-reading-start mb-1 mb-sm-2"><em class="mr-2">독서 시작</em>{{ myReadingItem.formattedStartDate
               }}</span>
-              <v-progress-linear :model-value="myReadingProgress(myReadingItem)" class="book-progress-bar mb-1"
+              <v-progress-linear :model-value="myReadingProgress(myReadingItem)" class="book-progress-bar mb-0 mb-sm-1"
                 :height="9" color="#ca4f34" rounded />
               <span class="book-progress-percent">{{ myReadingProgress(myReadingItem) }}</span>
             </div>
@@ -46,4 +46,17 @@ const myReadingList = computed(() => useNotebookStore().myReadingList);
 vuefireMyReading();
 </script>
 
-<style></style>
+<style scoped>
+/******************************
+      max-width: 599px;
+******************************/
+@media all and (max-width: 599px) {
+  /******************************
+            COMPONENTS
+  ******************************/
+  /* -------------------- BookInfo -------------------- */
+  .contents .book-info .book-progress .book-reading-start {
+    font-size: .95em;
+  }
+}
+</style>
