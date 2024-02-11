@@ -76,6 +76,20 @@ const searchBookList = computed(() => useNotebookStore().searchBookList);
 </script>
 
 <style scoped>
+.contents .view::-webkit-scrollbar {
+  display: none;
+}
+.contents .book-list::-webkit-scrollbar {
+  width: 8px;
+}
+.contents .book-list::-webkit-scrollbar-thumb {
+  background: #ca4f34;
+  border-radius: 4px;
+}
+.contents .book-list::-webkit-scrollbar-track {
+  background: #e4d4cf;
+  border-radius: 4px;
+}
 .contents .book-info .book-author {
   display: -webkit-box;
   white-space: normal;

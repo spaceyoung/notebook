@@ -2,7 +2,7 @@
   <!-- <div class="book-info">
     <slot name="bookInfo"></slot>
   </div> -->
-  <div class="book-item flex-column flex-sm-row mb-12 flex-0-0" variant="flat">
+  <div class="book-item mb-12" variant="flat">
     <v-img :src="book.cover" :alt="book.title" class="book-cover mr-sm-15 mb-8 mb-sm-0" cover></v-img>
     <div class="book-info">
       <v-card-item class="mb-2 pa-0">
@@ -40,11 +40,18 @@ defineProps({
 max-width: 599px
 *********************/
 @media all and (max-width: 599px) {
+  .contents .book-item {
+    flex-direction: column;
+  }
   .contents .book-info {
     text-align: center;
   }
   .contents .book-info span {
     font-size: 1.15em;
+  }
+  .contents .book-cover {
+    width: 147px;
+    height: 200px;
   }
   .contents .book-info .book-title {
     margin-bottom: 5px;
