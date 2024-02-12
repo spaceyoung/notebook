@@ -12,19 +12,19 @@
       <Review v-if="myReadingEndItem.readingState === '독서 완료'" :book="myReadingEndItem" />
     </v-form>
     <v-card-actions class="book-buttons">
-      <v-dialog v-model="state.deleteDialogdialog" class="delete-dialog">
+      <v-dialog v-model="state.deleteModal" class="modal delete">
         <template v-slot:activator="{ props }">
           <v-btn v-bind="props" class="delete-button ma-0 mr-sm-auto px-8" variant="outlined" size="large">삭제하기</v-btn>
         </template>
         <v-container>
           <v-row class="justify-center">
             <v-col cols="12" sm="8" md="6" lg="4">
-              <v-card class="dialog-box pa-1">
-                <v-card-text class="dialog-desc pa-10">정말 기록을 삭제하시겠어요?</v-card-text>
-                <v-card-actions class="dialog-buttons">
+              <v-card class="modal-box pa-1">
+                <v-card-text class="modal-desc pa-10">정말 기록을 삭제하시겠어요?</v-card-text>
+                <v-card-actions class="modal-buttons">
                   <v-spacer />
-                  <v-btn class="dialog-cancel-button px-5" variant="outlined" size="large" @click="state.deleteDialog = false">취소하기</v-btn>
-                  <v-btn class="dialog-delete-button px-5" variant="outlined" size="large" @click="deleteRecord">삭제하기</v-btn>
+                  <v-btn class="cancel-button px-5" variant="outlined" size="large" @click="state.deleteModal = false">취소하기</v-btn>
+                  <v-btn class="delete-button px-5" variant="outlined" size="large" @click="deleteRecord">삭제하기</v-btn>
                 </v-card-actions>
               </v-card>
             </v-col>
@@ -69,7 +69,7 @@ myReadingEndItem.startDate = new Date(myReadingEndItem.startDate.seconds * 1000)
 myReadingEndItem.endDate = new Date(myReadingEndItem.endDate.seconds * 1000);
 
 const deleteRecord = () => {
-  state.deleteDialogdialog = false;
+  state.deleteModal = false;
   deleteMyReadingEnd(myReadingEndItem.id);
   router.push({ name: 'home' });
 };
@@ -100,16 +100,5 @@ const endModifyRecord = () => {
 <style scoped>
 .end-modify .book-buttons {
   flex-wrap: wrap;
-}
-.delete-dialog .dialog-buttons .v-btn.dialog-delete-button {
-  border-color: #ca4f34;
-  color: #fff;
-  background-color: #ca4f34;
-}
-.delete-dialog .dialog-box .dialog-desc {
-  font-size: 1em;
-  line-height: 1.5;
-  letter-spacing: -1px;
-  color: #777;
 }
 </style>

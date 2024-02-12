@@ -14,10 +14,10 @@
   letter-spacing: -1px;
   color: #777;
 }
-.modal .modal-box .modal-button {
+.modal .modal-box .modal-buttons {
   justify-content: center;
 }
-.modal .modal-box .modal-button .v-btn {
+.modal .modal-box .modal-buttons .v-btn {
   border-color: #ca4f34;
   color: #fff;
   background-color: #ca4f34;

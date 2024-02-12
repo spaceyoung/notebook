@@ -9,8 +9,8 @@
         </v-row>
       </v-container>
     </v-main>
-    <teleport to="#modal">
-      <Modal />
+    <teleport to="#info-modal">
+      <InfoModal />
     </teleport>
   </v-app>
 </template>
@@ -23,7 +23,7 @@ import '@/assets/css/common.css';
 import Header from '@/components/Header.vue';
 import Search from '@/components/Search.vue';
 import Contents from '@/components/Contents.vue';
-import Modal from '@/components/Modal.vue';
+import InfoModal from '@/components/InfoModal.vue';
 </script>
 
 <style>
