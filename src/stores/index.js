@@ -39,7 +39,8 @@ export const useNotebookStore = defineStore("notebook", () => {
       rating: 0,
       sentence: '',
       review: '',
-    }
+    },
+    deleteDialog: false,
   });
 
   // 독서 중 데이터 로딩

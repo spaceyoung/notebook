@@ -12,7 +12,25 @@
       <Review v-if="myReadingItem.readingState === '독서 완료'" :book="myReadingItem" />
     </v-form>
     <v-card-actions class="book-buttons">
-      <v-btn class="delete-button ma-0 mr-sm-auto px-8" variant="outlined" size="large" @click="deleteRecord">삭제하기</v-btn>
+      <v-dialog v-model="state.deleteDialogdialog">
+        <template v-slot:activator="{ props }">
+          <v-btn v-bind="props" class="delete-button ma-0 mr-sm-auto px-8" variant="outlined" size="large">삭제하기</v-btn>
+        </template>
+        <v-container>
+          <v-row class="justify-center">
+            <v-col cols="12" sm="8" md="6" lg="4">
+              <v-card class="delete-dialog pa-1">
+                <v-card-text class="pa-10">정말 기록을 삭제하시겠어요?</v-card-text>
+                <v-card-actions class="delete-dialog-buttons">
+                  <v-spacer />
+                  <v-btn class="delete-dialog-cancel px-5" variant="outlined" size="large" @click="state.deleteDialogdialog = false">취소하기</v-btn>
+                  <v-btn class="delete-dialog-delete px-5" variant="outlined" size="large" @click="deleteRecord">삭제하기</v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-col>
+          </v-row>
+        </v-container>
+      </v-dialog>
       <v-btn class="cancel-button ma-0 px-8" variant="outlined" size="large" @click="cancelRecord">취소하기</v-btn>
       <v-btn class="modify-button ma-0 ml-sm-5 px-8" variant="outlined" size="large" @click="modifyRecord">수정하기</v-btn>
     </v-card-actions>
@@ -50,6 +68,7 @@ const myReadingItem = myReadingList.value.find((myReadingItem) => myReadingItem.
 myReadingItem.startDate = new Date(myReadingItem.startDate.seconds * 1000);
 
 const deleteRecord = () => {
+  state.deleteDialogdialog = false;
   deleteMyReading(myReadingItem.id);
   router.back();
 };
