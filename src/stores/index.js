@@ -50,7 +50,7 @@ export const useNotebookStore = defineStore("notebook", () => {
       const myReading = useCollection(myReadingDB);
       if (myReading) {
         state.myReadingList = myReading;
-        state.isLoading = false;
+        setTimeout(() => {state.isLoading = false}, 1000);
       }
       else {
         alert('데이터 조회에 실패했습니다.');
@@ -69,7 +69,7 @@ export const useNotebookStore = defineStore("notebook", () => {
       const myReadingEnd = useCollection(myReadingEndDB);
       if (myReadingEnd) {
         state.myReadingEndList = myReadingEnd;
-        state.isLoading = false;
+        setTimeout(() => {state.isLoading = false}, 1000);
       }
       else {
         alert('데이터 조회에 실패했습니다.');
@@ -92,7 +92,7 @@ export const useNotebookStore = defineStore("notebook", () => {
     state.isLoading = true;
     const results = await searchBookBase(searchWord);
     searchBookDetail(results);
-    state.isLoading = false;
+    setTimeout(() => {state.isLoading = false}, 1000);
   };
 
   // 도서 기본정보 검색
