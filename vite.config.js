@@ -10,14 +10,13 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
-  server: {
-    proxy: {
-      "/api": {
-        target: "http://www.aladin.co.kr/ttb",
-        changeOrigin: true,
-        // rewrite: (path) => path.replace(/^\/api/, ""),
-      }
-    }
-  },
-  base: process.env.NODE_ENV === 'production' ? '/notebook/' : '/',
+  // server: {
+  //   proxy: {
+  //     "/api": {
+  //       target: "http://www.aladin.co.kr/ttb",
+  //       changeOrigin: true,
+  //     }
+  //   }
+  // },
+  // base: process.env.NODE_ENV === 'production' ? '/notebook/' : '/',
 });

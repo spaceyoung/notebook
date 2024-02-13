@@ -7,7 +7,7 @@ import Modify from '@/views/Modify.vue';
 import EndModify from '@/views/EndModify.vue';
 
 const router = createRouter({
-  history: createWebHashHistory(process.env.NODE_ENV === 'production' ? '/notebook/' : '/'),
+  history: createWebHashHistory(),
   routes: [
     { path: '/', name: 'home', component: Home },
     { path: '/searchresult', name: 'searchResult', component: SearchResult },
