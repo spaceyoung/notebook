@@ -42,7 +42,7 @@ const myReadingList = computed(() => useNotebookStore().myReadingList);
 const myReadingItem = myReadingList.value.find((myReadingItem) => myReadingItem.isbn === id);
 
 // 파이어베이스 TimeStamp 변환
-myReadingItem.startDate = new Date(myReadingItem.startDate.seconds * 1000);
+myReadingItem.readingStartDate = new Date(myReadingItem.readingStartDate.seconds * 1000);
 
 const deleteRecord = () => {
   state.deleteModal = false;
@@ -53,11 +53,11 @@ const deleteRecord = () => {
 const cancelRecord = () => { router.back(); };
 
 const modifyRecord = () => {
-  if (myReadingItem.platform && myReadingItem.readingState && myReadingItem.startDate && myReadingItem.readingPage >= 0) {
+  if (myReadingItem.platform && myReadingItem.readingState && myReadingItem.readingStartDate && myReadingItem.readingPage >= 0) {
     if (myReadingItem.readingState === '독서 중') {
       updateMyReading(myReadingItem.id, myReadingItem);
       router.push({ name: 'home' });
-    } else if (myReadingItem.readingState === '독서 완료' && myReadingItem.endDate) {
+    } else if (myReadingItem.readingState === '독서 완료' && myReadingItem.readingEndDate) {
       addMyReadingEnd(myReadingItem);
       deleteMyReading(myReadingItem.id);
       router.push({ name: 'home' });

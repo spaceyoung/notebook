@@ -45,11 +45,11 @@ const recordBook = ref({ ...selectBook, ...state.recordBookDefault });
 const cancelRecord = () => { router.back(); };
 
 const addRecord = () => {
-  if (recordBook.value.platform && recordBook.value.readingState && recordBook.value.startDate && recordBook.value.readingPage >= 0) {
+  if (recordBook.value.platform && recordBook.value.readingState && recordBook.value.readingStartDate && recordBook.value.readingPage >= 0) {
     if (recordBook.value.readingState === '독서 중') {
       addMyReading(recordBook.value);
       router.push({ name: 'home' });
-    } else if (recordBook.value.readingState === '독서 완료' && recordBook.value.endDate) {
+    } else if (recordBook.value.readingState === '독서 완료' && recordBook.value.readingEndDate) {
       addMyReadingEnd(recordBook.value);
       router.push({ name: 'home' });
     } else {

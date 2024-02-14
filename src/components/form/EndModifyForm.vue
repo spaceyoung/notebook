@@ -42,8 +42,8 @@ const myReadingEndList = computed(() => useNotebookStore().myReadingEndList);
 const myReadingEndItem = myReadingEndList.value.find((myReadingEndItem) => myReadingEndItem.isbn === id);
 
 // 파이어베이스 TimeStamp 변환
-myReadingEndItem.startDate = new Date(myReadingEndItem.startDate.seconds * 1000);
-myReadingEndItem.endDate = new Date(myReadingEndItem.endDate.seconds * 1000);
+myReadingEndItem.readingStartDate = new Date(myReadingEndItem.readingStartDate.seconds * 1000);
+myReadingEndItem.readingEndDate = new Date(myReadingEndItem.readingEndDate.seconds * 1000);
 
 const deleteRecord = () => {
   state.deleteModal = false;
@@ -54,15 +54,15 @@ const deleteRecord = () => {
 const cancelRecord = () => { router.back(); };
 
 const endModifyRecord = () => {
-  if (myReadingEndItem.platform && myReadingEndItem.readingState && myReadingEndItem.startDate && myReadingEndItem.readingPage >= 0) {
+  if (myReadingEndItem.platform && myReadingEndItem.readingState && myReadingEndItem.readingStartDate && myReadingEndItem.readingPage >= 0) {
     if (myReadingEndItem.readingState === '독서 중') {
-      myReadingEndItem.endDate = null;
-      myReadingEndItem.formattedEndDate = null;
+      myReadingEndItem.readingEndDate = null;
+      myReadingEndItem.formattedReadingEndDate = null;
       myReadingEndItem.rating = 0;
       addMyReading(myReadingEndItem);
       deleteMyReadingEnd(myReadingEndItem.id);
       router.push({ name: 'home' });
-    } else if (myReadingEndItem.readingState === '독서 완료' && myReadingEndItem.endDate) {
+    } else if (myReadingEndItem.readingState === '독서 완료' && myReadingEndItem.readingEndDate) {
       updateMyReadingEnd(myReadingEndItem.id, myReadingEndItem);
       router.push({ name: 'home' });
     } else {
