@@ -13,16 +13,15 @@
 <br>
 <br>
 ## 🔎 배포 사이트 주소
-https://spaceyoung.github.io/notebook/
-- 배포 환경에서의 CORS proxy 설정을 아직 해결하지 못해 현재 도서 검색 기능이 지원되지 않는 상태입니다.
+https://notebook-service.vercel.app
 <br>
 <br>
-
+<br>
 ## 🛠 사용 기술
-JavaScript / Vue.js / Vuetify3 / Vue Router / Axios / Pinia / Firebase
+JavaScript / Vue.js / Vuetify3 / Vue Router / Axios / Pinia / Firebase / Vercel
 <br>
 <br>
-
+<br>
 ## ✨ 구현 기능
 - 알라딘 Open API를 활용한 도서 검색 기능
 - 독서 기록 정보 CRUD 기능
