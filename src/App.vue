@@ -1,14 +1,6 @@
 <template>
   <v-app>
-    <Header />
-    <v-main class="pt-lg-0">
-      <v-container class="pa-0" fluid>
-        <v-row class="ma-0">
-          <Search />
-          <Contents />
-        </v-row>
-      </v-container>
-    </v-main>
+    <Layout />
     <teleport to="#info-modal">
       <InfoModal />
     </teleport>
@@ -20,10 +12,8 @@
 import '@/assets/css/reset.css';
 import '@/assets/css/common.css';
 
-import Header from '@/components/Header.vue';
-import Search from '@/components/Search.vue';
-import Contents from '@/components/Contents.vue';
-import InfoModal from '@/components/InfoModal.vue';
+import Layout from '@/layout/Layout.vue';
+import InfoModal from '@/components/modal/InfoModal.vue';
 </script>
 
 <style>

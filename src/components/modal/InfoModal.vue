@@ -26,6 +26,7 @@
 import '@/assets/css/components/modal.css';
 
 import { useNotebookStore } from '@/stores/index';
+
 const { state } = useNotebookStore();
 </script>
 

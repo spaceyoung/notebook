@@ -9,7 +9,7 @@
 
 <script setup>
 import { Vue3Lottie } from 'vue3-lottie';
-import LoadingAnimation from '../../assets/loading.json';
+import LoadingAnimation from '@/assets/loading.json';
 </script>
 
 <style></style>

@@ -16,6 +16,7 @@
 const props = defineProps({
   book: { type: Object, required: true },
 });
+
 const numberRule = [
   value => !!value || '읽은 페이지수를 입력해주세요.',
   value => value <= props.book.page || `${props.book.page} 이하의 숫자만 입력 가능해요.`

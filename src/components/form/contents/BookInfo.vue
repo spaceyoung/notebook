@@ -1,7 +1,4 @@
 <template>
-  <!-- <div class="book-info">
-    <slot name="bookInfo"></slot>
-  </div> -->
   <div class="book-item mb-12" variant="flat">
     <v-img :src="book.cover" :alt="book.title" class="book-cover mr-sm-15 mb-8 mb-sm-0" cover></v-img>
     <div class="book-info">

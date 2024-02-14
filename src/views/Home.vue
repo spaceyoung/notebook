@@ -6,14 +6,15 @@
     <v-tab v-for="tab in state.tabs" :key="tab.id" :value="tab.id">{{ tab.label }}</v-tab>
   </v-tabs>
   <keep-alive>
-    <component :is="state.selectTab === 'MyReading' ? MyReading : MyReadingEnd"></component>
+    <component :is="state.selectTab === 'MyReading' ? MyReading : MyReadingEnd" />
   </keep-alive>
 </template>
 
 <script setup>
 import { useNotebookStore } from '@/stores/index';
-import MyReading from '@/components/home/MyReading.vue';
-import MyReadingEnd from '@/components/home/MyReadingEnd.vue';
+import MyReading from '@/components/tab/MyReading.vue';
+import MyReadingEnd from '@/components/tab/MyReadingEnd.vue';
+
 const { state } = useNotebookStore();
 </script>
 
