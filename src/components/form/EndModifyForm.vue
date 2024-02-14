@@ -32,7 +32,7 @@ import ReadingPage from '@/components/form/contents/ReadingPage.vue';
 import Rate from '@/components/form/contents/Rate.vue';
 import Sentence from '@/components/form/contents/Sentence.vue';
 import Review from '@/components/form/contents/Review.vue';
-import FormButtons from '@/components/form/buttons/FormButtons.vue';
+import FormButtons from '@/components/form/button/FormButtons.vue';
 
 const currentRoute = useRoute();
 const router = useRouter();
