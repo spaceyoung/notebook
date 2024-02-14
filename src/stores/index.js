@@ -26,15 +26,15 @@ export const useNotebookStore = defineStore("notebook", () => {
     searchBookList: [],
     platforms: ['종이책', '전자책', '오디오북'],
     readingStates: ['독서 중', '독서 완료'],
-    startModal: false,
-    endModal: false,
+    readingStartDateModal: false,
+    readingEndDateModal: false,
     recordBookDefault: {
       platform: null,
       readingState: null,
-      startDate: null,
-      endDate: null,
-      formattedStartDate: null,
-      formattedEndDate: null,
+      readingStartDate: null,
+      readingEndDate: null,
+      formattedReadingStartDate: null,
+      formattedReadingEndDate: null,
       readingPage: null,
       rating: 0,
       sentence: '',
@@ -50,7 +50,7 @@ export const useNotebookStore = defineStore("notebook", () => {
       const myReading = useCollection(myReadingDB);
       if (myReading) {
         state.myReadingList = myReading;
-        setTimeout(() => {state.isLoading = false}, 1000);
+        setTimeout(() => { state.isLoading = false; }, 1000);
       }
       else {
         alert('데이터 조회에 실패했습니다.');
@@ -69,7 +69,7 @@ export const useNotebookStore = defineStore("notebook", () => {
       const myReadingEnd = useCollection(myReadingEndDB);
       if (myReadingEnd) {
         state.myReadingEndList = myReadingEnd;
-        setTimeout(() => {state.isLoading = false}, 1000);
+        setTimeout(() => { state.isLoading = false; }, 1000);
       }
       else {
         alert('데이터 조회에 실패했습니다.');
@@ -92,7 +92,7 @@ export const useNotebookStore = defineStore("notebook", () => {
     state.isLoading = true;
     const results = await searchBookBase(searchWord);
     searchBookDetail(results);
-    setTimeout(() => {state.isLoading = false}, 1000);
+    setTimeout(() => { state.isLoading = false; }, 1000);
   };
 
   // 도서 기본정보 검색
@@ -143,13 +143,13 @@ export const useNotebookStore = defineStore("notebook", () => {
   // 독서 날짜 Modal 닫기
   const closeDateModal = (date, book) => {
     const formattedDate = new Intl.DateTimeFormat('kr', { dateStyle: 'medium' }).format(date);
-    if (state.startModal) {
-      book.formattedStartDate = formattedDate;
-      state.startModal = false;
+    if (state.readingStartDateModal) {
+      book.formattedReadingStartDate = formattedDate;
+      state.readingStartDateModal = false;
     }
-    if (state.endModal) {
-      book.formattedEndDate = formattedDate;
-      state.endModal = false;
+    if (state.readingEndDateModal) {
+      book.formattedReadingEndDate = formattedDate;
+      state.readingEndDateModal = false;
     }
   };
 
@@ -165,10 +165,10 @@ export const useNotebookStore = defineStore("notebook", () => {
     await updateDoc(doc(database, 'myReading', id), {
       platform: myReadingItem.platform,
       readingState: myReadingItem.readingState,
-      startDate: myReadingItem.startDate,
-      formattedStartDate: myReadingItem.formattedStartDate,
-      endDate: myReadingItem.endDate,
-      formattedEndDate: myReadingItem.formattedEndDate,
+      readingStartDate: myReadingItem.readingStartDate,
+      formattedReadingStartDate: myReadingItem.formattedReadingStartDate,
+      readingEndDate: myReadingItem.readingEndDate,
+      formattedReadingEndDate: myReadingItem.formattedReadingEndDate,
       readingPage: myReadingItem.readingPage,
       rating: myReadingItem.rating,
       sentence: myReadingItem.sentence,
@@ -192,10 +192,10 @@ export const useNotebookStore = defineStore("notebook", () => {
     await updateDoc(doc(database, 'myReadingEnd', id), {
       platform: myReadingEndItem.platform,
       readingState: myReadingEndItem.readingState,
-      startDate: myReadingEndItem.startDate,
-      formattedStartDate: myReadingEndItem.formattedStartDate,
-      endDate: myReadingEndItem.endDate,
-      formattedEndDate: myReadingEndItem.formattedEndDate,
+      readingStartDate: myReadingEndItem.readingStartDate,
+      formattedReadingStartDate: myReadingEndItem.formattedReadingStartDate,
+      readingEndDate: myReadingEndItem.readingEndDate,
+      formattedReadingEndDate: myReadingEndItem.formattedReadingEndDate,
       readingPage: myReadingEndItem.readingPage,
       rating: myReadingEndItem.rating,
       sentence: myReadingEndItem.sentence,

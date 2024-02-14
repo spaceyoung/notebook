@@ -13,7 +13,7 @@
         </v-card-text>
         <div class="book-progress">
           <span class="book-reading-start mb-1 mb-sm-2"><em class="mr-2">독서 시작</em>{{
-            myReadingItem.formattedStartDate }}</span>
+            myReadingItem.formattedReadingStartDate }}</span>
           <v-progress-linear :model-value="myReadingProgress(myReadingItem)" class="book-progress-bar mb-0 mb-sm-1"
             :height="9" color="#ca4f34" rounded />
           <span class="book-progress-percent">{{ myReadingProgress(myReadingItem) }}</span>

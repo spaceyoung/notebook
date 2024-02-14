@@ -12,9 +12,9 @@
           <span class="book-pubdate">{{ myReadingEndItem.pubDate }}</span>
         </v-card-text>
         <div class="book-progress">
-          <span class="book-reading-start"><em class="mr-2">독서 시작</em>{{ myReadingEndItem.formattedStartDate
+          <span class="book-reading-start"><em class="mr-2">독서 시작</em>{{ myReadingEndItem.formattedReadingStartDate
           }}</span>
-          <span class="book-reading-end"><em class="mr-2">독서 완료</em>{{ myReadingEndItem.formattedEndDate }}</span>
+          <span class="book-reading-end"><em class="mr-2">독서 완료</em>{{ myReadingEndItem.formattedReadingEndDate }}</span>
         </div>
       </div>
       <v-overlay :model-value="isHovering" class="modify-overlay" scrim="#8c6542" contained>

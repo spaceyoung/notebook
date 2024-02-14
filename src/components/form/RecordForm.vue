@@ -7,7 +7,7 @@
       <ReadingState :state="state" :book="recordBook" />
       <ReadingDate :book="recordBook" />
       <ReadingPage v-if="recordBook.readingState === '독서 중'" :book="recordBook" />
-      <Rate v-if="recordBook.readingState === '독서 완료'" :book="recordBook" />
+      <Rating v-if="recordBook.readingState === '독서 완료'" :book="recordBook" />
       <Sentence v-if="recordBook.readingState === '독서 완료'" :book="recordBook" />
       <Review v-if="recordBook.readingState === '독서 완료'" :book="recordBook" />
     </div>
@@ -29,7 +29,7 @@ import BookPlatform from '@/components/form/contents/BookPlatform.vue';
 import ReadingState from '@/components/form/contents/ReadingState.vue';
 import ReadingDate from '@/components/form/contents/ReadingDate.vue';
 import ReadingPage from '@/components/form/contents/ReadingPage.vue';
-import Rate from '@/components/form/contents/Rate.vue';
+import Rating from '@/components/form/contents/Rating.vue';
 import Sentence from '@/components/form/contents/Sentence.vue';
 import Review from '@/components/form/contents/Review.vue';
 import FormButtons from '@/components/form/button/FormButtons.vue';

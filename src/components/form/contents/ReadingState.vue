@@ -24,8 +24,8 @@ const autoReadingDone = () => {
 };
 const resetReadingEndDate = () => {
   if (props.book.readingState === '독서 중') {
-    props.book.endDate = null;
-    props.book.formattedEndDate = null;
+    props.book.readingEndDate = null;
+    props.book.formattedReadingEndDate = null;
   }
 };
 </script>
