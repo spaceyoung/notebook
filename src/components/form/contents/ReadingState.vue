@@ -3,7 +3,7 @@
     <span class="book-caption mb-3">
       <v-icon icon="mdi-book-edit-outline" class="mr-2" />독서 상태
     </span>
-    <v-chip-group v-model="book.readingState" class="pa-0" mandatory @click="autoReadingDone">
+    <v-chip-group v-model="book.readingState" class="pa-0" mandatory @click="autoReadingDone(), resetReadingEndDate()">
       <v-chip v-for="readingState in state.readingStates" :value="readingState" class="ma-0 px-6" variant="outlined"
         size="large">{{
           readingState
@@ -21,6 +21,12 @@ const props = defineProps({
 const autoReadingDone = () => {
   if (props.book.readingState === '독서 완료') props.book.readingPage = props.book.page;
   else props.book.readingPage = null;
+};
+const resetReadingEndDate = () => {
+  if (props.book.readingState === '독서 중') {
+    props.book.endDate = null;
+    props.book.formattedEndDate = null;
+  }
 };
 </script>
 
