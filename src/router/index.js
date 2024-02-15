@@ -1,10 +1,10 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 
-import Home from '@/views/Home.vue';
-import SearchResult from '@/views/SearchResult.vue';
-import Record from '@/views/Record.vue';
-import Modify from '@/views/Modify.vue';
-import EndModify from '@/views/EndModify.vue';
+const Home = () => import('@/views/Home.vue');
+const SearchResult = () => import('@/views/SearchResult.vue');
+const Record = () => import('@/views/Record.vue');
+const Modify = () => import('@/views/Modify.vue');
+const EndModify = () => import('@/views/EndModify.vue');
 
 const router = createRouter({
   history: createWebHashHistory(),
