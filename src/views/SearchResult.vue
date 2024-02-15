@@ -15,12 +15,12 @@
 
 <script setup>
 import { computed } from 'vue';
-import { useNotebookStore } from '@/stores/index';
+import { useSearchStore } from '@/stores/search';
 import Loading from '@/components/loading/Loading.vue';
 import SearchResultBook from '@/components/card/SearchResultBook.vue';
 
-const isLoading = computed(() => useNotebookStore().isLoading);
-const searchBookList = computed(() => useNotebookStore().searchBookList);
+const isLoading = computed(() => useSearchStore().isLoading);
+const searchBookList = computed(() => useSearchStore().searchBookList);
 </script>
 
 <style scoped>

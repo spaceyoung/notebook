@@ -23,11 +23,11 @@ import '@/assets/css/components/search.css';
 
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { useNotebookStore } from '@/stores/index';
+import { useSearchStore } from '@/stores/search';
 
 const searchWord = ref('');
 const router = useRouter();
-const { state, searchBook } = useNotebookStore();
+const { state, searchBook } = useSearchStore();
 const searchWordHandler = () => {
   router.push({ name: 'searchResult' });
   searchBook(searchWord.value);

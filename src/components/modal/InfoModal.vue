@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="state.infoModal" class="modal info" persistent>
+  <v-dialog v-model="infoModal" class="modal info" persistent>
     <v-container>
       <v-row>
         <v-col cols="12" sm="9" lg="6" xl="4">
@@ -12,7 +12,7 @@
                 있습니다🙂</p>
             </v-card-text>
             <v-card-actions class="modal-buttons">
-              <v-btn variant="outlined" @click="state.infoModal = false">확인</v-btn>
+              <v-btn variant="outlined" @click="infoModal = false">확인</v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
@@ -25,9 +25,9 @@
 // css stylesheet
 import '@/assets/css/components/modal.css';
 
-import { useNotebookStore } from '@/stores/index';
+import { ref } from 'vue';
 
-const { state } = useNotebookStore();
+const infoModal = ref(true);
 </script>
 
 <style></style>

@@ -4,7 +4,7 @@
       <v-icon icon="mdi-book-edit-outline" class="mr-2" />독서 상태
     </span>
     <v-chip-group v-model="book.readingState" class="pa-0" mandatory @click="autoReadingDone(), resetReadingEndDate()">
-      <v-chip v-for="readingState in state.readingStates" :value="readingState" class="ma-0 px-6" variant="outlined"
+      <v-chip v-for="readingState in readingStates" :value="readingState" class="ma-0 px-6" variant="outlined"
         size="large">{{
           readingState
         }}</v-chip>
@@ -13,11 +13,13 @@
 </template>
 
 <script setup>
+import { ref } from 'vue';
+
 const props = defineProps({
-  state: { type: Object, required: true },
   book: { type: Object, required: true }
 });
 
+const readingStates = ref(['독서 중', '독서 완료']);
 const autoReadingDone = () => {
   if (props.book.readingState === '독서 완료') props.book.readingPage = props.book.page;
   else props.book.readingPage = null;

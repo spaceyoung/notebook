@@ -30,10 +30,12 @@
 
 <script setup>
 import { computed } from 'vue';
-import { useNotebookStore } from '@/stores/index';
+import { useRecordStore } from '@/stores/record';
 
-const { myReadingProgress } = useNotebookStore();
-const myReadingList = computed(() => useNotebookStore().myReadingList);
+const myReadingList = computed(() => useRecordStore().myReadingList);
+const myReadingProgress = (myReadingItem) => {
+  return `${Math.round(myReadingItem.readingPage / myReadingItem.page * 100)}%`;
+};
 </script>
 
 <style></style>

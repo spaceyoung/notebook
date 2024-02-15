@@ -12,15 +12,14 @@
 
 <script setup>
 import { computed } from 'vue';
-import { useNotebookStore } from '@/stores/index';
+import { useRecordStore } from '@/stores/record';
 import Loading from '@/components/loading/Loading.vue';
 import MyReadingBook from '@/components/card/MyReadingBook.vue';
 
-const { vuefireMyReading } = useNotebookStore();
-const isLoading = computed(() => useNotebookStore().isLoading);
-const myReadingList = computed(() => useNotebookStore().myReadingList);
-
-vuefireMyReading();
+const { inquiryMyReading } = useRecordStore();
+const isLoading = computed(() => useRecordStore().isLoading);
+const myReadingList = computed(() => useRecordStore().myReadingList);
+inquiryMyReading();
 </script>
 
 <style scoped>

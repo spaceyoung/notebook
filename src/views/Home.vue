@@ -11,11 +11,17 @@
 </template>
 
 <script setup>
-import { useNotebookStore } from '@/stores/index';
+import { reactive } from 'vue';
 import MyReading from '@/components/tab/MyReading.vue';
 import MyReadingEnd from '@/components/tab/MyReadingEnd.vue';
 
-const { state } = useNotebookStore();
+const state = reactive({
+  tabs: [
+    { id: 'MyReading', label: '독서 중' },
+    { id: 'MyReadingEnd', label: '독서 완료' }
+  ],
+  selectTab: 'MyReading',
+});
 </script>
 
 <style>

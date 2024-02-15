@@ -28,9 +28,9 @@
 
 <script setup>
 import { computed } from 'vue';
-import { useNotebookStore } from '@/stores/index';
+import { useRecordStore } from '@/stores/record';
 
-const myReadingEndList = computed(() => useNotebookStore().myReadingEndList);
+const myReadingEndList = computed(() => useRecordStore().myReadingEndList);
 </script>
 
 <style></style>

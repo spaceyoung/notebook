@@ -3,8 +3,8 @@
     <div class="mb-13">
       <BookInfo :book="myReadingEndItem" />
       <BookDesc :book="myReadingEndItem" />
-      <BookPlatform :state="state" :book="myReadingEndItem" />
-      <ReadingState :state="state" :book="myReadingEndItem" />
+      <BookPlatform :book="myReadingEndItem" />
+      <ReadingState :book="myReadingEndItem" />
       <ReadingDate :state="state" :book="myReadingEndItem" />
       <ReadingPage v-if="myReadingEndItem.readingState === '독서 중'" :book="myReadingEndItem" />
       <Rating v-if="myReadingEndItem.readingState === '독서 완료'" :book="myReadingEndItem" />
@@ -19,9 +19,9 @@
 </template>
 
 <script setup>
-import { computed } from 'vue';
+import { ref, computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import { useNotebookStore } from '@/stores/index';
+import { useRecordStore } from '@/stores/record';
 
 import BookInfo from '@/components/form/contents/BookInfo.vue';
 import BookDesc from '@/components/form/contents/BookDesc.vue';
@@ -34,11 +34,12 @@ import Sentence from '@/components/form/contents/Sentence.vue';
 import Review from '@/components/form/contents/Review.vue';
 import FormButtons from '@/components/form/button/FormButtons.vue';
 
+const deleteModal = ref(false);
 const currentRoute = useRoute();
 const router = useRouter();
 const id = currentRoute.params.id;
-const { state, addMyReading, updateMyReadingEnd, deleteMyReadingEnd } = useNotebookStore();
-const myReadingEndList = computed(() => useNotebookStore().myReadingEndList);
+const { state, addMyReading, updateMyReadingEnd, deleteMyReadingEnd } = useRecordStore();
+const myReadingEndList = computed(() => useRecordStore().myReadingEndList);
 const myReadingEndItem = myReadingEndList.value.find((myReadingEndItem) => myReadingEndItem.isbn === id);
 
 // 파이어베이스 TimeStamp 변환
@@ -46,7 +47,7 @@ myReadingEndItem.readingStartDate = new Date(myReadingEndItem.readingStartDate.s
 myReadingEndItem.readingEndDate = new Date(myReadingEndItem.readingEndDate.seconds * 1000);
 
 const deleteRecord = () => {
-  state.deleteModal = false;
+  deleteModal.value = false;
   deleteMyReadingEnd(myReadingEndItem.id);
   router.push({ name: 'home' });
 };

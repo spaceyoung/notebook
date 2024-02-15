@@ -3,8 +3,8 @@
     <div class="mb-13">
       <BookInfo :book="myReadingItem" />
       <BookDesc :book="myReadingItem" />
-      <BookPlatform :state="state" :book="myReadingItem" />
-      <ReadingState :state="state" :book="myReadingItem" />
+      <BookPlatform :book="myReadingItem" />
+      <ReadingState :book="myReadingItem" />
       <ReadingDate :state="state" :book="myReadingItem" />
       <ReadingPage v-if="myReadingItem.readingState === '독서 중'" :book="myReadingItem" />
       <Rating v-if="myReadingItem.readingState === '독서 완료'" :book="myReadingItem" />
@@ -19,9 +19,9 @@
 </template>
 
 <script setup>
-import { computed } from 'vue';
+import { ref, computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import { useNotebookStore } from '@/stores/index';
+import { useRecordStore } from '@/stores/record';
 
 import BookInfo from '@/components/form/contents/BookInfo.vue';
 import BookDesc from '@/components/form/contents/BookDesc.vue';
@@ -34,18 +34,19 @@ import Sentence from '@/components/form/contents/Sentence.vue';
 import Review from '@/components/form/contents/Review.vue';
 import FormButtons from '@/components/form/button/FormButtons.vue';
 
+const deleteModal = ref(false);
 const currentRoute = useRoute();
 const router = useRouter();
 const id = currentRoute.params.id;
-const { state, updateMyReading, deleteMyReading, addMyReadingEnd } = useNotebookStore();
-const myReadingList = computed(() => useNotebookStore().myReadingList);
+const { state, updateMyReading, deleteMyReading, addMyReadingEnd } = useRecordStore();
+const myReadingList = computed(() => useRecordStore().myReadingList);
 const myReadingItem = myReadingList.value.find((myReadingItem) => myReadingItem.isbn === id);
 
 // 파이어베이스 TimeStamp 변환
 myReadingItem.readingStartDate = new Date(myReadingItem.readingStartDate.seconds * 1000);
 
 const deleteRecord = () => {
-  state.deleteModal = false;
+  deleteModal.value = false;
   deleteMyReading(myReadingItem.id);
   router.back();
 };

@@ -3,8 +3,8 @@
     <div class="mb-13">
       <BookInfo :book="recordBook" />
       <BookDesc :book="recordBook" />
-      <BookPlatform :state="state" :book="recordBook" />
-      <ReadingState :state="state" :book="recordBook" />
+      <BookPlatform :book="recordBook" />
+      <ReadingState :book="recordBook" />
       <ReadingDate :book="recordBook" />
       <ReadingPage v-if="recordBook.readingState === '독서 중'" :book="recordBook" />
       <Rating v-if="recordBook.readingState === '독서 완료'" :book="recordBook" />
@@ -21,7 +21,8 @@
 <script setup>
 import { ref, computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import { useNotebookStore } from '@/stores/index';
+import { useSearchStore } from '@/stores/search';
+import { useRecordStore } from '@/stores/record';
 
 import BookInfo from '@/components/form/contents/BookInfo.vue';
 import BookDesc from '@/components/form/contents/BookDesc.vue';
@@ -37,8 +38,8 @@ import FormButtons from '@/components/form/button/FormButtons.vue';
 const currentRoute = useRoute();
 const router = useRouter();
 const id = currentRoute.params.id;
-const { state, addMyReading, addMyReadingEnd } = useNotebookStore();
-const searchBookList = computed(() => useNotebookStore().searchBookList);
+const searchBookList = computed(() => useSearchStore().searchBookList);
+const { state, addMyReading, addMyReadingEnd } = useRecordStore();
 const selectBook = searchBookList.value.find((searchBookItem) => searchBookItem.isbn === id);
 const recordBook = ref({ ...selectBook, ...state.recordBookDefault });
 
