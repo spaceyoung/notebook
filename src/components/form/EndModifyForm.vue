@@ -1,6 +1,6 @@
 <template>
   <v-form class="end-modify view px-0 py-10 px-sm-8 px-lg-15 py-lg-5" variant="flat">
-    <div class="mb-13">
+    <v-sheet class="mb-13">
       <BookInfo :book="myReadingEndItem" />
       <BookDesc :book="myReadingEndItem" />
       <BookPlatform :book="myReadingEndItem" />
@@ -10,7 +10,7 @@
       <Rating v-if="myReadingEndItem.readingState === '독서 완료'" :book="myReadingEndItem" />
       <Sentence v-if="myReadingEndItem.readingState === '독서 완료'" :book="myReadingEndItem" />
       <Review v-if="myReadingEndItem.readingState === '독서 완료'" :book="myReadingEndItem" />
-    </div>
+    </v-sheet>
     <FormButtons :deleteRecord="deleteRecord" :cancelRecord="cancelRecord" :modifyRecord="endModifyRecord" />
     <v-btn class="close-button pa-0" size="large" @click="cancelRecord">
       <v-icon icon="mdi-window-close" size="x-large" />

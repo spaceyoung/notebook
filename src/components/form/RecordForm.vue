@@ -1,6 +1,6 @@
 <template>
   <v-form class="record view px-0 py-10 px-sm-8 px-lg-15 py-lg-5" variant="flat">
-    <div class="mb-13">
+    <v-sheet class="mb-13">
       <BookInfo :book="recordBook" />
       <BookDesc :book="recordBook" />
       <BookPlatform :book="recordBook" />
@@ -10,7 +10,7 @@
       <Rating v-if="recordBook.readingState === '독서 완료'" :book="recordBook" />
       <Sentence v-if="recordBook.readingState === '독서 완료'" :book="recordBook" />
       <Review v-if="recordBook.readingState === '독서 완료'" :book="recordBook" />
-    </div>
+    </v-sheet>
     <FormButtons :cancelRecord="cancelRecord" :addRecord="addRecord" />
     <v-btn class="close-button pa-0" size="large" @click="cancelRecord">
       <v-icon icon="mdi-window-close" size="x-large" />
