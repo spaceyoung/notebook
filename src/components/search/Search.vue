@@ -17,9 +17,6 @@
 </template>
 
 <script setup>
-// css stylesheet
-import '@/assets/css/components/search.css';
-
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useSearchStore } from '@/stores/search';
