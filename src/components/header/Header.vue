@@ -9,9 +9,16 @@
   </v-app-bar>
 </template>
 
-<script>
-// css stylesheet
-import '@/assets/css/components/header.css';
+<script setup>
 </script>
 
-<style></style>
+<style scoped>
+header.v-app-bar {
+  background-color: rgba(202, 79, 52, .9);
+}
+header.v-app-bar::v-deep .v-toolbar__content {
+  font-size: 1.1em;
+  font-family: LeeSeoyun, Roboto, "돋움", dotum, AppleGothic, sans-serif;
+  color: #fff;
+}
+</style>

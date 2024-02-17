@@ -8,8 +8,7 @@
       <span class="sec-desc"><em>책</em>으로 <em>기록</em>하는 <em>공간</em></span>
     </div>
     <v-form class="search-form">
-      <v-select v-model="state.selectOption" :items="state.options" class="search-option text-black mb-5"
-        variant="outlined" hide-details="auto" />
+      <v-select v-model="state.selectOption" :items="state.options" class="search-option mb-5" variant="outlined" hide-details="auto" />
       <v-text-field v-model.trim="searchWord" class="search-input" label="어떤 책을 기록하시나요?" variant="outlined"
         append-inner-icon="mdi-magnify" clear-icon="mdi-close-circle-outline" clearable hide-details="auto"
         @keyup.enter="searchWordHandler" @click:append-inner="searchWordHandler" />
@@ -35,4 +34,28 @@ const searchWordHandler = () => {
 };
 </script>
 
-<style></style>
+<style scoped>
+.inner {
+  width: 75%;
+}
+.sec-header .sec-title {
+  font-size: 3.8em;
+  line-height: 1;
+}
+.v-form .v-text-field::v-deep .v-field {
+  background-color: rgba(255, 255, 255, .5);
+}
+
+/******************************
+      max-width: 599px;
+******************************/
+@media all and (max-width: 599px) {
+  .sec-header .sec-title {
+    font-size: 3.2em;
+  }
+  .sec-header .sec-sub-title,
+  .sec-header .sec-desc {
+    font-size: 1.5em;
+  }
+}
+</style>

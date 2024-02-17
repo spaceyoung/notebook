@@ -6,4 +6,5 @@
 import EndModifyForm from '@/components/form/EndModifyForm.vue';
 </script>
 
-<style></style>
+<style scoped>
+</style>

@@ -1,24 +1,12 @@
-.modal .v-row {
-  justify-content: center;
-}
-.modal .modal-box {
-  justify-content: center;
+.v-dialog .v-card {
   text-align: center;
 }
-.modal .modal-box .modal-title {
+.v-dialog .v-card .v-card-title {
   color: #333;
 }
-.modal .modal-box .modal-desc {
+.v-dialog .v-card .v-card-text {
   font-size: 1em;
   line-height: 1.5;
   letter-spacing: -1px;
   color: #777;
-}
-.modal .modal-box .modal-buttons {
-  justify-content: center;
-}
-.modal .modal-box .modal-buttons .v-btn {
-  border-color: #ca4f34;
-  color: #fff;
-  background-color: #ca4f34;
 }

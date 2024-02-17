@@ -1,13 +1,13 @@
 <template>
   <div class="book-reading-page">
-    <span class="book-caption mb-3">
+    <span class="book-caption d-flex align-center mb-3">
       <v-icon icon="mdi-book-edit-outline" class="mr-2" />독서량
     </span>
-    <div>
-      <v-text-field v-model.number="book.readingPage" @blur="autoReadingDone"
-        oninput="this.value = this.value.replace(/[^0-9]/g, '')" :rules="numberRule" class="mr-5" placeholder="읽은 페이지 수"
-        hint="숫자만 입력 가능해요." variant="solo" flat persistent-hint />
-      <span class="book-page"> / {{ book.page }}쪽</span>
+    <div class="d-flex">
+      <v-text-field v-model.number="book.readingPage" :rules="numberRule" class="flex-0-0 mr-5"
+        oninput="this.value = this.value.replace(/[^0-9]/g, '')" placeholder="읽은 페이지 수"
+        hint="숫자만 입력 가능해요." variant="solo" flat persistent-hint @blur="autoReadingDone" />
+      <span class="book-page flex-1-0 align-self-center"> / {{ book.page }}쪽</span>
     </div>
   </div>
 </template>
@@ -26,4 +26,11 @@ const autoReadingDone = () => {
 };
 </script>
 
-<style></style>
+<style scoped>
+.v-text-field {
+  width: 210px;
+}
+.v-text-field + span {
+  color: #555;
+}
+</style>

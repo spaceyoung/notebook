@@ -1,14 +1,13 @@
 <template>
-  <v-dialog v-model="readingEndDateModal" width="auto">
+  <v-dialog v-model="readingEndDateModal">
     <v-card class="book-date-calendar">
       <v-locale-provider locale="ko">
-        <v-date-picker v-model="book.readingEndDate" :min="book.readingStartDate" :max="new Date()" title="독서 완료일"
-          hide-header />
+        <v-date-picker v-model="book.readingEndDate" :min="book.readingStartDate" :max="new Date()" title="독서 완료일" hide-header />
       </v-locale-provider>
       <v-card-actions>
         <v-spacer />
-        <v-btn @click="readingEndDateModal = false">취소</v-btn>
-        <v-btn @click="closeReadingEndDateModal(book.readingEndDate, book)">확인</v-btn>
+        <v-btn variant="outlined" @click="readingEndDateModal = false">취소</v-btn>
+        <v-btn class="emphasis" flat @click="closeReadingEndDateModal(book.readingEndDate, book)">확인</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -31,4 +30,31 @@ const closeReadingEndDateModal = (date, book) => {
 };
 </script>
 
-<style></style>
+<style scoped>
+.v-dialog {
+  width: auto;
+}
+.v-date-picker::v-deep .v-date-picker-month__day--selected .v-btn {
+  background-color: #ca4f34;
+}
+.v-date-picker::v-deep .v-date-picker-month__day--selected .v-btn:hover {
+  color: #fff;
+}
+
+/******************************
+      max-width: 599px;
+******************************/
+@media all and (max-width: 599px) {
+  .v-date-picker {
+    display: block;
+    width: auto;
+  }
+  .v-date-picker::v-deep .v-date-picker-month {
+    min-width: 0;
+  }
+  .v-date-picker::v-deep .v-date-picker-month__day {
+    width: 40px;
+    height: 40px;
+  }
+}
+</style>

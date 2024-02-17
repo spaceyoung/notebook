@@ -1,50 +1,28 @@
 /******************************
             LAYOUT
 ******************************/
-.app .contents {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  max-height: 100vh;
-  border-left: 2px solid #ca4f34;
-  background-color: rgba(255, 255, 255, .6);
-  position: relative;
-  overflow: hidden;
-}
-.contents .view {
-  display: flex;
-  flex-direction: column;
+.view {
   background-color: transparent;
   overflow-y: scroll;
 }
-.contents .view::-webkit-scrollbar {
+.view::-webkit-scrollbar {
   width: 8px;
 }
-.contents .view::-webkit-scrollbar-thumb {
+.view::-webkit-scrollbar-thumb {
   background: #ca4f34;
   border-radius: 4px;
 }
-.contents .view::-webkit-scrollbar-track {
+.view::-webkit-scrollbar-track {
   background: #e4d4cf;
   border-radius: 4px;
 }
-.contents .book-list {
-  display: flex;
-  flex-wrap: wrap;
+.view .v-list {
   gap: 30px 60px;
   background-color: transparent;
 }
-.contents .book-item {
-  display: flex;
+.view .v-list .v-card {
   width: calc((100% - 60px) / 2);
-  border-radius: 0;
   background-color: transparent;
-}
-.contents .close-button {
-  flex-grow: 0;
-  flex-shrink: 0;
-  align-self: end;
-  order: -1;
 }
 
 
@@ -52,102 +30,46 @@
           COMPONENTS
 ******************************/
 /* -------------------- COMMON -------------------- */
-.contents .contents-wrap {
-  flex-grow: 1;
-}
-.contents .book-none {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* 독서 중/독서 완료 기록, 검색 결과 존재하지 않을 시 뜨는 문구 */
+.view > div:not(.v-list, .v-sheet) {
   height: 100%;
   font-size: 2em;
   font-family: LeeSeoyun, Roboto, "돋움", dotum, AppleGothic, sans-serif;
   text-align: center;
   transition: all .3s;
 }
-.contents .book-none p span {
+.view > div p span {
   display: block;
 }
-.contents .v-field {
-  background-color: #f9f6ed;
+.v-form .v-sheet {
+  background-color: transparent;
 }
-.contents .book-caption {
-  display: flex;
-  align-items: center;
+/* 폼의 input 요소 제목 */
+.v-form .v-sheet > div > span,
+.v-form .v-sheet > div > div > span:not(.v-text-field + span) {
   font-weight: 600;
   font-size: 1.1em;
   line-height: 1.5;
   letter-spacing: -1px;
   color: #555;
 }
-.contents .book-caption .v-icon {
-  font-size: 1.4em;
-}
-.contents .book-caption em {
+.v-form .v-sheet > div > span em {
   font-weight: 400;
   font-size: .9em;
   color: #bbb;
 }
-.contents .book-buttons .v-btn.record-button,
-.contents .book-buttons .v-btn.modify-button {
-  border-color: #ca4f34;
-  color: #fff;
-  background-color: #ca4f34;
-}
-.contents .close-button .v-btn {
-  min-width: 52px;
-}
-.contents .close-button .v-btn .v-btn__overlay {
-  background-color: transparent;
-}
-.contents .modify-overlay {
-  justify-content: center;
-  align-items: center;
-  border-radius: 4px;
-}
-.contents .modify-overlay .modify-overlay-button {
-  font-size: .95em;
-}
-.contents .modify-overlay .modify-overlay-button:hover {
-  background-color: #ca4f34;
-}
-.contents .modify-overlay .modify-overlay-button:hover span {
-  color: #fff;
-}
-
-/* -------------------- Loading -------------------- */
-.contents .loading {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(255, 255, 255, .9);
-  position: absolute;
-  z-index: 100;
-}
-.contents .loading .loading-text {
-  font-size: 1.8em;
-  font-family: LeeSeoyun, Roboto, "돋움", dotum, AppleGothic, sans-serif;
-  text-align: center;
-  color: #333;
-}
 
 /* -------------------- BookInfo -------------------- */
-.contents .book-cover {
-  flex-grow: 0;
+.view .v-card .v-img {
   width: 147px;
   height: 200px;
   border: 1px solid #555;
   border-radius: 0;
 }
-.contents .book-info {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  flex-shrink: 1;
+.view .v-card div {
   overflow: hidden;
 }
-.contents .book-info span {
-  display: block;
+.view .v-card span {
   font-size: 1.1em;
   line-height: 1.5;
   letter-spacing: -1px;
@@ -157,11 +79,11 @@
   text-overflow: ellipsis;
   transition: all .3s;
 }
-.contents .book-info em {
+.view .v-card span em {
   font-weight: 500;
   color: #555;
 }
-.contents .book-info .book-title {
+.view .v-card .v-card-title {
   display: -webkit-box;
   font-weight: 700;
   font-size: 1.2em;
@@ -173,81 +95,12 @@
   -webkit-line-clamp: 2;
   transition: all .3s;
 }
-.contents .book-info .book-author {
+.view .v-card .v-card-item + .v-card-text span:nth-child(1) {
   font-weight: 600;
   color: #555;
 }
-.contents .book-info .book-publisher,
-.contents .book-info .book-pubdate {
-  display: inline;
-}
-.contents .book-info .book-publisher::after {
-  content: ' ｜ ';
-}
-.contents .book-info .book-progress .book-reading-start,
-.contents .book-info .book-progress .book-reading-end {
-  font-size: 1em;
-}
-.contents .book-info .book-progress .book-progress-bar {
-  border: 1px solid #333;
-}
-.contents .book-info .book-progress .book-progress-percent {
-  font-size: .85em;
-  text-align: right;
-  color: #ca4f34;
-}
-.contents .book-info .book-record-button {
-  justify-content: end;
-}
-.contents .book-info .book-record-button .v-btn {
-  border-color: #ca4f34;
-  background-color: #ca4f34;
-}
-.contents .book-info .book-record-button .v-btn__content {
-  font-size: 1em;
-  color: #fff;
-}
-
-/* -------------------- BookDesc -------------------- */
-.contents .book-desc p {
-  border-radius: 8px;
-  line-height: 1.5;
-  letter-spacing: -1px;
-  color: #777;
-  background-color: #f9f6ed;
-}
-
-/* -------------------- ReadingDate -------------------- */
-.contents .book-date {
-  display: flex;
-  flex-wrap: wrap;
-}
-.contents .book-date .book-date-start,
-.contents .book-date .book-date-end {
-  width: 50%;
-}
-.contents .book-date .v-input {
-  width: 75%;
-}
-
-/* -------------------- ReadingPage -------------------- */
-.contents .book-reading-page > div {
-  display: flex;
-}
-.contents .book-reading-page > div > span {
-  align-self: center;
-  flex-grow: 1;
-}
-.contents .book-reading-page .v-input {
-  flex-grow: 0;
-}
-.contents .book-reading-page .book-page {
-  color: #777;
-}
-
-/* -------------------- Rate -------------------- */
-.contents .book-rate .v-rating {
-  color: #777;
+.view .v-card .v-card-item + .v-card-text span:nth-child(2)::after {
+  content: ' ｜ '
 }
 
 
@@ -258,15 +111,6 @@
   /******************************
               LAYOUT
   ******************************/
-  .app .contents {
-    height: auto;
-    min-height: calc(100vh - 514px);
-    max-height: none;
-    border-top: 2px solid #ca4f34;
-    border-left: none;
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
-  }
   .contents .view {
     overflow-y: auto;
   }
@@ -275,7 +119,7 @@
             COMPONENTS
   ******************************/
   /* -------------------- COMMON -------------------- */
-  .contents .book-none {
+  .view > div:not(.v-list, .v-sheet) {
     font-size: 1.8em;
   }
 }
@@ -288,10 +132,10 @@
   /******************************
               LAYOUT
   ******************************/
-  .contents .book-list {
-    gap: 20px 60px;
+  .view .v-list {
+    gap: 20px 0;
   }
-  .contents .book-item {
+  .view .v-list .v-card {
     width: 100%;
   }
 }
@@ -302,65 +146,22 @@
 ******************************/
 @media all and (max-width: 599px) {
   /******************************
-              LAYOUT
-  ******************************/
-  .app .contents {
-    min-height: calc(100vh - 464px);
-  }
-  .contents .book-list {
-    gap: 15px 60px;
-  }
-
-  /******************************
             COMPONENTS
   ******************************/
   /* -------------------- COMMON -------------------- */
-  .contents .book-none {
+  .view > div:not(.v-list, .v-sheet) {
     font-size: 1.6em;
-  }
-  .contents .book-buttons {
-    gap: 15px 20px;
-  }
-  .contents .book-buttons .v-btn {
-    width: calc((100% - 20px) / 2);
-  }
-  .contents .book-buttons .v-btn.modify-button {
-    order: -1;
-    width: 100%;
   }
 
   /* -------------------- BookInfo -------------------- */
-  .contents .book-cover {
+  .view .v-card .v-img {
     width: 114px;
     height: 155px;
   }
-  .contents .book-info span {
+  .view .v-card span {
     font-size: 1.05em;
   }
-  .contents .book-info .book-title {
+  .view .v-card .v-card-title {
     font-size: 1.1em;
-  }
-  .contents .book-info .book-progress .book-progress-percent {
-    font-size: .8em;
-  }
-
-  /* -------------------- ReadingDate -------------------- */
-  .contents .book-date {
-    gap: 48px;
-  }
-  .contents .book-date .book-date-start,
-  .contents .book-date .book-date-end {
-    width: 100%;
-  }
-  .v-picker.v-sheet.v-date-picker {
-    display: block;
-    width: auto;
-  }
-  .v-picker.v-sheet.v-date-picker .v-date-picker-month {
-    min-width: 0;
-  }
-  .v-picker.v-sheet.v-date-picker .v-date-picker-month__day {
-    width: 40px;
-    height: 40px;
   }
 }

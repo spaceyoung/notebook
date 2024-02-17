@@ -77,16 +77,21 @@ button.v-btn {
   color: #555;
   transition: all .3s;
 }
-button.v-btn:not(.modal .modal-box .modal-button .v-btn, .reading-tabs .v-btn, .book-rate .v-rating .v-btn, .book-buttons .v-btn.record-button, .book-buttons .v-btn.modify-button, .modal-buttons .v-btn.delete-button):hover {
+button.v-btn:not(.v-btn.emphasis):hover {
   border-color: #ca4f34;
   color: #ca4f34;
 }
-button.v-btn:not(.book-rate .v-rating .v-btn, .reading-tabs .v-btn):hover .v-icon {
+button.v-btn:not(.book-rate .v-rating .v-btn):hover .v-icon {
   color: #ca4f34;
   transition: all .3s;
 }
 button.v-btn .v-btn__overlay {
   background-color: #000;
+}
+button.v-btn.emphasis {
+  border-color: #ca4f34;
+  color: #fff;
+  background-color: #ca4f34;
 }
 
 /* -------------------- v-chip -------------------- */
@@ -98,7 +103,7 @@ button.v-btn .v-btn__overlay {
   color: #777;
   transition: all .3s;
 }
-.v-chip-group .v-chip:not(.v-chip.v-chip--selected):hover {
+.v-chip-group .v-chip:not(.v-chip--selected):hover {
   border-color: #ca4f34;
   color: #ca4f34;
 }
@@ -112,18 +117,21 @@ button.v-btn .v-btn__overlay {
   background-color: #000;
 }
 
-/* -------------------- v-field -------------------- */
-.v-field .v-icon {
+/* -------------------- v-text-field -------------------- */
+.v-text-field .v-field {
+  background-color: #f9f6ed;
+}
+.v-text-field .v-field .v-icon {
   color: #ca4f34;
 }
-.v-field .v-field__input {
+.v-text-field .v-field .v-field__input {
   letter-spacing: -1px;
-  color: #555;
+  color: #444;
 }
 
 /* -------------------- v-messages -------------------- */
 .v-messages .v-messages__message {
-  font-size: 1.1em;
+  font-size: 1.15em;
   letter-spacing: -1px;
 }
 

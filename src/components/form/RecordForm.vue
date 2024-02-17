@@ -1,5 +1,5 @@
 <template>
-  <v-form class="record view px-0 py-10 px-sm-8 px-lg-15 py-lg-5" variant="flat">
+  <v-form class="record view d-flex flex-column px-0 py-10 px-sm-8 px-lg-15 py-lg-5" flat>
     <v-sheet class="mb-13">
       <BookInfo :book="recordBook" />
       <BookDesc :book="recordBook" />
@@ -62,7 +62,16 @@ const addRecord = () => {
 </script>
 
 <style scoped>
-.record .book-buttons {
+.v-form::v-deep v-item-groups {
   justify-content: center;
+}
+
+/******************************
+      max-width: 599px;
+******************************/
+@media all and (max-width: 599px) {
+  .v-form::v-deep v-item-groups .v-btn {
+    width: calc((100% - 20px) / 2);
+  }
 }
 </style>

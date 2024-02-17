@@ -6,4 +6,5 @@
 import RecordForm from '@/components/form/RecordForm.vue';
 </script>
 
-<style></style>
+<style scoped>
+</style>

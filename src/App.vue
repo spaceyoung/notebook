@@ -8,15 +8,16 @@
 </template>
 
 <script setup>
-// css stylesheet
+// CSS stylesheet
 import '@/assets/css/reset.css';
 import '@/assets/css/common.css';
+import '@/assets/css/components/modal.css';
 
 import Layout from '@/layout/Layout.vue';
 import InfoModal from '@/components/modal/InfoModal.vue';
 </script>
 
-<style>
+<style scoped>
 .app .v-application {
   background-image: url(./assets/bg.png);
 }

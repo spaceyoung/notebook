@@ -1,6 +1,6 @@
 <template>
   <div class="book-rate mb-12">
-    <span class="book-caption mb-3">
+    <span class="book-caption d-flex align-center mb-3">
       <v-icon icon="mdi-book-edit-outline" class="mr-2" />나의 평점<em class="ml-1">(선택)</em>
     </span>
     <v-rating v-model="book.rating" density="compact" active-color="#ca4f34" half-increments clearable></v-rating>
@@ -13,4 +13,8 @@ defineProps({
 });
 </script>
 
-<style></style>
+<style scoped>
+.v-rating {
+  color: #777;
+}
+</style>

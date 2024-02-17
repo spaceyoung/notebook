@@ -1,12 +1,10 @@
 <template>
   <div class="book-platform mb-12">
-    <span class="book-caption mb-3">
+    <span class="book-caption d-flex align-center mb-3">
       <v-icon icon="mdi-book-edit-outline" class="mr-2" />플랫폼
     </span>
     <v-chip-group v-model="book.platform" class="pa-0" mandatory>
-      <v-chip v-for="platform in platforms" :value="platform" class="ma-0 px-6" variant="outlined" size="large">{{
-        platform
-      }}</v-chip>
+      <v-chip v-for="platform in platforms" :value="platform" class="ma-0 px-6" variant="outlined" size="large">{{ platform }}</v-chip>
     </v-chip-group>
   </div>
 </template>
@@ -21,4 +19,5 @@ defineProps({
 const platforms = ref(['종이책', '전자책', '오디오북']);
 </script>
 
-<style></style>
+<style scoped>
+</style>

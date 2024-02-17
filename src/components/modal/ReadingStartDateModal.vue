@@ -1,13 +1,13 @@
 <template>
-  <v-dialog v-model="readingStartDateModal" width="auto">
+  <v-dialog v-model="readingStartDateModal">
     <v-card class="book-date-calendar">
       <v-locale-provider locale="ko">
         <v-date-picker v-model="book.readingStartDate" :max="maxStartDate()" title="독서 시작일" hide-header />
       </v-locale-provider>
       <v-card-actions>
         <v-spacer />
-        <v-btn @click="readingStartDateModal = false">취소</v-btn>
-        <v-btn @click="closeReadingStartDateModal(book.readingStartDate, book)">확인</v-btn>
+        <v-btn variant="outlined" @click="readingStartDateModal = false">취소</v-btn>
+        <v-btn class="emphasis" flat @click="closeReadingStartDateModal(book.readingStartDate, book)">확인</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -31,4 +31,31 @@ const closeReadingStartDateModal = (date, book) => {
 };
 </script>
 
-<style></style>
+<style scoped>
+.v-dialog {
+  width: auto;
+}
+.v-date-picker::v-deep .v-date-picker-month__day--selected .v-btn {
+  background-color: #ca4f34;
+}
+.v-date-picker::v-deep .v-date-picker-month__day--selected .v-btn:hover {
+  color: #fff;
+}
+
+/******************************
+      max-width: 599px;
+******************************/
+@media all and (max-width: 599px) {
+  .v-date-picker {
+    display: block;
+    width: auto;
+  }
+  .v-date-picker::v-deep .v-date-picker-month {
+    min-width: 0;
+  }
+  .v-date-picker::v-deep .v-date-picker-month__day {
+    width: 40px;
+    height: 40px;
+  }
+}
+</style>

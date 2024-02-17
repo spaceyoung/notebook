@@ -1,13 +1,10 @@
 <template>
   <div class="book-state mb-12">
-    <span class="book-caption mb-3">
+    <span class="book-caption d-flex align-center mb-3">
       <v-icon icon="mdi-book-edit-outline" class="mr-2" />독서 상태
     </span>
     <v-chip-group v-model="book.readingState" class="pa-0" mandatory @click="autoReadingDone(), resetReadingEndDate()">
-      <v-chip v-for="readingState in readingStates" :value="readingState" class="ma-0 px-6" variant="outlined"
-        size="large">{{
-          readingState
-        }}</v-chip>
+      <v-chip v-for="readingState in readingStates" :value="readingState" class="ma-0 px-6" variant="outlined" size="large">{{ readingState }}</v-chip>
     </v-chip-group>
   </div>
 </template>
@@ -32,4 +29,5 @@ const resetReadingEndDate = () => {
 };
 </script>
 
-<style></style>
+<style scoped>
+</style>

@@ -1,5 +1,5 @@
 <template>
-  <v-form class="end-modify view px-0 py-10 px-sm-8 px-lg-15 py-lg-5" variant="flat">
+  <v-form class="end-modify view d-flex flex-column px-0 py-10 px-sm-8 px-lg-15 py-lg-5" flat>
     <v-sheet class="mb-13">
       <BookInfo :book="myReadingEndItem" />
       <BookDesc :book="myReadingEndItem" />
@@ -75,7 +75,4 @@ const endModifyRecord = () => {
 </script>
 
 <style scoped>
-.end-modify .book-buttons {
-  flex-wrap: wrap;
-}
 </style>

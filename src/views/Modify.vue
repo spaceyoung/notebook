@@ -6,4 +6,5 @@
 import ModifyForm from '@/components/form/ModifyForm.vue';
 </script>
 
-<style></style>
+<style scoped>
+</style>
