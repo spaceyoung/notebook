@@ -12,9 +12,7 @@
       <Review v-if="recordBook.readingState === '독서 완료'" :book="recordBook" />
     </v-sheet>
     <FormButtons :cancelRecord="cancelRecord" :addRecord="addRecord" />
-    <v-btn class="close-button pa-0" size="large" @click="cancelRecord">
-      <v-icon icon="mdi-window-close" size="x-large" />
-    </v-btn>
+    <CloseButton :cancelRecord="cancelRecord" />
   </v-form>
 </template>
 
@@ -34,6 +32,7 @@ import Rating from '@/components/form/contents/Rating.vue';
 import Sentence from '@/components/form/contents/Sentence.vue';
 import Review from '@/components/form/contents/Review.vue';
 import FormButtons from '@/components/form/button/FormButtons.vue';
+import CloseButton from '@/components/form/button/CloseButton.vue';
 
 const currentRoute = useRoute();
 const router = useRouter();
