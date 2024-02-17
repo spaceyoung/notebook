@@ -1,10 +1,10 @@
 <template>
   <Loading v-if="isLoading" />
-  <div v-else class="my-reading-end contents-wrap d-flex flex-1-0 flex-column">
-    <div v-if="myReadingEndList.length === 0" class="book-none d-flex justify-center align-center">
+  <div v-else class="view d-flex flex-1-0 flex-column">
+    <div v-if="myReadingEndList.length === 0" class="d-flex justify-center align-center">
       <p><span>읽은 책을 추가해서</span>나만의 독서 기록을 만들어봐요😉</p>
     </div>
-    <v-list v-else class="book-list d-flex flex-wrap pa-0 pt-8 px-sm-8">
+    <v-list v-else class="d-flex flex-wrap pa-0 pt-8 px-sm-8">
       <MyReadingEndBook />
     </v-list>
   </div>

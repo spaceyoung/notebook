@@ -2,7 +2,7 @@
   <div class="sec-header">
     <h2 class="sec-title mb-4">나의 기록</h2>
   </div>
-  <v-tabs v-model="state.selectTab" class="reading-tabs flex-0-0">
+  <v-tabs v-model="state.selectTab" class="flex-0-0">
     <v-tab v-for="tab in state.tabs" :key="tab.id" :value="tab.id" class="emphasis">{{ tab.label }}</v-tab>
   </v-tabs>
   <keep-alive>

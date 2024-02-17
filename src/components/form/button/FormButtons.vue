@@ -1,13 +1,13 @@
 <template>
-  <v-item-groups class="book-buttons d-flex flex-wrap">
-    <v-btn v-if="modifyTerm" class="delete-button ma-0 mr-sm-auto px-8" variant="outlined" size="large">
+  <v-item-groups class="d-flex flex-wrap">
+    <v-btn v-if="modifyTerm" class="ma-0 mr-sm-auto px-8" variant="outlined" size="large">
       삭제하기
       <DeleteModal activator="parent" :deleteRecord="deleteRecord" />
     </v-btn>
-    <v-btn class="cancel-button ma-0 px-8" variant="outlined" size="large" @click="cancelRecord">취소하기</v-btn>
-    <v-btn v-if="modifyTerm" class="modify-button emphasis order-first order-sm-last ma-0 ml-sm-5 px-8" size="large" flat
-      @click="modifyRecord">수정하기</v-btn>
-    <v-btn v-else class="record-button emphasis ma-0 ml-sm-5 px-8" size="large" flat @click="addRecord">기록하기</v-btn>
+    <v-btn class="ma-0 px-8" variant="outlined" size="large" @click="cancelRecord">취소하기</v-btn>
+    <v-btn v-if="modifyTerm" class="emphasis order-first order-sm-last ma-0 ml-sm-5 px-8" size="large"
+      flat @click="modifyRecord">수정하기</v-btn>
+    <v-btn v-else class="emphasis ma-0 ml-sm-5 px-8" size="large" flat @click="addRecord">기록하기</v-btn>
   </v-item-groups>
 </template>
 

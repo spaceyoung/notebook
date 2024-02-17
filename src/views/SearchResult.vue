@@ -3,11 +3,11 @@
     <h2 class="sec-title">검색 결과</h2>
   </div>
   <Loading v-if="isLoading" />
-  <div v-else class="search-result contents-wrap view d-flex flex-column">
-    <div v-if="searchBookList.length === 0" class="book-none d-flex justify-center align-center">
+  <div v-else class="view d-flex flex-column">
+    <div v-if="searchBookList.length === 0" class="d-flex justify-center align-center">
       <p>검색 결과가 존재하지 않아요😢</p>
     </div>
-    <v-list class="book-list d-flex flex-wrap px-0 py-8 pa-sm-8">
+    <v-list class="d-flex flex-wrap px-0 py-8 pa-sm-8">
       <SearchResultBook :searchBookList="searchBookList" />
     </v-list>
   </div>

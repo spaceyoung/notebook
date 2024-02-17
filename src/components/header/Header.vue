@@ -1,11 +1,11 @@
 <template>
-  <v-app-bar class="header hidden-lg-and-up px-10" scroll-behavior="elevate">
+  <v-app-bar class="hidden-lg-and-up px-10" scroll-behavior="elevate">
     <v-app-bar-title class="ma-0">
-      <h1 class="logo">
+      <h1>
         <router-link :to="{ name: 'home' }">공책</router-link>
       </h1>
     </v-app-bar-title>
-    <span class="sub-title">Note, Book</span>
+    <span>Note, Book</span>
   </v-app-bar>
 </template>
 

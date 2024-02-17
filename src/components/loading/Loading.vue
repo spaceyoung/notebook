@@ -1,8 +1,8 @@
 <template>
-  <v-card class="loading d-flex justify-center align-center mx-n4 my-n8 ma-sm-n8" flat>
-    <div class="loading-box">
-      <Vue3Lottie :animationData="LoadingAnimation" class="loading-lottie" loop autoplay />
-      <span class="loading-text d-block">불러오는 중...</span>
+  <v-card class="d-flex justify-center align-center mx-n4 my-n8 ma-sm-n8" flat>
+    <div>
+      <Vue3Lottie :animationData="LoadingAnimation" loop autoplay />
+      <span class="d-block">불러오는 중...</span>
     </div>
   </v-card>
 </template>

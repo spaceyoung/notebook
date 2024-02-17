@@ -1,13 +1,13 @@
 <template>
-  <div class="book-reading-page">
-    <span class="book-caption d-flex align-center mb-3">
+  <div>
+    <span class="d-flex align-center mb-3">
       <v-icon icon="mdi-book-edit-outline" class="mr-2" />독서량
     </span>
     <div class="d-flex">
       <v-text-field v-model.number="book.readingPage" :rules="numberRule" class="flex-0-0 mr-5"
-        oninput="this.value = this.value.replace(/[^0-9]/g, '')" placeholder="읽은 페이지 수"
-        hint="숫자만 입력 가능해요." variant="solo" flat persistent-hint @blur="autoReadingDone" />
-      <span class="book-page flex-1-0 align-self-center"> / {{ book.page }}쪽</span>
+        oninput="this.value = this.value.replace(/[^0-9]/g, '')" placeholder="읽은 페이지 수" hint="숫자만 입력 가능해요."
+        variant="solo" flat persistent-hint @blur="autoReadingDone" />
+      <span class="flex-1-0 align-self-center"> / {{ book.page }}쪽</span>
     </div>
   </div>
 </template>

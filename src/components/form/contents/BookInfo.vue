@@ -1,18 +1,18 @@
 <template>
-  <v-card class="book-item d-flex flex-column flex-sm-row mb-12" flat>
-    <v-img :src="book.cover" :alt="book.title" class="book-cover flex-0-0 mr-sm-15 mb-8 mb-sm-0" cover />
-    <div class="book-info d-flex flex-1-1 flex-column">
+  <v-card class="d-flex flex-column flex-sm-row mb-12" flat>
+    <v-img :src="book.cover" :alt="book.title" class="flex-0-0 mr-sm-15 mb-8 mb-sm-0" cover />
+    <div class="d-flex flex-1-1 flex-column">
       <v-card-item class="mb-2 pa-0">
-        <v-card-title class="book-title mb-1">{{ book.title }}</v-card-title>
+        <v-card-title class="mb-1">{{ book.title }}</v-card-title>
       </v-card-item>
       <v-card-text class="mb-7 pa-0">
-        <span class="book-author d-block">{{ book.author }}</span>
-        <span class="book-publisher">{{ book.publisher }}</span>
-        <span class="book-pubdate">{{ book.pubDate }}</span>
+        <span class="d-block">{{ book.author }}</span>
+        <span>{{ book.publisher }}</span>
+        <span>{{ book.pubDate }}</span>
       </v-card-text>
       <v-card-text class="pa-0">
-        <span class="book-page d-block"><em class="mr-3">페이지수</em>{{ book.page }}쪽</span>
-        <span class="book-isbn d-block"><em class="mr-3">ISBN</em>{{ book.isbn }}</span>
+        <span class="d-block"><em class="mr-3">페이지수</em>{{ book.page }}쪽</span>
+        <span class="d-block"><em class="mr-3">ISBN</em>{{ book.isbn }}</span>
       </v-card-text>
     </div>
   </v-card>

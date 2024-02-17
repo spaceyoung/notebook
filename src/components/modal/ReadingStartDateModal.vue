@@ -1,6 +1,6 @@
 <template>
   <v-dialog v-model="readingStartDateModal">
-    <v-card class="book-date-calendar">
+    <v-card>
       <v-locale-provider locale="ko">
         <v-date-picker v-model="book.readingStartDate" :max="maxStartDate()" title="독서 시작일" hide-header />
       </v-locale-provider>

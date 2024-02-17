@@ -1,6 +1,6 @@
 <template>
-  <div class="book-state mb-12">
-    <span class="book-caption d-flex align-center mb-3">
+  <div class="mb-12">
+    <span class="d-flex align-center mb-3">
       <v-icon icon="mdi-book-edit-outline" class="mr-2" />독서 상태
     </span>
     <v-chip-group v-model="book.readingState" class="pa-0" mandatory @click="autoReadingDone(), resetReadingEndDate()">

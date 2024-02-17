@@ -1,7 +1,7 @@
 <template>
-  <div class="book-date d-flex flex-wrap align-center mb-12">
-    <div class="book-date-start">
-      <span class="book-caption d-flex align-center mb-3">
+  <div class="d-flex flex-wrap align-center mb-12">
+    <div>
+      <span class="d-flex align-center mb-3">
         <v-icon icon="mdi-book-edit-outline" class="mr-2" />독서 시작일
       </span>
       <v-text-field :model-value="book.formattedReadingStartDate" :rules="startDateRule" placeholder="독서 시작일"
@@ -9,8 +9,8 @@
         <ReadingStartDateModal activator="parent" :book="book" />
       </v-text-field>
     </div>
-    <div v-if="book.readingState === '독서 완료'" class="book-date-end">
-      <span class="book-caption d-flex align-center mb-3">
+    <div v-if="book.readingState === '독서 완료'">
+      <span class="d-flex align-center mb-3">
         <v-icon icon="mdi-book-edit-outline" class="mr-2" />독서 완료일
       </span>
       <v-text-field :model-value="book.formattedReadingEndDate" :rules="endDateRule" placeholder="독서 완료일"
