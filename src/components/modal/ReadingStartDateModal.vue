@@ -32,7 +32,7 @@ const closeReadingStartDateModal = (date, book) => {
 </script>
 
 <style scoped>
-.v-dialog {
+.v-dialog::v-deep .v-overlay__content {
   width: auto;
 }
 .v-date-picker::v-deep .v-date-picker-month__day--selected .v-btn {
