@@ -22,14 +22,18 @@
           </v-card-text>
           <v-card-actions class="flex-column pa-0">
             <v-btn class="emphasis mb-16" size="x-large" flat @click="signInStep++">가입하기</v-btn>
-            <v-btn class="ma-0" size="large" prepend-icon="mdi-chevron-left" flat>로그인 화면으로 돌아가기</v-btn>
+            <router-link :to="{ name: 'home' }">
+              <v-btn class="ma-0" size="large" prepend-icon="mdi-chevron-left" flat>로그인 화면으로 돌아가기</v-btn>
+            </router-link>
           </v-card-actions>
         </v-window-item>
         <v-window-item :value="2">
           <v-card-title class="mb-5">공책에 오신 것을 환영해요!</v-card-title>
           <v-card-text class="mb-10 pa-0">로그인하고 나만의 독서 기록을 채워나가요 📕</v-card-text>
           <v-card-actions class="pa-0">
-            <v-btn class="emphasis" size="large">로그인하러 가기</v-btn>
+            <router-link :to="{ name: 'home' }">
+              <v-btn class="emphasis" size="large">로그인하러 가기</v-btn>
+            </router-link>
           </v-card-actions>
         </v-window-item>
       </v-window>

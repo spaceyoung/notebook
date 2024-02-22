@@ -1,6 +1,8 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 
 const Home = () => import('@/views/Home.vue');
+const SignIn = () => import('@/views/SignIn.vue');
+const MyPage = () => import('@/views/MyPage.vue');
 const SearchResult = () => import('@/views/SearchResult.vue');
 const Record = () => import('@/views/Record.vue');
 const Modify = () => import('@/views/Modify.vue');
@@ -10,6 +12,8 @@ const router = createRouter({
   history: createWebHashHistory(),
   routes: [
     { path: '/', name: 'home', component: Home },
+    { path: '/signin', name: 'signIn', component: SignIn },
+    { path: '/mypage', name: 'myPage', component: MyPage },
     { path: '/searchresult', name: 'searchResult', component: SearchResult },
     { path: '/record/:id(\\d+)', name: 'record/id', component: Record },
     { path: '/modify/:id(\\d+)', name: 'modify/id', component: Modify },
