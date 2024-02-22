@@ -56,11 +56,11 @@ const modifyRecord = () => {
   if (myReadingItem.platform && myReadingItem.readingState && myReadingItem.readingStartDate && myReadingItem.readingPage >= 0) {
     if (myReadingItem.readingState === '독서 중') {
       updateMyReading(myReadingItem.id, myReadingItem);
-      router.push({ name: 'home' });
+      router.push({ name: 'myPage' });
     } else if (myReadingItem.readingState === '독서 완료' && myReadingItem.readingEndDate) {
       addMyReadingEnd(myReadingItem);
       deleteMyReading(myReadingItem.id);
-      router.push({ name: 'home' });
+      router.push({ name: 'myPage' });
     } else {
       alert('기록에 필요한 정보를 입력해주세요😢');
     }

@@ -48,10 +48,10 @@ const addRecord = () => {
   if (recordBook.value.platform && recordBook.value.readingState && recordBook.value.readingStartDate && recordBook.value.readingPage >= 0) {
     if (recordBook.value.readingState === '독서 중') {
       addMyReading(recordBook.value);
-      router.push({ name: 'home' });
+      router.push({ name: 'myPage' });
     } else if (recordBook.value.readingState === '독서 완료' && recordBook.value.readingEndDate) {
       addMyReadingEnd(recordBook.value);
-      router.push({ name: 'home' });
+      router.push({ name: 'myPage' });
     } else {
       alert('기록에 필요한 정보를 입력해주세요😢');
     }
