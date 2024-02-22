@@ -81,6 +81,12 @@ const signUp = async () => {
 .v-card .v-card-actions .v-btn {
   width: 100%;
 }
+.v-window .v-window-item:nth-child(2) .v-card-text{
+  font-weight: 400;
+  color: #777;
+  text-align: center;
+}
+
 
 /******************************
       max-width: 959px;
