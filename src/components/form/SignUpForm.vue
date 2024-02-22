@@ -23,7 +23,7 @@
             </div>
           </v-card-text>
           <v-card-actions class="flex-column pa-0">
-            <v-btn class="emphasis mb-16" size="x-large" flat @click="signUpStep++">가입하기</v-btn>
+            <v-btn class="emphasis mb-16" size="x-large" flat @click="signUp">가입하기</v-btn>
             <router-link :to="{ name: 'home' }">
               <v-btn class="ma-0" size="large" prepend-icon="mdi-chevron-left" flat>로그인 화면으로 돌아가기</v-btn>
             </router-link>
