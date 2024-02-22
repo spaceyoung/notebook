@@ -44,4 +44,41 @@ const login = () => {
 </script>
 
 <style scoped>
+.v-form {
+  width: 60%;
+}
+.v-card {
+  background-color: transparent;
+}
+.v-card .v-card-title,
+.v-card .v-card-subtitle {
+  text-align: center;
+}
+.v-card .v-card-text {
+  font-weight: 500;
+  font-size: 1em;
+  color: #333;
+}
+.v-card .v-card-actions::v-deep a,
+.v-card .v-card-actions .v-btn {
+  width: 100%;
+}
+
+/******************************
+      max-width: 959px;
+******************************/
+@media all and (max-width: 959px) {
+  .v-form {
+    width: 75%;
+  }
+}
+
+/******************************
+      max-width: 599px;
+******************************/
+@media all and (max-width: 599px) {
+  .v-form {
+    width: 95%;
+  }
+}
 </style>

@@ -33,15 +33,15 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+body::-webkit-scrollbar {
+  display: none;
+}
 a {
   color: inherit;
   text-decoration: inherit;
 }
 img, input, select, textarea {
   display: block;
-}
-body::-webkit-scrollbar {
-  display: none;
 }
 
 
@@ -84,7 +84,7 @@ body::-webkit-scrollbar {
   color: #777;
   opacity: 1;
 }
-.v-card .v-card-text {
+.v-card div.v-card-text {
   line-height: 1.5;
   letter-spacing: -1px;
   color: #777;
@@ -93,6 +93,7 @@ body::-webkit-scrollbar {
 /* -------------------- v-btn -------------------- */
 button.v-btn {
   border-color: #bbb;
+  line-height: 1.5;
   letter-spacing: -1px;
   color: #555;
   transition: all .3s;
@@ -146,7 +147,7 @@ button.v-btn.emphasis {
 }
 .v-text-field .v-field .v-field__input {
   letter-spacing: -1px;
-  color: #444;
+  color: #333;
 }
 
 /* -------------------- v-messages -------------------- */
