@@ -7,17 +7,19 @@
           <v-card-text class="mb-6 pa-0">
             <div class="mb-3">
               <span class="d-block mb-2">이메일</span>
-              <v-text-field placeholder="이메일을 입력해주세요." variant="outlined" prepend-inner-icon="mdi-email-outline" />
+              <v-text-field v-model="state.signInUserData.email" placeholder="이메일을 입력해주세요." variant="outlined" prepend-inner-icon="mdi-email-outline" />
             </div>
             <div class="mb-3">
               <span class="d-block mb-2">비밀번호</span>
-              <v-text-field :append-inner-icon="visiblePassword ? 'mdi-eye-off' : 'mdi-eye'" :type="visiblePassword ? 'text' : 'password'"
-                placeholder="비밀번호를 입력해주세요." variant="outlined" prepend-inner-icon="mdi-lock-outline" @click:append-inner="visiblePassword = !visiblePassword" />
+              <v-text-field v-model="state.signInUserData.password" :append-inner-icon="visiblePassword ? 'mdi-eye-off' : 'mdi-eye'"
+                :type="visiblePassword ? 'text' : 'password'" placeholder="비밀번호를 입력해주세요." variant="outlined"
+                prepend-inner-icon="mdi-lock-outline" @click:append-inner="visiblePassword = !visiblePassword" />
             </div>
             <div>
               <span class="d-block mb-2">비밀번호 확인</span>
-              <v-text-field :append-inner-icon="visiblePasswordCheck ? 'mdi-eye-off' : 'mdi-eye'" :type="visiblePasswordCheck ? 'text' : 'password'"
-                placeholder="비밀번호를 재입력해주세요." variant="outlined" prepend-inner-icon="mdi-lock-outline" @click:append-inner="visiblePasswordCheck = !visiblePasswordCheck" />
+              <v-text-field v-model="state.signInUserData.passwordCheck" :append-inner-icon="visiblePasswordCheck ? 'mdi-eye-off' : 'mdi-eye'"
+                :type="visiblePasswordCheck ? 'text' : 'password'" placeholder="비밀번호를 재입력해주세요." variant="outlined"
+                prepend-inner-icon="mdi-lock-outline" @click:append-inner="visiblePasswordCheck = !visiblePasswordCheck" />
             </div>
           </v-card-text>
           <v-card-actions class="flex-column pa-0">
@@ -43,10 +45,20 @@
 
 <script setup>
 import { ref } from 'vue';
+import { useMemberStore } from '@/stores/member';
 
 const signInStep = ref(1);
 const visiblePassword = ref(false);
 const visiblePasswordCheck = ref(false);
+const { state, signInWithEmail } = useMemberStore();
+
+const signIn = async () => {
+  const signInResult = await signInWithEmail();
+  if (signInResult) signInStep.value = 2;
+  state.signInUserData.email = null;
+  state.signInUserData.password = null;
+  state.signInUserData.passwordCheck = null;
+};
 </script>
 
 <style scoped>

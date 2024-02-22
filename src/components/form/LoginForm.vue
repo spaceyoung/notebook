@@ -8,12 +8,13 @@
       <v-card-text class="mb-6 pa-0">
         <div class="mb-3">
           <span class="d-block mb-2">이메일</span>
-          <v-text-field placeholder="이메일을 입력해주세요." variant="outlined" prepend-inner-icon="mdi-email-outline" />
+          <v-text-field v-model="state.loginUserData.email" placeholder="이메일을 입력해주세요." variant="outlined" prepend-inner-icon="mdi-email-outline" />
         </div>
         <div>
           <span class="d-block mb-2">비밀번호</span>
-          <v-text-field :append-inner-icon="visiblePassword ? 'mdi-eye-off' : 'mdi-eye'" :type="visiblePassword ? 'text' : 'password'"
-            placeholder="비밀번호를 입력해주세요." variant="outlined" prepend-inner-icon="mdi-lock-outline" @click:append-inner="visiblePassword = !visiblePassword" />
+          <v-text-field v-model="state.loginUserData.password" :append-inner-icon="visiblePassword ? 'mdi-eye-off' : 'mdi-eye'"
+            :type="visiblePassword ? 'text' : 'password'" placeholder="비밀번호를 입력해주세요." variant="outlined"
+            prepend-inner-icon="mdi-lock-outline" @click:append-inner="visiblePassword = !visiblePassword" />
         </div>
       </v-card-text>
       <v-card-actions class="mb-16 pa-0">
@@ -31,8 +32,15 @@
 
 <script setup>
 import { ref } from 'vue';
+import { useMemberStore } from '@/stores/member';
 
 const visiblePassword = ref(false);
+const { state, loginWithEmail } = useMemberStore();
+const login = () => {
+  loginWithEmail();
+  state.loginUserData.email = null;
+  state.loginUserData.password = null;
+};
 </script>
 
 <style scoped>
