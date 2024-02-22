@@ -8,7 +8,7 @@ import { doc, setDoc } from "firebase/firestore";
 export const useMemberStore = defineStore("member", () => {
   const router = useRouter();
   const state = reactive({
-    signInUserData: {
+    signUpUserData: {
       email: null,
       password: null,
       passwordCheck: null,
@@ -22,9 +22,9 @@ export const useMemberStore = defineStore("member", () => {
   const currentUser = computed(() => state.currentUser);
 
   // 이메일로 회원 가입
-  const signInWithEmail = async () => {
+  const signUpWithEmail = async () => {
     try {
-      const userCredential = await createUserWithEmailAndPassword(auth, state.signInUserData.email, state.signInUserData.password);
+      const userCredential = await createUserWithEmailAndPassword(auth, state.signUpUserData.email, state.signUpUserData.password);
       const user = userCredential.user;
       addUserData(user);
       return user;
@@ -56,7 +56,7 @@ export const useMemberStore = defineStore("member", () => {
     }
   };
 
-  return { state, currentUser, loginWithEmail, signInWithEmail };
+  return { state, currentUser, loginWithEmail, signUpWithEmail };
 },
   {
     persist: true,

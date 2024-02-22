@@ -1,29 +1,29 @@
 <template>
   <v-form class="ma-auto">
     <v-card class="pa-5" flat>
-      <v-window v-model="signInStep">
+      <v-window v-model="signUpStep">
         <v-window-item :value="1">
           <v-card-title class="mb-9">회원 가입</v-card-title>
           <v-card-text class="mb-6 pa-0">
             <div class="mb-3">
               <span class="d-block mb-2">이메일</span>
-              <v-text-field v-model="state.signInUserData.email" placeholder="이메일을 입력해주세요." variant="outlined" prepend-inner-icon="mdi-email-outline" />
+              <v-text-field v-model="state.signUpUserData.email" placeholder="이메일을 입력해주세요." variant="outlined" prepend-inner-icon="mdi-email-outline" />
             </div>
             <div class="mb-3">
               <span class="d-block mb-2">비밀번호</span>
-              <v-text-field v-model="state.signInUserData.password" :append-inner-icon="visiblePassword ? 'mdi-eye-off' : 'mdi-eye'"
+              <v-text-field v-model="state.signUpUserData.password" :append-inner-icon="visiblePassword ? 'mdi-eye-off' : 'mdi-eye'"
                 :type="visiblePassword ? 'text' : 'password'" placeholder="비밀번호를 입력해주세요." variant="outlined"
                 prepend-inner-icon="mdi-lock-outline" @click:append-inner="visiblePassword = !visiblePassword" />
             </div>
             <div>
               <span class="d-block mb-2">비밀번호 확인</span>
-              <v-text-field v-model="state.signInUserData.passwordCheck" :append-inner-icon="visiblePasswordCheck ? 'mdi-eye-off' : 'mdi-eye'"
+              <v-text-field v-model="state.signUpUserData.passwordCheck" :append-inner-icon="visiblePasswordCheck ? 'mdi-eye-off' : 'mdi-eye'"
                 :type="visiblePasswordCheck ? 'text' : 'password'" placeholder="비밀번호를 재입력해주세요." variant="outlined"
                 prepend-inner-icon="mdi-lock-outline" @click:append-inner="visiblePasswordCheck = !visiblePasswordCheck" />
             </div>
           </v-card-text>
           <v-card-actions class="flex-column pa-0">
-            <v-btn class="emphasis mb-16" size="x-large" flat @click="signInStep++">가입하기</v-btn>
+            <v-btn class="emphasis mb-16" size="x-large" flat @click="signUpStep++">가입하기</v-btn>
             <router-link :to="{ name: 'home' }">
               <v-btn class="ma-0" size="large" prepend-icon="mdi-chevron-left" flat>로그인 화면으로 돌아가기</v-btn>
             </router-link>
@@ -47,17 +47,17 @@
 import { ref } from 'vue';
 import { useMemberStore } from '@/stores/member';
 
-const signInStep = ref(1);
+const signUpStep = ref(1);
 const visiblePassword = ref(false);
 const visiblePasswordCheck = ref(false);
-const { state, signInWithEmail } = useMemberStore();
+const { state, signUpWithEmail } = useMemberStore();
 
-const signIn = async () => {
-  const signInResult = await signInWithEmail();
-  if (signInResult) signInStep.value = 2;
-  state.signInUserData.email = null;
-  state.signInUserData.password = null;
-  state.signInUserData.passwordCheck = null;
+const signUp = async () => {
+  const signUpResult = await signUpWithEmail();
+  if (signUpResult) signUpStep.value = 2;
+  state.signUpUserData.email = null;
+  state.signUpUserData.password = null;
+  state.signUpUserData.passwordCheck = null;
 };
 </script>
 
