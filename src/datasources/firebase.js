@@ -1,4 +1,5 @@
 import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
 import { getFirestore, collection, query, orderBy } from 'firebase/firestore';
 
 const notebookDB = initializeApp({
