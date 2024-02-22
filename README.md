@@ -1,6 +1,8 @@
 # 📕 공책 Note, Book
 ### 책으로 기록하는 나만의 공간
-##### 2024.01.10 ~ 진행 중
+#### 개인 프로젝트 기여도 100%
+> 2024.01.10 ~ 2024.02.13 배포 완료<br>
+> 리팩토링 및 기능 보완 작업 꾸준히 진행 중
 <br>
 
 ## 📃 개요
@@ -78,7 +80,17 @@ JavaScript / Vue.js / Vuetify3 / Vue Router / Axios / Pinia / Firebase / Vercel
 <br>
 
 ## 🖥 구현 화면
-- **메인 home**
+- **회원 가입 페이지**
+
+![signup](https://github.com/spaceyoung/notebook/assets/154400292/caea6892-cbc5-4617-acd1-15ff75df1f5f)
+<br>
+<br>
+- **로그인 페이지**
+
+![login](https://github.com/spaceyoung/notebook/assets/154400292/6ee78e7d-83d0-4a28-93a8-e1d94cb8ac93)
+<br>
+<br>
+- **My 페이지**
 
 ![home](https://github.com/spaceyoung/notebook/assets/154400292/9ea21faf-7f21-44d6-98ac-66eea7b83ff4)
 <br>
