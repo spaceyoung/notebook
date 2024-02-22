@@ -1,12 +1,6 @@
 .v-dialog .v-card {
   text-align: center;
 }
-.v-dialog .v-card .v-card-title {
-  color: #333;
-}
 .v-dialog .v-card .v-card-text {
   font-size: 1em;
-  line-height: 1.5;
-  letter-spacing: -1px;
-  color: #777;
 }
