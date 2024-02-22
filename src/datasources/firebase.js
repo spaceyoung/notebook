@@ -11,6 +11,7 @@ const notebookDB = initializeApp({
   measurementId: import.meta.env.VITE_FB_MEASUREMENT_ID,
 });
 
+export const auth = getAuth();
 export const database = getFirestore(notebookDB);
-export const myReadingDB = query(collection(database, 'myReading'), orderBy('timeStamp'));
-export const myReadingEndDB = query(collection(database, 'myReadingEnd'), orderBy('timeStamp'));
+// export const myReadingDB = query(collection(database, 'myReading'), orderBy('timeStamp'));
+// export const myReadingEndDB = query(collection(database, 'myReadingEnd'), orderBy('timeStamp'));
