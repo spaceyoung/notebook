@@ -31,10 +31,10 @@
         </v-window-item>
         <v-window-item :value="2">
           <v-card-title class="mb-5">공책에 오신 것을 환영해요!</v-card-title>
-          <v-card-text class="mb-10 pa-0">로그인하고 나만의 독서 기록을 채워나가요 📕</v-card-text>
+          <v-card-text class="mb-10 pa-0">회원 가입 후 자동으로 로그인되었어요.</v-card-text>
           <v-card-actions class="pa-0">
-            <router-link :to="{ name: 'home' }">
-              <v-btn class="emphasis" size="large">로그인하러 가기</v-btn>
+            <router-link :to="{ name: 'myPage' }">
+              <v-btn class="emphasis" size="large">나만의 독서 기록 채우러 가기</v-btn>
             </router-link>
           </v-card-actions>
         </v-window-item>
@@ -44,17 +44,18 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { useMemberStore } from '@/stores/member';
 
 const signUpStep = ref(1);
 const visiblePassword = ref(false);
 const visiblePasswordCheck = ref(false);
 const { state, signUpWithEmail } = useMemberStore();
+const currentUser = computed(() => useMemberStore().currentUser);
 
 const signUp = async () => {
-  const signUpResult = await signUpWithEmail();
-  if (signUpResult) signUpStep.value = 2;
+  await signUpWithEmail();
+  if (currentUser.value) signUpStep.value = 2;
   state.signUpUserData.email = '';
   state.signUpUserData.password = '';
   state.signUpUserData.passwordCheck = '';

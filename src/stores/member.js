@@ -27,10 +27,8 @@ export const useMemberStore = defineStore("member", () => {
       await createUserWithEmailAndPassword(auth, state.signUpUserData.email, state.signUpUserData.password);
       state.currentUser = auth.currentUser;
       addUserData(auth.currentUser);
-      return auth.currentUser;
     } catch (error) {
       alert(`회원 가입 중 다음 오류가 발생했습니다 : ${error}`);
-      return false;
     }
   };
 
