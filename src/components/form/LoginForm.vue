@@ -38,8 +38,8 @@ const visiblePassword = ref(false);
 const { state, loginWithEmail } = useMemberStore();
 const login = () => {
   loginWithEmail();
-  state.loginUserData.email = null;
-  state.loginUserData.password = null;
+  state.loginUserData.email = '';
+  state.loginUserData.password = '';
 };
 </script>
 

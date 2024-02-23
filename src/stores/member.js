@@ -9,15 +9,15 @@ export const useMemberStore = defineStore("member", () => {
   const router = useRouter();
   const state = reactive({
     signUpUserData: {
-      email: null,
-      password: null,
-      passwordCheck: null,
+      email: '',
+      password: '',
+      passwordCheck: '',
     },
     loginUserData: {
-      email: null,
-      password: null,
+      email: '',
+      password: '',
     },
-    currentUser: null,
+    currentUser: '',
   });
   const currentUser = computed(() => state.currentUser);
 

@@ -55,9 +55,9 @@ const { state, signUpWithEmail } = useMemberStore();
 const signUp = async () => {
   const signUpResult = await signUpWithEmail();
   if (signUpResult) signUpStep.value = 2;
-  state.signUpUserData.email = null;
-  state.signUpUserData.password = null;
-  state.signUpUserData.passwordCheck = null;
+  state.signUpUserData.email = '';
+  state.signUpUserData.password = '';
+  state.signUpUserData.passwordCheck = '';
 };
 </script>
 
