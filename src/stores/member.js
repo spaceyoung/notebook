@@ -31,17 +31,8 @@ export const useMemberStore = defineStore("member", () => {
       alert(`회원 가입 중 다음 오류가 발생했습니다 : ${error}`);
     }
   };
-
-  // 데이터베이스 users에 회원 가입한 사용자 정보 추가
-  const addUserData = async (currentUser) => {
-    const docRef = doc(database, 'users', currentUser.uid, 'info', currentUser.uid);
-    await setDoc(docRef, {
-      uid: currentUser.uid,
-      email: currentUser.email,
-      creationTime: currentUser.metadata.creationTime,
-    });
-  };
-
+  
+  
   // 이메일로 로그인
   const loginWithEmail = async () => {
     try {
@@ -59,12 +50,23 @@ export const useMemberStore = defineStore("member", () => {
       const provider = new GoogleAuthProvider();
       await signInWithPopup(auth, provider);
       state.currentUser = auth.currentUser;
+      addUserData(auth.currentUser);
       router.push({ name: 'myPage' });
     } catch (error) {
       alert(`구글 로그인 시도 중 다음 오류가 발생했습니다 : ${error}`);
     }
   };
 
+  // 데이터베이스 users에 사용자 정보 추가
+  const addUserData = async (currentUser) => {
+    const docRef = doc(database, 'users', currentUser.uid, 'info', currentUser.uid);
+    await setDoc(docRef, {
+      uid: currentUser.uid,
+      email: currentUser.email,
+      creationTime: currentUser.metadata.creationTime,
+    });
+  };
+  
   // 로그아웃
   const logout = async () => {
     try {
