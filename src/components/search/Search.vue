@@ -47,6 +47,13 @@ const searchWordHandler = () => {
 .v-form .v-text-field::v-deep .v-field {
   background-color: rgba(255, 255, 255, .5);
 }
+.v-btn {
+  background-color: transparent;
+  position: absolute;
+  left: 50%;
+  bottom: -25%;
+  transform: translate(-50%, 0);
+}
 
 /******************************
       max-width: 599px;
