@@ -2,7 +2,7 @@ import { reactive, computed } from "vue";
 import { useRouter } from 'vue-router';
 import { defineStore } from "pinia";
 import { auth, database } from '@/datasources/firebase';
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 
 export const useMemberStore = defineStore("member", () => {
@@ -56,7 +56,18 @@ export const useMemberStore = defineStore("member", () => {
     }
   };
 
-  return { state, currentUser, loginWithEmail, signUpWithEmail };
+  // 로그아웃
+  const logout = async () => {
+    try {
+      await signOut(auth);
+      router.push({ name: 'home' });
+      state.currentUser = '';
+    } catch (error) {
+      alert(`로그아웃 시도 중 다음 오류가 발생했습니다 : ${error}`);
+    }
+  };
+
+  return { state, currentUser, loginWithEmail, signUpWithEmail, logout };
 },
   {
     persist: true,

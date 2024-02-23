@@ -13,17 +13,22 @@
         append-inner-icon="mdi-magnify" clear-icon="mdi-close-circle-outline" clearable hide-details="auto"
         @keyup.enter="searchWordHandler" @click:append-inner="searchWordHandler" />
     </v-form>
+    <v-btn v-if="currentUser" class="emphasis" size="large" flat @click="logout">로그아웃</v-btn>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { useSearchStore } from '@/stores/search';
+import { useMemberStore } from '@/stores/member';
 
 const searchWord = ref('');
 const router = useRouter();
 const { state, searchBook } = useSearchStore();
+const { logout } = useMemberStore();
+const currentUser = computed(() => useMemberStore().currentUser);
+
 const searchWordHandler = () => {
   router.push({ name: 'searchResult' });
   searchBook(searchWord.value);
