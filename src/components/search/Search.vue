@@ -13,7 +13,7 @@
         append-inner-icon="mdi-magnify" clear-icon="mdi-close-circle-outline" clearable hide-details="auto"
         @keyup.enter="searchWordHandler" @click:append-inner="searchWordHandler" />
     </v-form>
-    <v-btn v-if="currentUser" class="emphasis" size="large" flat @click="logout">로그아웃</v-btn>
+    <v-btn v-if="currentUser" class="emphasis hidden-md-and-down" size="large" flat @click="logout">로그아웃</v-btn>
   </div>
 </template>
 

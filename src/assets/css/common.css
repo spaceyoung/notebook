@@ -98,11 +98,11 @@ button.v-btn {
   color: #555;
   transition: all .3s;
 }
-button.v-btn:not(.v-btn.emphasis):hover {
+button.v-btn:not(.v-btn.emphasis, .v-app-bar .v-btn):hover {
   border-color: #ca4f34;
   color: #ca4f34;
 }
-button.v-btn:not(.book-rate .v-rating .v-btn):hover .v-icon {
+button.v-btn:not(.book-rate .v-rating .v-btn, .v-app-bar .v-btn):hover .v-icon {
   color: #ca4f34;
   transition: all .3s;
 }
