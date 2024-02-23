@@ -63,6 +63,9 @@ const login = async () => {
 .v-card .v-card-actions .v-btn {
   width: 100%;
 }
+.v-card .v-card-actions::v-deep a .v-btn .v-btn__overlay {
+  background-color: transparent;
+}
 
 /******************************
       max-width: 959px;
