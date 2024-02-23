@@ -2,7 +2,7 @@ import { reactive, computed } from "vue";
 import { useRouter } from 'vue-router';
 import { defineStore } from "pinia";
 import { auth, database } from '@/datasources/firebase';
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
+import { GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 
 export const useMemberStore = defineStore("member", () => {
@@ -56,6 +56,19 @@ export const useMemberStore = defineStore("member", () => {
     }
   };
 
+  // 구글 계정으로 로그인
+  const loginWithGoogle = async () => {
+    try {
+      const provider = new GoogleAuthProvider();
+      const userCredential = await signInWithPopup(auth, provider);
+      const user = userCredential.user;
+      state.currentUser = user.uid;
+      router.push({ name: 'myPage' });
+    } catch (error) {
+      alert(`구글 로그인 시도 중 다음 오류가 발생했습니다 : ${error}`);
+    }
+  };
+
   // 로그아웃
   const logout = async () => {
     try {
@@ -67,7 +80,7 @@ export const useMemberStore = defineStore("member", () => {
     }
   };
 
-  return { state, currentUser, loginWithEmail, signUpWithEmail, logout };
+  return { state, currentUser, loginWithEmail, signUpWithEmail, loginWithGoogle, logout };
 },
   {
     persist: true,

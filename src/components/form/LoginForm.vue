@@ -21,7 +21,7 @@
         <v-btn class="emphasis" size="x-large" flat @click="login">이메일로 로그인하기</v-btn>
       </v-card-actions>
       <v-card-actions class="flex-column pa-0">
-        <v-btn class="ma-0 mb-3" variant="tonal" size="large" color="#ca4f34">구글 계정으로 로그인</v-btn>
+        <v-btn class="ma-0 mb-3" variant="tonal" size="large" color="#ca4f34" @click="loginWithGoogle">구글 계정으로 로그인</v-btn>
         <router-link :to="{ name: 'signUp' }">
           <v-btn class="ma-0" variant="text" size="large" append-icon="mdi-chevron-right">회원 가입</v-btn>
         </router-link>
@@ -35,7 +35,7 @@ import { ref } from 'vue';
 import { useMemberStore } from '@/stores/member';
 
 const visiblePassword = ref(false);
-const { state, loginWithEmail } = useMemberStore();
+const { state, loginWithEmail, loginWithGoogle } = useMemberStore();
 const login = () => {
   loginWithEmail();
   state.loginUserData.email = '';
