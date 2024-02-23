@@ -7,23 +7,19 @@
           <v-card-text class="mb-6 pa-0">
             <div class="mb-3">
               <span class="d-block mb-2">이메일</span>
-              <v-text-field v-model="state.signUpUserData.email" placeholder="이메일을 입력해주세요." variant="outlined"
-                prepend-inner-icon="mdi-email-outline" />
+              <v-text-field v-model="state.signUpUserData.email" placeholder="이메일을 입력해주세요." variant="outlined" prepend-inner-icon="mdi-email-outline" />
             </div>
             <div class="mb-3">
               <span class="d-block mb-2">비밀번호</span>
-              <v-text-field v-model="state.signUpUserData.password"
-                :append-inner-icon="visiblePassword ? 'mdi-eye-off' : 'mdi-eye'"
+              <v-text-field v-model="state.signUpUserData.password" :append-inner-icon="visiblePassword ? 'mdi-eye-off' : 'mdi-eye'"
                 :type="visiblePassword ? 'text' : 'password'" placeholder="비밀번호를 입력해주세요." variant="outlined"
                 prepend-inner-icon="mdi-lock-outline" @click:append-inner="visiblePassword = !visiblePassword" />
             </div>
             <div>
               <span class="d-block mb-2">비밀번호 확인</span>
-              <v-text-field v-model="state.signUpUserData.passwordCheck"
-                :append-inner-icon="visiblePasswordCheck ? 'mdi-eye-off' : 'mdi-eye'"
+              <v-text-field v-model="state.signUpUserData.passwordCheck" :append-inner-icon="visiblePasswordCheck ? 'mdi-eye-off' : 'mdi-eye'"
                 :type="visiblePasswordCheck ? 'text' : 'password'" placeholder="비밀번호를 재입력해주세요." variant="outlined"
-                prepend-inner-icon="mdi-lock-outline"
-                @click:append-inner="visiblePasswordCheck = !visiblePasswordCheck" />
+                prepend-inner-icon="mdi-lock-outline" @click:append-inner="visiblePasswordCheck = !visiblePasswordCheck" />
             </div>
           </v-card-text>
           <v-card-actions class="flex-column pa-0">
@@ -85,7 +81,7 @@ const signUp = async () => {
 .v-card .v-card-actions .v-btn {
   width: 100%;
 }
-.v-window .v-window-item:nth-child(2) .v-card-text {
+.v-window .v-window-item:nth-child(2) .v-card-text{
   font-weight: 400;
   color: #777;
   text-align: center;
@@ -108,4 +104,5 @@ const signUp = async () => {
   .v-form {
     width: 95%;
   }
-}</style>
+}
+</style>

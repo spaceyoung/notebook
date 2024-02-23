@@ -24,32 +24,31 @@ export const useMemberStore = defineStore("member", () => {
   // 이메일로 회원 가입
   const signUpWithEmail = async () => {
     try {
-      const userCredential = await createUserWithEmailAndPassword(auth, state.signUpUserData.email, state.signUpUserData.password);
-      const user = userCredential.user;
-      addUserData(user);
-      return user;
+      await createUserWithEmailAndPassword(auth, state.signUpUserData.email, state.signUpUserData.password);
+      state.currentUser = auth.currentUser;
+      addUserData(auth.currentUser);
+      return auth.currentUser;
     } catch (error) {
       alert(`회원 가입 중 다음 오류가 발생했습니다 : ${error}`);
       return false;
     }
   };
 
-  // 데이터베이스 users에 사용자 정보 추가
-  const addUserData = async (user) => {
-    const docRef = doc(database, 'users', user.uid, 'info', user.uid);
+  // 데이터베이스 users에 회원 가입한 사용자 정보 추가
+  const addUserData = async (currentUser) => {
+    const docRef = doc(database, 'users', currentUser.uid, 'info', currentUser.uid);
     await setDoc(docRef, {
-      uid: user.uid,
-      email: user.email,
-      creationTime: user.metadata.creationTime,
+      uid: currentUser.uid,
+      email: currentUser.email,
+      creationTime: currentUser.metadata.creationTime,
     });
   };
 
   // 이메일로 로그인
   const loginWithEmail = async () => {
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, state.loginUserData.email, state.loginUserData.password);
-      const user = userCredential.user;
-      state.currentUser = user.uid;
+      await signInWithEmailAndPassword(auth, state.loginUserData.email, state.loginUserData.password);
+      state.currentUser = auth.currentUser;
       router.push({ name: 'myPage' });
     } catch (error) {
       alert(`로그인 시도 중 다음 오류가 발생했습니다 : ${error}`);
@@ -60,9 +59,8 @@ export const useMemberStore = defineStore("member", () => {
   const loginWithGoogle = async () => {
     try {
       const provider = new GoogleAuthProvider();
-      const userCredential = await signInWithPopup(auth, provider);
-      const user = userCredential.user;
-      state.currentUser = user.uid;
+      await signInWithPopup(auth, provider);
+      state.currentUser = auth.currentUser;
       router.push({ name: 'myPage' });
     } catch (error) {
       alert(`구글 로그인 시도 중 다음 오류가 발생했습니다 : ${error}`);
@@ -73,8 +71,8 @@ export const useMemberStore = defineStore("member", () => {
   const logout = async () => {
     try {
       await signOut(auth);
+      state.currentUser = auth.currentUser;
       router.push({ name: 'home' });
-      state.currentUser = '';
     } catch (error) {
       alert(`로그아웃 시도 중 다음 오류가 발생했습니다 : ${error}`);
     }

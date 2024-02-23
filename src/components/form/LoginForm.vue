@@ -36,8 +36,8 @@ import { useMemberStore } from '@/stores/member';
 
 const visiblePassword = ref(false);
 const { state, loginWithEmail, loginWithGoogle } = useMemberStore();
-const login = () => {
-  loginWithEmail();
+const login = async () => {
+  await loginWithEmail();
   state.loginUserData.email = '';
   state.loginUserData.password = '';
 };

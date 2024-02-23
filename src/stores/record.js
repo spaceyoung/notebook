@@ -34,7 +34,7 @@ export const useRecordStore = defineStore("record", () => {
   const inquiryMyReading = async () => {
     state.isLoading = true;
     try {
-      const myReading = useCollection(collection(database, 'users', currentUser.value, 'myReading'));
+      const myReading = useCollection(collection(database, 'users', currentUser.value.uid, 'myReading'));
       if (myReading) state.myReadingList = myReading;
       else alert('데이터 조회에 실패했습니다.');
     } catch (error) {
@@ -47,7 +47,7 @@ export const useRecordStore = defineStore("record", () => {
   const inquiryMyReadingEnd = async () => {
     state.isLoading = true;
     try {
-      const myReadingEnd = useCollection(collection(database, 'users', currentUser.value, 'myReadingEnd'));
+      const myReadingEnd = useCollection(collection(database, 'users', currentUser.value.uid, 'myReadingEnd'));
       if (myReadingEnd) state.myReadingEndList = myReadingEnd;
       else alert('데이터 조회에 실패했습니다.');
     } catch (error) {
@@ -59,13 +59,13 @@ export const useRecordStore = defineStore("record", () => {
   // 데이터베이스 myReading에 독서 중 기록 추가
   const addMyReading = async (recordBook) => {
     recordBook.timeStamp = new Date();
-    const docRef = doc(collection(database, 'users', currentUser.value, 'myReading'));
+    const docRef = doc(collection(database, 'users', currentUser.value.uid, 'myReading'));
     await setDoc(docRef, recordBook);
   };
 
   // 데이터베이스 myReading 독서 중 기록 수정
   const updateMyReading = async (id, myReadingItem) => {
-    const docRef = doc(database, 'users', currentUser.value, 'myReading', id);
+    const docRef = doc(database, 'users', currentUser.value.uid, 'myReading', id);
     await updateDoc(docRef, {
       platform: myReadingItem.platform,
       readingState: myReadingItem.readingState,
@@ -82,20 +82,20 @@ export const useRecordStore = defineStore("record", () => {
 
   // 데이터베이스 myReading에서 독서 중 기록 삭제
   const deleteMyReading = async (id) => {
-    const docRef = doc(database, 'users', currentUser.value, 'myReading', id);
+    const docRef = doc(database, 'users', currentUser.value.uid, 'myReading', id);
     await deleteDoc(docRef);
   };
 
   // 데이터베이스 myReadingEnd에 독서 완료 기록 추가
   const addMyReadingEnd = async (recordBook) => {
     recordBook.timeStamp = new Date();
-    const docRef = doc(collection(database, 'users', currentUser.value, 'myReadingEnd'));
+    const docRef = doc(collection(database, 'users', currentUser.value.uid, 'myReadingEnd'));
     await setDoc(docRef, recordBook);
   };
 
   // 데이터베이스 myReadingEnd 독서 완료 기록 수정
   const updateMyReadingEnd = async (id, myReadingEndItem) => {
-    const docRef = doc(database, 'users', currentUser.value, 'myReadingEnd', id);
+    const docRef = doc(database, 'users', currentUser.value.uid, 'myReadingEnd', id);
     await updateDoc(docRef, {
       platform: myReadingEndItem.platform,
       readingState: myReadingEndItem.readingState,
@@ -112,7 +112,7 @@ export const useRecordStore = defineStore("record", () => {
 
   // 데이터베이스 myReading에서 독서 완료 기록 삭제
   const deleteMyReadingEnd = async (id) => {
-    const docRef = doc(database, 'users', currentUser.value, 'myReadingEnd', id);
+    const docRef = doc(database, 'users', currentUser.value.uid, 'myReadingEnd', id);
     await deleteDoc(docRef);
   };
 
