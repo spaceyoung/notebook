@@ -1,7 +1,7 @@
 import { reactive, computed } from "vue";
 import { defineStore } from "pinia";
 import { useCollection } from 'vuefire';
-import { database, myReadingDB, myReadingEndDB } from '@/datasources/firebase';
+import { database } from '@/datasources/firebase';
 import { collection, doc, setDoc, deleteDoc, updateDoc } from "firebase/firestore";
 
 // 로그인한 사용자 정보 불러오기

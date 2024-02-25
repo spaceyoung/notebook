@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { getFirestore, collection, query, orderBy } from 'firebase/firestore';
+import { getFirestore } from 'firebase/firestore';
 
 const notebookDB = initializeApp({
   apiKey: import.meta.env.VITE_FB_APP_KEY,
@@ -14,5 +14,3 @@ const notebookDB = initializeApp({
 
 export const auth = getAuth();
 export const database = getFirestore(notebookDB);
-// export const myReadingDB = query(collection(database, 'myReading'), orderBy('timeStamp'));
-// export const myReadingEndDB = query(collection(database, 'myReadingEnd'), orderBy('timeStamp'));
