@@ -10,8 +10,8 @@
     <v-form>
       <v-select v-model="state.selectOption" :items="state.options" class="mb-5" variant="outlined" hide-details="auto" />
       <v-text-field v-model.trim="searchWord" label="어떤 책을 기록하시나요?" variant="outlined"
-        append-inner-icon="mdi-magnify" clear-icon="mdi-close-circle-outline" clearable hide-details="auto"
-        @keyup.enter="searchWordHandler" @click:append-inner="searchWordHandler" />
+      append-inner-icon="mdi-magnify" clear-icon="mdi-close-circle-outline" clearable hide-details="auto"
+      @keyup.enter="searchWordHandler" @click:append-inner="searchWordHandler" />
     </v-form>
     <v-btn v-if="currentUser" class="emphasis hidden-md-and-down" size="large" flat @click="logout">로그아웃</v-btn>
   </div>
@@ -39,6 +39,7 @@ const searchWordHandler = () => {
 <style scoped>
 .inner {
   width: 75%;
+  position: relative;
 }
 .sec-header .sec-title {
   font-size: 3.8em;
