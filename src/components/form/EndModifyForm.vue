@@ -48,7 +48,7 @@ myReadingEndItem.readingEndDate = new Date(myReadingEndItem.readingEndDate.secon
 const deleteRecord = () => {
   deleteModal.value = false;
   deleteMyReadingEnd(myReadingEndItem.id);
-  router.back();
+  router.push({ name: 'myPage' });
 };
 
 const cancelRecord = () => { router.back(); };
