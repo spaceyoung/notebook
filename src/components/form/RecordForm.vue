@@ -11,7 +11,7 @@
       <Sentence v-if="recordBook.readingState === '독서 완료'" :book="recordBook" />
       <Review v-if="recordBook.readingState === '독서 완료'" :book="recordBook" />
     </v-sheet>
-    <FormButtons :cancelRecord="cancelRecord" :addRecord="addRecord" />
+    <FormButtons :cancelRecord="cancelRecord" :addRecord="addRecord" :currentUser="currentUser"/>
     <CloseButton :cancelRecord="cancelRecord" />
   </v-form>
 </template>
@@ -21,6 +21,7 @@ import { ref, computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useSearchStore } from '@/stores/search';
 import { useRecordStore } from '@/stores/record';
+import { useMemberStore } from '@/stores/member';
 
 import BookInfo from '@/components/form/contents/BookInfo.vue';
 import BookDesc from '@/components/form/contents/BookDesc.vue';
@@ -39,25 +40,28 @@ const router = useRouter();
 const id = currentRoute.params.id;
 const searchBookList = computed(() => useSearchStore().searchBookList);
 const { state, addMyReading, addMyReadingEnd } = useRecordStore();
+const currentUser = computed(() => useMemberStore().currentUser);
 const selectBook = searchBookList.value.find((searchBookItem) => searchBookItem.isbn === id);
 const recordBook = ref({ ...selectBook, ...state.recordBookDefault });
 
 const cancelRecord = () => { router.back(); };
 
 const addRecord = () => {
-  if (recordBook.value.platform && recordBook.value.readingState && recordBook.value.readingStartDate && recordBook.value.readingPage >= 0) {
-    if (recordBook.value.readingState === '독서 중') {
-      addMyReading(recordBook.value);
-      router.push({ name: 'myPage' });
-    } else if (recordBook.value.readingState === '독서 완료' && recordBook.value.readingEndDate) {
-      addMyReadingEnd(recordBook.value);
-      router.push({ name: 'myPage' });
+  if (currentUser.value) {
+    if (recordBook.value.platform && recordBook.value.readingState && recordBook.value.readingStartDate && recordBook.value.readingPage >= 0) {
+      if (recordBook.value.readingState === '독서 중') {
+        addMyReading(recordBook.value);
+        router.push({ name: 'myPage' });
+      } else if (recordBook.value.readingState === '독서 완료' && recordBook.value.readingEndDate) {
+        addMyReadingEnd(recordBook.value);
+        router.push({ name: 'myPage' });
+      } else {
+        alert('기록에 필요한 정보를 입력해주세요😢');
+      }
     } else {
       alert('기록에 필요한 정보를 입력해주세요😢');
     }
-  } else {
-    alert('기록에 필요한 정보를 입력해주세요😢');
-  }
+  };
 };
 </script>
 
