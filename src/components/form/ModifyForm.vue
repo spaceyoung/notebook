@@ -47,7 +47,7 @@ myReadingItem.readingStartDate = new Date(myReadingItem.readingStartDate.seconds
 const deleteRecord = () => {
   deleteModal.value = false;
   deleteMyReading(myReadingItem.id);
-  router.back();
+  router.push({ name: 'myPage' });
 };
 
 const cancelRecord = () => { router.back(); };
