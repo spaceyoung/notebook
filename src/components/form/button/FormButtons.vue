@@ -7,19 +7,24 @@
     <v-btn class="ma-0 px-8" variant="outlined" size="large" @click="cancelRecord">취소하기</v-btn>
     <v-btn v-if="modifyTerm" class="emphasis order-first order-sm-last ma-0 ml-sm-5 px-8" size="large"
       flat @click="modifyRecord">수정하기</v-btn>
-    <v-btn v-else class="emphasis ma-0 ml-sm-5 px-8" size="large" flat @click="addRecord">기록하기</v-btn>
+    <v-btn v-else class="emphasis ma-0 ml-sm-5 px-8" size="large" flat @click="addRecord">
+      기록하기
+      <NonLoginModal v-if="!currentUser" activator="parent" />
+    </v-btn>
   </v-item-groups>
 </template>
 
 <script setup>
 import { useRoute } from 'vue-router';
 import DeleteModal from '@/components/modal/DeleteModal.vue';
+import NonLoginModal from '@/components/modal/NonLoginModal.vue';
 
 defineProps({
   deleteRecord: { type: Function, required: false },
   cancelRecord: { type: Function, required: true },
   modifyRecord: { type: Function, required: false },
   addRecord: { type: Function, required: false },
+  currentUser: { type: String, required: false },
 });
 
 const currentRoute = useRoute();
