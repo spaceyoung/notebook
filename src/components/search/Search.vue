@@ -1,9 +1,7 @@
 <template>
   <div class="inner mx-auto">
     <div class="sec-header mb-10">
-      <h2 class="sec-title mb-5">
-        <router-link :to="{ name: 'home' }">공책</router-link>
-      </h2>
+      <h2 class="sec-title mb-5" @click="goMyPage">공책</h2>
       <h3 class="sec-sub-title">Note, Book</h3>
       <span class="sec-desc"><em>책</em>으로 <em>기록</em>하는 <em>공간</em></span>
     </div>
@@ -19,7 +17,7 @@
 
 <script setup>
 import { ref, computed } from 'vue';
-import { useRouter } from 'vue-router';
+import { onBeforeRouteLeave, useRouter } from 'vue-router';
 import { useSearchStore } from '@/stores/search';
 import { useMemberStore } from '@/stores/member';
 
@@ -28,6 +26,12 @@ const router = useRouter();
 const { state, searchBook } = useSearchStore();
 const { logout } = useMemberStore();
 const currentUser = computed(() => useMemberStore().currentUser);
+
+const goMyPage = () => {
+  console.log(currentUser);
+  if (currentUser.value) router.push({ name: 'myPage' });
+  else router.push({ name: 'home' });
+}
 
 const searchWordHandler = () => {
   router.push({ name: 'searchResult' });
