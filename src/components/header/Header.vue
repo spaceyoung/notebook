@@ -26,7 +26,6 @@ const { logout } = useMemberStore();
 const currentUser = computed(() => useMemberStore().currentUser);
 
 const goMyPage = () => {
-  console.log(currentUser);
   if (currentUser.value) router.push({ name: 'myPage' });
   else router.push({ name: 'home' });
 }
