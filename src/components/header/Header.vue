@@ -1,9 +1,7 @@
 <template>
   <v-app-bar class="hidden-lg-and-up px-5 px-sm-10" scroll-behavior="elevate">
     <v-app-bar-title class="ma-0">
-      <h1>
-        <router-link :to="{ name: 'home' }">공책 <span>Note, Book</span></router-link>
-      </h1>
+      <h1 @click="goMyPage">공책 <span>Note, Book</span></h1>
     </v-app-bar-title>
     <v-menu v-if="currentUser" transition="slide-y-transition">
       <template v-slot:activator="{ props }">
@@ -20,10 +18,17 @@
 
 <script setup>
 import { computed } from 'vue';
+import { useRouter } from 'vue-router';
 import { useMemberStore } from '@/stores/member';
 
+const router = useRouter();
 const { logout } = useMemberStore();
 const currentUser = computed(() => useMemberStore().currentUser);
+
+const goMyPage = () => {
+  if (currentUser.value) router.push({ name: 'myPage' });
+  else router.push({ name: 'home' });
+}
 </script>
 
 <style scoped>
