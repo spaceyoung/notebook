@@ -49,6 +49,9 @@ img, input, select, textarea {
               MAIN
 ******************************/
 /* -------------------- MAIN COMMON -------------------- */
+h1, h2 {
+  cursor: pointer;
+}
 .sec-header {
   text-align: center;
 }
