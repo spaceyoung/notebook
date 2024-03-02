@@ -1,4 +1,8 @@
+import { computed } from 'vue';
 import { createRouter, createWebHashHistory } from 'vue-router';
+import { useMemberStore } from '@/stores/member';
+
+const currentUser = computed(() => useMemberStore().currentUser);
 
 const Home = () => import('@/views/Home.vue');
 const SignUp = () => import('@/views/SignUp.vue');
@@ -11,7 +15,12 @@ const EndModify = () => import('@/views/EndModify.vue');
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [
-    { path: '/', name: 'home', component: Home },
+    {
+      path: '/', name: 'home', component: Home,
+      beforeEnter: () => {
+        if (currentUser.value) return { name: 'myPage' }
+      }
+    },
     { path: '/signup', name: 'signUp', component: SignUp },
     { path: '/mypage', name: 'myPage', component: MyPage },
     { path: '/searchresult', name: 'searchResult', component: SearchResult },
