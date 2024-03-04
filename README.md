@@ -1,5 +1,5 @@
 # 공책 Note, Book
-#### 개인 프로젝트 기여도 100%
+#### 독서 기록 서비스 공책
 <table>
   <tr>
     <th width="100">기여도</th>
@@ -130,6 +130,27 @@
   <tr>
     <th>알게 된 점</th>
     <td>웹 스토리지 API를 통해 데이터의 지속성을 유지하는 방법을 다시 한번 상기할 수 있었음.</td>
+  </tr>
+</table>
+<br>
+
+- **배포 환경에서의 CORS 오류**
+<table>
+  <tr>
+    <th width="100">문제 배경</th>
+    <td>배포 사이트에서 도서 검색 시 CORS 오류가 발생하여 검색 기능을 이용할 수 없는 상황 발생.</td>
+  </tr>
+  <tr>
+    <th>문제 원인</th>
+    <td>Vite 개발 환경에서 적용한 proxy 설정이 Build 후의 정적 파일에서는 적용되지 않음.</td>
+  </tr>
+  <tr>
+    <th>해결 과정</th>
+    <td>Github Actions로 배포까지의 과정을 자동화하고, 최종 배포 플랫폼인 Vercel에서 proxy를 설정하여 문제를 해결.</td>
+  </tr>
+  <tr>
+    <th>알게 된 점</th>
+    <td>Vercel, Netlify, Nginx 등 정적 파일 배포를 지원하는 다양한 서비스 및 웹서버의 존재에 대해 알게 됨. 또한, proxy와 관련된 추가적인 학습을 통해 Forward proxy/Reverse proxy의 개념과 차이를 깨달음.</td>
   </tr>
 </table>
 <br>
