@@ -1,28 +1,40 @@
 # 공책 Note, Book
-#### 개인 프로젝트 기여도 100%
-> 2024.01.10 ~ 2024.02.13 개발 배포 완료<br>
-> 리팩토링, 기능 추가 및 보완을 통한 버전 관리 진행 중
+#### 독서 기록 서비스 공책
+<table>
+  <tr>
+    <th width="100">기여도</th>
+    <td>100% (개인 프로젝트)</td>
+  </tr>
+  <tr>
+    <th>작업 기간</th>
+    <td>2024.01.10 ~ 2024.02.13 개발 배포 완료<br>리팩토링, 기능 추가 및 보완을 통한 버전 관리 진행 중</td>
+  </tr>
+</table>
 <br>
 
-**📕 배포 사이트 주소** ｜ [notebook-service.vercel.app](https://notebook-service.vercel.app/#/)
-
-**💡 작업 기록 및 회고** ｜ [padlet.com/myoungever/padlet-1](https://padlet.com/myoungever/padlet-1pebk43tm5u1ezu8)
-<br>
-<br>
-<br>
 ![notebook-pc](https://github.com/spaceyoung/notebook/assets/154400292/5bd607a7-cf5d-4f14-9bd4-c5d157bf9585)
 <p align="center"><img src="https://github.com/spaceyoung/notebook/assets/154400292/58a4240f-aa1e-44bf-be18-48614145a839" width="480" /></p>
 <br>
 <br>
 
-### 🔎 개요
+## 📕 배포 주소
+[https://notebook-service.vercel.app](https://notebook-service.vercel.app/#/)
+<br>
+<br>
+<br>
+## 💡 작업 기록 및 회고
+[https://padlet.com/myoungever/padlet-1](https://padlet.com/myoungever/padlet-1pebk43tm5u1ezu8)
+<br>
+<br>
+<br>
+## 🔎 개요
 공책(Note, Book)은 **도서 검색 및 기록을 통해 자신만의 독서 기록을 관리할 수 있는 웹 앱**입니다.
 
 2024년 새해 목표 중 하나로 '독서 습관 기르기'를 계획하여, 이에 대한 기록 및 동기부여와 **CRUD 기능**을 직접 구현하고 **Open API**와 연계해 확장하기 위해서 작업한 프로젝트입니다. **기획부터 화면 구현, 배포까지 스스로 진행**하는 걸 목표로 삼았습니다.
 <br>
 <br>
 <br>
-### 🛠 사용 기술
+## 🛠 사용 기술
 ```
 * Language
     - JavaScript
@@ -49,9 +61,10 @@
 <br>
 <br>
 
-### ✨ 구현 기능
+## ✨ 구현 기능
 - **로그인/회원 가입**
     - **Firebase 인증**을 통한 **로그인/회원 가입** 및 **구글 소셜 로그인** 연동
+    - 라우트 수준의 **내비게이션 가드**를 활용하여 사용자의 **로그인 유지 여부**에 따른 서비스 첫 접속 경로 구분
 
 - **마이 페이지(나의 기록)**
     - 구글 소셜 첫 로그인 또는 회원 가입 시 사용자의 정보를 DB에 저장, 이를 통한 **독서 기록 데이터 조회 및 관리** 개인화
@@ -77,7 +90,7 @@
 <br>
 <br>
 
-### 💣 트러블 슈팅
+## 💣 트러블 슈팅
 - **도서 검색 결과 랜덤 출력**
 
 <table>
@@ -120,9 +133,30 @@
   </tr>
 </table>
 <br>
+
+- **배포 환경에서의 CORS 오류**
+<table>
+  <tr>
+    <th width="100">문제 배경</th>
+    <td>배포 사이트에서 도서 검색 시 CORS 오류가 발생하여 검색 기능을 이용할 수 없는 상황 발생.</td>
+  </tr>
+  <tr>
+    <th>문제 원인</th>
+    <td>Vite 개발 환경에서 적용한 proxy 설정이 Build 후의 정적 파일에서는 적용되지 않음.</td>
+  </tr>
+  <tr>
+    <th>해결 과정</th>
+    <td>Github Actions로 배포까지의 과정을 자동화하고, 최종 배포 플랫폼인 Vercel에서 proxy를 설정하여 문제를 해결.</td>
+  </tr>
+  <tr>
+    <th>알게 된 점</th>
+    <td>Vercel, Netlify, Nginx 등 정적 파일 배포를 지원하는 다양한 서비스 및 웹서버의 존재에 대해 알게 됨. 또한, proxy와 관련된 추가적인 학습을 통해 Forward proxy/Reverse proxy의 개념과 차이를 깨달음.</td>
+  </tr>
+</table>
+<br>
 <br>
 
-### 🖥 구현 화면
+## 🖥 구현 화면
 - **회원 가입 페이지**
 
 ![signup](https://github.com/spaceyoung/notebook/assets/154400292/9388309c-488d-48cd-936c-fe4a1a441b3b)
@@ -133,7 +167,7 @@
 ![login](https://github.com/spaceyoung/notebook/assets/154400292/e3b98718-bd90-4518-a685-801dce0c5d5a)
 <br>
 <br>
-- **My 페이지**
+- **마이 페이지**
 
 ![home](https://github.com/spaceyoung/notebook/assets/154400292/9ea21faf-7f21-44d6-98ac-66eea7b83ff4)
 <br>

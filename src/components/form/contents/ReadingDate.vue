@@ -5,7 +5,7 @@
         <v-icon icon="mdi-book-edit-outline" class="mr-2" />독서 시작일
       </span>
       <v-text-field :model-value="book.formattedReadingStartDate" :rules="startDateRule" placeholder="독서 시작일"
-        variant="solo" prepend-inner-icon="mdi-calendar-month" hide-details="auto" flat>
+        variant="solo" prepend-inner-icon="mdi-calendar-month" hide-details="auto" flat readonly>
         <ReadingStartDateModal activator="parent" :book="book" />
       </v-text-field>
     </div>
@@ -14,7 +14,7 @@
         <v-icon icon="mdi-book-edit-outline" class="mr-2" />독서 완료일
       </span>
       <v-text-field :model-value="book.formattedReadingEndDate" :rules="endDateRule" placeholder="독서 완료일"
-        variant="solo" prepend-inner-icon="mdi-calendar-month" hide-details="auto" flat>
+        variant="solo" prepend-inner-icon="mdi-calendar-month" hide-details="auto" flat readonly>
         <ReadingEndDateModal activator="parent" :book="book" />
       </v-text-field>
     </div>
