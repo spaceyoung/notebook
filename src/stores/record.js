@@ -72,7 +72,7 @@ export const useRecordStore = defineStore("record", () => {
       readingStartDate: myReadingItem.readingStartDate,
       formattedReadingStartDate: myReadingItem.formattedReadingStartDate,
       readingEndDate: myReadingItem.readingEndDate,
-      formattedReadingEndDate: myReadingItem.format00.tedReadingEndDate,
+      formattedReadingEndDate: myReadingItem.formattedReadingEndDate,
       readingPage: myReadingItem.readingPage,
       rating: myReadingItem.rating,
       sentence: myReadingItem.sentence,
