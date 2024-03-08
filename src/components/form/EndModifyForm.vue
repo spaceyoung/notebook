@@ -1,5 +1,5 @@
 <template>
-  <v-form ref="form" class="view d-flex flex-column px-0 py-10 px-sm-8 px-lg-15 py-lg-5" flat>
+  <v-form ref="endModifyForm" class="view d-flex flex-column px-0 py-10 px-sm-8 px-lg-15 py-lg-5" flat>
     <v-sheet class="mb-13">
       <BookInfo :book="myReadingEndItem" />
       <BookDesc :book="myReadingEndItem" />
@@ -53,7 +53,7 @@ const deleteRecord = () => {
 
 const cancelRecord = () => { router.back(); };
 
-const form = ref(null);
+const endModifyForm = ref(null);
 const endModifyRecord = async () => {
   const { valid } = await form.value.validate();
   if (valid && myReadingEndItem.platform && myReadingEndItem.readingState) {
