@@ -38,7 +38,7 @@ export const useMemberStore = defineStore("member", () => {
     try {
       await signInWithEmailAndPassword(auth, state.loginUserData.email, state.loginUserData.password);
       state.currentUser = auth.currentUser;
-      router.push({ name: 'myPage' });
+      router.push({ name: 'home' });
     } catch (error) {
       alert(`로그인 시도 중 다음 오류가 발생했습니다 : ${error}`);
     }
@@ -51,7 +51,7 @@ export const useMemberStore = defineStore("member", () => {
       await signInWithPopup(auth, provider);
       state.currentUser = auth.currentUser;
       addUserData(auth.currentUser);
-      router.push({ name: 'myPage' });
+      router.push({ name: 'home' });
     } catch (error) {
       alert(`구글 로그인 시도 중 다음 오류가 발생했습니다 : ${error}`);
     }
@@ -72,7 +72,7 @@ export const useMemberStore = defineStore("member", () => {
     try {
       await signOut(auth);
       state.currentUser = auth.currentUser;
-      router.push({ name: 'home' });
+      router.push({ name: 'login' });
     } catch (error) {
       alert(`로그아웃 시도 중 다음 오류가 발생했습니다 : ${error}`);
     }
