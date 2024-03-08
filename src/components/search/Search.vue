@@ -1,7 +1,7 @@
 <template>
   <div class="inner mx-auto">
     <div class="sec-header mb-10">
-      <h2 class="sec-title mb-5" @click="goMyPage">공책</h2>
+      <h2 class="sec-title mb-5" @click="goHome">공책</h2>
       <h3 class="sec-sub-title">Note, Book</h3>
       <span class="sec-desc"><em>책</em>으로 <em>기록</em>하는 <em>공간</em></span>
     </div>
@@ -27,9 +27,9 @@ const { state, searchBook } = useSearchStore();
 const { logout } = useMemberStore();
 const currentUser = computed(() => useMemberStore().currentUser);
 
-const goMyPage = () => {
-  if (currentUser.value) router.push({ name: 'myPage' });
-  else router.push({ name: 'home' });
+const goHome = () => {
+  if (currentUser.value) router.push({ name: 'home' });
+  else router.push({ name: 'login' });
 }
 
 const searchWordHandler = () => {

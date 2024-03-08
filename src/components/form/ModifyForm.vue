@@ -47,7 +47,7 @@ myReadingItem.readingStartDate = new Date(myReadingItem.readingStartDate.seconds
 const deleteRecord = () => {
   deleteModal.value = false;
   deleteMyReading(myReadingItem.id);
-  router.push({ name: 'myPage' });
+  router.push({ name: 'home' });
 };
 
 const cancelRecord = () => { router.back(); };
@@ -56,11 +56,11 @@ const modifyRecord = () => {
   if (myReadingItem.platform && myReadingItem.readingState && myReadingItem.readingStartDate && myReadingItem.readingPage >= 0) {
     if (myReadingItem.readingState === '독서 중') {
       updateMyReading(myReadingItem.id, myReadingItem);
-      router.push({ name: 'myPage' });
+      router.push({ name: 'home' });
     } else if (myReadingItem.readingState === '독서 완료' && myReadingItem.readingEndDate) {
       addMyReadingEnd(myReadingItem);
       deleteMyReading(myReadingItem.id);
-      router.push({ name: 'myPage' });
+      router.push({ name: 'home' });
     } else {
       alert('기록에 필요한 정보를 입력해주세요😢');
     }

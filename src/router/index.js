@@ -5,8 +5,8 @@ import { useMemberStore } from '@/stores/member';
 const currentUser = computed(() => useMemberStore().currentUser);
 
 const Home = () => import('@/views/Home.vue');
+const Login = () => import('@/views/Login.vue');
 const SignUp = () => import('@/views/SignUp.vue');
-const MyPage = () => import('@/views/MyPage.vue');
 const SearchResult = () => import('@/views/SearchResult.vue');
 const Record = () => import('@/views/Record.vue');
 const Modify = () => import('@/views/Modify.vue');
@@ -18,11 +18,11 @@ const router = createRouter({
     {
       path: '/', name: 'home', component: Home,
       beforeEnter: () => {
-        if (currentUser.value) return { name: 'myPage' }
+        if (!currentUser.value) return { name: 'login' }
       }
     },
     { path: '/signup', name: 'signUp', component: SignUp },
-    { path: '/mypage', name: 'myPage', component: MyPage },
+    { path: '/login', name: 'login', component: Login },
     { path: '/searchresult', name: 'searchResult', component: SearchResult },
     { path: '/record/:id(\\d+)', name: 'record/id', component: Record },
     { path: '/modify/:id(\\d+)', name: 'modify/id', component: Modify },
