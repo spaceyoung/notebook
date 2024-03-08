@@ -8,7 +8,7 @@
             <v-card-actions class="justify-center">
               <v-btn class="px-5" variant="outlined" size="large" @click="NonLoginModal = false">취소하기</v-btn>
                 <v-btn class="emphasis px-5" size="large" flat>
-                  <router-link :to="{ name: 'home' }">로그인하러 가기</router-link>
+                  <router-link :to="{ name: 'login' }">로그인하러 가기</router-link>
                 </v-btn>
             </v-card-actions>
           </v-card>
