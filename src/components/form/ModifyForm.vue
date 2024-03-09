@@ -54,7 +54,7 @@ const cancelRecord = () => { router.back(); };
 
 const modifyForm = ref(null);
 const modifyRecord = async () => {
-  const { valid } = await form.value.validate();
+  const { valid } = await modifyForm.value.validate();
   if (valid && myReadingItem.platform && myReadingItem.readingState) {
     if (myReadingItem.readingState === '독서 중') {
       updateMyReading(myReadingItem.id, myReadingItem);

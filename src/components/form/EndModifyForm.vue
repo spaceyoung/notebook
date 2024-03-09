@@ -55,7 +55,7 @@ const cancelRecord = () => { router.back(); };
 
 const endModifyForm = ref(null);
 const endModifyRecord = async () => {
-  const { valid } = await form.value.validate();
+  const { valid } = await endModifyForm.value.validate();
   if (valid && myReadingEndItem.platform && myReadingEndItem.readingState) {
     if (myReadingEndItem.readingState === '독서 중') {
       myReadingEndItem.readingEndDate = null;

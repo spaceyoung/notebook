@@ -48,7 +48,7 @@ const cancelRecord = () => { router.back(); };
 
 const recordForm = ref(null);
 const addRecord = async () => {
-  const { valid } = await form.value.validate();
+  const { valid } = await recordForm.value.validate();
   if (valid && recordBook.value.platform && recordBook.value.readingState) {
     if (recordBook.value.readingState === '독서 중') addMyReading(recordBook.value);
     else if (recordBook.value.readingState === '독서 완료') addMyReadingEnd(recordBook.value);
