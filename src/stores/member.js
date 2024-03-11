@@ -21,6 +21,30 @@ export const useMemberStore = defineStore("member", () => {
   });
   const currentUser = computed(() => state.currentUser);
 
+  // 이메일 입력 필드 유효성 검사
+  const emailRule = [
+    value => !!value || '이메일을 입력해주세요.',
+    value => {
+      const emailPattern = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+      return emailPattern.test(value) || '이메일 형식으로 입력해주세요.';
+    }
+  ]
+
+  // 비밀번호 입력 필드 유효성 검사
+  const passwordRule = [
+    value => !!value || '비밀번호를 입력해주세요.',
+    value => {
+      const passwordPattern = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*_]).{8,15}$/;
+      return passwordPattern.test(value) || '영문자, 숫자, 특수문자(!@#$%^&*_) 조합의 8~15자로 입력해주세요.'
+    }
+  ]
+
+  // 비밀번호 입력 필드 확인 유효성 검사
+  const passwordCheckRule = [
+    value => !!value || '비밀번호를 재입력해주세요.',
+    value => state.signUpUserData.password === value || '비밀번호가 일치하지 않아요. 다시 확인해주세요.'
+  ]
+
   // 이메일로 회원 가입
   const signUpWithEmail = async () => {
     try {
@@ -78,7 +102,7 @@ export const useMemberStore = defineStore("member", () => {
     }
   };
 
-  return { state, currentUser, loginWithEmail, signUpWithEmail, loginWithGoogle, logout };
+  return { state, currentUser, emailRule, passwordRule, passwordCheckRule, loginWithEmail, signUpWithEmail, loginWithGoogle, logout };
 },
   {
     persist: true,
