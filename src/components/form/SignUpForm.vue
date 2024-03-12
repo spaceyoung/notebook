@@ -48,7 +48,6 @@
 import { ref } from 'vue';
 import { useMemberStore } from '@/stores/member';
 
-// const signUpStep = ref(1);
 const visiblePassword = ref(false);
 const visiblePasswordCheck = ref(false);
 const { state, emailRule, passwordRule, passwordCheckRule, signUpWithEmail } = useMemberStore();
