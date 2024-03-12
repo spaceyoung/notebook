@@ -1,7 +1,7 @@
 <template>
   <v-form ref="signUpForm" class="ma-auto">
     <v-card class="pa-5" flat>
-      <v-window v-model="signUpStep">
+      <v-window v-model="state.signUpStep">
         <v-window-item :value="1">
           <v-card-title class="mb-9">회원 가입</v-card-title>
           <v-card-text class="mb-6 pa-0">
@@ -48,7 +48,7 @@
 import { ref } from 'vue';
 import { useMemberStore } from '@/stores/member';
 
-const signUpStep = ref(1);
+// const signUpStep = ref(1);
 const visiblePassword = ref(false);
 const visiblePasswordCheck = ref(false);
 const { state, emailRule, passwordRule, passwordCheckRule, signUpWithEmail } = useMemberStore();
@@ -56,10 +56,7 @@ const { state, emailRule, passwordRule, passwordCheckRule, signUpWithEmail } = u
 const signUpForm = ref(null);
 const signUp = async () => {
   const { valid } = await signUpForm.value.validate();
-  if (valid) {
-    await signUpWithEmail();
-    signUpStep.value = 2;
-  }
+  if (valid) await signUpWithEmail();
   state.signUpUserData.email = '';
   state.signUpUserData.password = '';
   state.signUpUserData.passwordCheck = '';
