@@ -8,6 +8,7 @@ import { doc, setDoc } from "firebase/firestore";
 export const useMemberStore = defineStore("member", () => {
   const router = useRouter();
   const state = reactive({
+    signUpStep: 1,
     signUpUserData: {
       email: '',
       password: '',
@@ -21,18 +22,49 @@ export const useMemberStore = defineStore("member", () => {
   });
   const currentUser = computed(() => state.currentUser);
 
+  // 이메일 입력 필드 유효성 검사
+  const emailRule = [
+    value => !!value || '이메일을 입력해주세요.',
+    value => {
+      const emailPattern = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+      return emailPattern.test(value) || '이메일 형식으로 입력해주세요.';
+    }
+  ]
+
+  // 비밀번호 입력 필드 유효성 검사
+  const passwordRule = [
+    value => !!value || '비밀번호를 입력해주세요.',
+    value => {
+      const passwordPattern = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*_]).{8,15}$/;
+      return passwordPattern.test(value) || '영문자, 숫자, 특수문자(!@#$%^&*_) 조합의 8~15자로 입력해주세요.'
+    }
+  ]
+
+  // 비밀번호 입력 필드 확인 유효성 검사
+  const passwordCheckRule = [
+    value => !!value || '비밀번호를 재입력해주세요.',
+    value => state.signUpUserData.password === value || '비밀번호가 일치하지 않아요. 다시 확인해주세요.'
+  ]
+
   // 이메일로 회원 가입
   const signUpWithEmail = async () => {
     try {
       await createUserWithEmailAndPassword(auth, state.signUpUserData.email, state.signUpUserData.password);
       state.currentUser = auth.currentUser;
       addUserData(auth.currentUser);
+      state.signUpStep = 2;
     } catch (error) {
-      alert(`회원 가입 중 다음 오류가 발생했습니다 : ${error}`);
+      switch (error.code) {
+        case "auth/email-already-in-use":
+          alert("이미 사용 중인 이메일이에요.");
+          break;
+        default:
+          alert(`회원 가입 중 다음 오류가 발생했습니다 : ${error}`);
+      }
     }
   };
-  
-  
+
+
   // 이메일로 로그인
   const loginWithEmail = async () => {
     try {
@@ -40,8 +72,14 @@ export const useMemberStore = defineStore("member", () => {
       state.currentUser = auth.currentUser;
       router.push({ name: 'home' });
     } catch (error) {
-      alert(`로그인 시도 중 다음 오류가 발생했습니다 : ${error}`);
-    }
+      switch (error.code) {
+        case "auth/invalid-credential":
+          alert("이메일 또는 비밀번호가 일치하지 않아요.");
+          break;
+        default:
+          alert(`로그인 중 다음 오류가 발생했습니다 : ${error}`)
+      }
+    };
   };
 
   // 구글 계정으로 로그인
@@ -66,7 +104,7 @@ export const useMemberStore = defineStore("member", () => {
       creationTime: currentUser.metadata.creationTime,
     });
   };
-  
+
   // 로그아웃
   const logout = async () => {
     try {
@@ -78,7 +116,7 @@ export const useMemberStore = defineStore("member", () => {
     }
   };
 
-  return { state, currentUser, loginWithEmail, signUpWithEmail, loginWithGoogle, logout };
+  return { state, currentUser, emailRule, passwordRule, passwordCheckRule, loginWithEmail, signUpWithEmail, loginWithGoogle, logout };
 },
   {
     persist: true,

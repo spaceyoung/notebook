@@ -1,5 +1,5 @@
 <template>
-  <v-form class="view d-flex flex-column px-0 py-10 px-sm-8 px-lg-15 py-lg-5" flat>
+  <v-form ref="recordForm" class="view d-flex flex-column px-0 py-10 px-sm-8 px-lg-15 py-lg-5" flat>
     <v-sheet class="mb-13">
       <BookInfo :book="recordBook" />
       <BookDesc :book="recordBook" />
@@ -46,22 +46,15 @@ const recordBook = ref({ ...selectBook, ...state.recordBookDefault });
 
 const cancelRecord = () => { router.back(); };
 
-const addRecord = () => {
-  if (currentUser.value) {
-    if (recordBook.value.platform && recordBook.value.readingState && recordBook.value.readingStartDate && recordBook.value.readingPage >= 0) {
-      if (recordBook.value.readingState === '독서 중') {
-        addMyReading(recordBook.value);
-        router.push({ name: 'home' });
-      } else if (recordBook.value.readingState === '독서 완료' && recordBook.value.readingEndDate) {
-        addMyReadingEnd(recordBook.value);
-        router.push({ name: 'home' });
-      } else {
-        alert('기록에 필요한 정보를 입력해주세요😢');
-      }
-    } else {
-      alert('기록에 필요한 정보를 입력해주세요😢');
-    }
-  };
+const recordForm = ref(null);
+const addRecord = async () => {
+  const { valid } = await recordForm.value.validate();
+  if (valid && recordBook.value.platform && recordBook.value.readingState) {
+    if (recordBook.value.readingState === '독서 중') addMyReading(recordBook.value);
+    else if (recordBook.value.readingState === '독서 완료') addMyReadingEnd(recordBook.value);
+    router.push({ name: 'home' });
+  }
+  else alert ('기록에 필요한 정보를 입력해주세요😢');
 };
 </script>
 
