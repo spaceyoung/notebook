@@ -1,5 +1,5 @@
 <template>
-  <v-form class="view d-flex flex-column px-0 py-10 px-sm-8 px-lg-15 py-lg-5" flat>
+  <v-form ref="endModifyForm" class="view d-flex flex-column px-0 py-10 px-sm-8 px-lg-15 py-lg-5" flat>
     <v-sheet class="mb-13">
       <BookInfo :book="myReadingEndItem" />
       <BookDesc :book="myReadingEndItem" />
@@ -53,24 +53,22 @@ const deleteRecord = () => {
 
 const cancelRecord = () => { router.back(); };
 
-const endModifyRecord = () => {
-  if (myReadingEndItem.platform && myReadingEndItem.readingState && myReadingEndItem.readingStartDate && myReadingEndItem.readingPage >= 0) {
+const endModifyForm = ref(null);
+const endModifyRecord = async () => {
+  const { valid } = await endModifyForm.value.validate();
+  if (valid && myReadingEndItem.platform && myReadingEndItem.readingState) {
     if (myReadingEndItem.readingState === '독서 중') {
       myReadingEndItem.readingEndDate = null;
       myReadingEndItem.formattedReadingEndDate = null;
       myReadingEndItem.rating = 0;
       addMyReading(myReadingEndItem);
       deleteMyReadingEnd(myReadingEndItem.id);
-      router.push({ name: 'home' });
-    } else if (myReadingEndItem.readingState === '독서 완료' && myReadingEndItem.readingEndDate) {
+    } else if (myReadingEndItem.readingState === '독서 완료') {
       updateMyReadingEnd(myReadingEndItem.id, myReadingEndItem);
-      router.push({ name: 'home' });
-    } else {
-      alert('기록에 필요한 정보를 입력해주세요😢');
     }
-  } else {
-    alert('기록에 필요한 정보를 입력해주세요😢');
+    router.push({ name: 'home' });
   }
+  else alert ('기록에 필요한 정보를 입력해주세요😢');
 };
 </script>
 

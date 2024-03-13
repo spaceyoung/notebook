@@ -1,25 +1,26 @@
 <template>
-  <v-form class="ma-auto">
+  <v-form ref="signUpForm" class="ma-auto">
     <v-card class="pa-5" flat>
-      <v-window v-model="signUpStep">
+      <v-window v-model="state.signUpStep">
         <v-window-item :value="1">
           <v-card-title class="mb-9">회원 가입</v-card-title>
           <v-card-text class="mb-6 pa-0">
             <div class="mb-3">
               <span class="d-block mb-2">이메일</span>
-              <v-text-field v-model="state.signUpUserData.email" placeholder="이메일을 입력해주세요." variant="outlined" prepend-inner-icon="mdi-email-outline" />
+              <v-text-field v-model="state.signUpUserData.email" :rules="emailRule" placeholder="이메일을 입력해주세요."
+                variant="outlined" prepend-inner-icon="mdi-email-outline" />
             </div>
             <div class="mb-3">
               <span class="d-block mb-2">비밀번호</span>
-              <v-text-field v-model="state.signUpUserData.password" :append-inner-icon="visiblePassword ? 'mdi-eye-off' : 'mdi-eye'"
-                :type="visiblePassword ? 'text' : 'password'" placeholder="비밀번호를 입력해주세요." variant="outlined"
-                prepend-inner-icon="mdi-lock-outline" @click:append-inner="visiblePassword = !visiblePassword" />
+              <v-text-field v-model="state.signUpUserData.password" :rules="passwordRule" :hint="'비밀번호는 영문자, 숫자, 특수문자(!@#$%^&*_) 조합의 8~15자로 입력해주세요.'"
+                :append-inner-icon="visiblePassword ? 'mdi-eye-off' : 'mdi-eye'" :type="visiblePassword ? 'text' : 'password'" placeholder="비밀번호를 입력해주세요."
+                variant="outlined" prepend-inner-icon="mdi-lock-outline" @click:append-inner="visiblePassword = !visiblePassword" />
             </div>
             <div>
               <span class="d-block mb-2">비밀번호 확인</span>
-              <v-text-field v-model="state.signUpUserData.passwordCheck" :append-inner-icon="visiblePasswordCheck ? 'mdi-eye-off' : 'mdi-eye'"
-                :type="visiblePasswordCheck ? 'text' : 'password'" placeholder="비밀번호를 재입력해주세요." variant="outlined"
-                prepend-inner-icon="mdi-lock-outline" @click:append-inner="visiblePasswordCheck = !visiblePasswordCheck" />
+              <v-text-field v-model="state.signUpUserData.passwordCheck" :rules="passwordCheckRule" :append-inner-icon="visiblePasswordCheck ? 'mdi-eye-off' : 'mdi-eye'"
+                :type="visiblePasswordCheck ? 'text' : 'password'" placeholder="비밀번호를 재입력해주세요." variant="outlined" prepend-inner-icon="mdi-lock-outline"
+                @click:append-inner="visiblePasswordCheck = !visiblePasswordCheck" />
             </div>
           </v-card-text>
           <v-card-actions class="flex-column pa-0">
@@ -44,18 +45,17 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+import { ref } from 'vue';
 import { useMemberStore } from '@/stores/member';
 
-const signUpStep = ref(1);
 const visiblePassword = ref(false);
 const visiblePasswordCheck = ref(false);
-const { state, signUpWithEmail } = useMemberStore();
-const currentUser = computed(() => useMemberStore().currentUser);
+const { state, emailRule, passwordRule, passwordCheckRule, signUpWithEmail } = useMemberStore();
 
+const signUpForm = ref(null);
 const signUp = async () => {
-  await signUpWithEmail();
-  if (currentUser.value) signUpStep.value = 2;
+  const { valid } = await signUpForm.value.validate();
+  if (valid) await signUpWithEmail();
   state.signUpUserData.email = '';
   state.signUpUserData.password = '';
   state.signUpUserData.passwordCheck = '';
