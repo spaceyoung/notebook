@@ -27,7 +27,10 @@ const router = createRouter({
     { path: '/record/:id(\\d+)', name: 'record/id', component: Record },
     { path: '/modify/:id(\\d+)', name: 'modify/id', component: Modify },
     { path: '/endmodify/:id(\\d+)', name: 'endmodify/id', component: EndModify }
-  ]
+  ],
+  scrollBehavior() {
+    return { top: 0 }
+  }
 });
 
 export default router;
