@@ -19,35 +19,40 @@ export const useSearchStore = defineStore("search", () => {
   // 도서 검색 및 결과 저장
   const searchBook = async (searchWord) => {
     state.isLoading = true;
+    state.searchBookList = [];
     const results = await searchBookBase(searchWord);
-    searchBookDetail(results);
+    await searchBookDetail(results);
     setTimeout(() => { state.isLoading = false; }, 1000);
   };
 
   // 도서 기본정보 검색
   const searchBookBase = async (searchWord) => {
+    const results = [];
     // 제목으로 검색
     if (state.selectOption === state.options[0]) {
-      const response = await axios.get(baseURL + `Title&Query=${searchWord}&start=1`);
-      const results = response.data.item;
-      state.searchBookList = [];
-      return results;
+      for (let startPage = 1; startPage <= 4; startPage++) {
+        const response = await axios.get(baseURL + `Title&Query=${searchWord}&start=${startPage}`);
+        if (response.data.item.length > 0) results.push(response.data.item);
+        else break;
+      };
     }
     // 작가명으로 검색
     else if (state.selectOption === state.options[1]) {
-      const response = await axios.get(baseURL + `Author&Query=${searchWord}`);
-      const results = response.data.item;
-      state.searchBookList = [];
-      return results;
+      for (let startPage = 1; startPage <= 4; startPage++) {
+        const response = await axios.get(baseURL + `Author&Query=${searchWord}&start=${startPage}`);
+        if (response.data.item.length > 0) results.push(response.data.item);
+        else break;
+      };
     };
+    return results;
   };
 
   // 도서 상세정보 검색 및 결과 저장
   const searchBookDetail = async (results) => {
     try {
       for (const result of results) {
-        if (result.isbn13) {
-          const detailResponse = await axios.get(DetailBaseURL + result.isbn13);
+        for (const resultBook of result) {
+          const detailResponse = await axios.get(DetailBaseURL + resultBook.isbn13);
           const detailResult = detailResponse.data.item[0];
           state.searchBookList.push({
             title: detailResult.title,
