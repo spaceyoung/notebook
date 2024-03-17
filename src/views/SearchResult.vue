@@ -7,9 +7,13 @@
     <div v-if="searchBookList.length === 0" class="d-flex justify-center align-center">
       <p>검색 결과가 존재하지 않아요😢</p>
     </div>
-    <v-list class="d-flex flex-wrap px-0 py-8 pa-sm-8">
-      <SearchResultBook :searchBookList="searchBookList" />
-    </v-list>
+    <v-sheet>
+      <v-infinite-scroll mode="manual" @load="loadMore">
+        <v-list class="d-flex flex-wrap px-0 py-8 pa-sm-8">
+          <SearchResultBook :searchBookList="searchBookList" />
+        </v-list>
+      </v-infinite-scroll>
+    </v-sheet>
   </div>
 </template>
 
@@ -19,8 +23,17 @@ import { useSearchStore } from '@/stores/search';
 import Loading from '@/components/loading/Loading.vue';
 import SearchResultBook from '@/components/card/SearchResultBook.vue';
 
+const { searchBookMore } = useSearchStore();
 const isLoading = computed(() => useSearchStore().isLoading);
 const searchBookList = computed(() => useSearchStore().searchBookList);
+
+const loadMore = async({ done }) => {
+  searchBookMore();
+  setTimeout(() => {
+    if (searchBookList.value.length % 50 === 0) done('ok');
+    else done('empty');
+  }, 500);
+};
 </script>
 
 <style scoped>
