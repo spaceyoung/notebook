@@ -37,27 +37,10 @@ const loadMore = async({ done }) => {
 </script>
 
 <style scoped>
-.view::-webkit-scrollbar {
+.v-infinite-scroll::-webkit-scrollbar {
   display: none;
 }
-.v-list::-webkit-scrollbar {
-  width: 8px;
-}
-.v-list::-webkit-scrollbar-thumb {
-  background: #ca4f34;
-  border-radius: 4px;
-}
-.v-list::-webkit-scrollbar-track {
-  background: #e4d4cf;
-  border-radius: 4px;
-}
-
-/******************************
-      max-width: 1279px;
-******************************/
-@media all and (max-width: 1279px) {
-  .v-list::-webkit-scrollbar {
-    display: none;
-  }
+.v-infinite-scroll::v-deep .v-infinite-scroll__side {
+  padding: 0;
 }
 </style>
