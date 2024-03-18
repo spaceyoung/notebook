@@ -12,6 +12,16 @@
         <v-list class="d-flex flex-wrap px-0 py-8 pa-sm-8">
           <SearchResultBook :searchBookList="searchBookList" />
         </v-list>
+        <template v-if="state.searchResults.length === 1" v-slot:load-more="{ props }">
+          <p v-bind="props">마지막 검색 결과에 도달했어요 📕</p>
+        </template>
+        <template v-else v-slot:load-more="{ props }">
+          <v-btn v-bind="props" variant="tonal" size="large">검색 결과 더 보기</v-btn>
+        </template>
+        <template v-slot:loading>
+          <v-progress-circular size="40" color="#ca4f34" indeterminate />
+        </template>
+        <template v-slot:empty>마지막 검색 결과에 도달했어요 📕</template>
       </v-infinite-scroll>
     </v-sheet>
   </div>
