@@ -35,6 +35,7 @@ const goHome = () => {
 const searchWordHandler = () => {
   router.push({ name: 'searchResult' });
   searchBook(searchWord.value);
+  state.saveSearchWord = searchWord.value;
   searchWord.value = '';
 };
 </script>

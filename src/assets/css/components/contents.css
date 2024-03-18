@@ -16,6 +16,9 @@
   background: #e4d4cf;
   border-radius: 4px;
 }
+.view .v-sheet {
+  background-color: transparent;
+}
 .view .v-list {
   gap: 30px 60px;
   background-color: transparent;
@@ -31,7 +34,7 @@
 ******************************/
 /* -------------------- COMMON -------------------- */
 /* 독서 중/독서 완료 기록, 검색 결과 존재하지 않을 시 뜨는 문구 */
-.view > div:not(.v-list, .v-sheet) {
+.view > div:not(.v-list, .v-sheet, .v-infinite-scroll) {
   height: 100%;
   font-size: 2em;
   font-family: LeeSeoyun, Roboto, "돋움", dotum, AppleGothic, sans-serif;
@@ -111,15 +114,18 @@
   /******************************
               LAYOUT
   ******************************/
-  .contents .view {
+  .view {
     overflow-y: auto;
+  }
+  .view::-webkit-scrollbar {
+    display: none;
   }
 
   /******************************
             COMPONENTS
   ******************************/
   /* -------------------- COMMON -------------------- */
-  .view > div:not(.v-list, .v-sheet) {
+  .view > div:not(.v-list, .v-sheet, .v-infinite-scroll) {
     font-size: 1.8em;
   }
 }
@@ -149,7 +155,7 @@
             COMPONENTS
   ******************************/
   /* -------------------- COMMON -------------------- */
-  .view > div:not(.v-list, .v-sheet) {
+  .view > div:not(.v-list, .v-sheet, .v-infinite-scroll) {
     font-size: 1.6em;
   }
 
