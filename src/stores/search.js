@@ -42,7 +42,8 @@ export const useSearchStore = defineStore("search", () => {
     if (state.selectOption === state.options[0]) {
       for (let startPage = 1; startPage <= 5; startPage++) {
         const response = await axios.get(baseURL + `Title&Query=${searchWord}&start=${startPage}`);
-        if (response.data.item.length > 0) state.searchResults.push(response.data.item);
+        const filterResponse = response.data.item.filter((item) => item.isbn13); //isbn이 있는 도서 선별
+        if (filterResponse.length > 0) state.searchResults.push(filterResponse);
         else break;
       };
     }
@@ -50,7 +51,8 @@ export const useSearchStore = defineStore("search", () => {
     else if (state.selectOption === state.options[1]) {
       for (let startPage = 1; startPage <= 5; startPage++) {
         const response = await axios.get(baseURL + `Author&Query=${searchWord}&start=${startPage}`);
-        if (response.data.item.length > 0) state.searchResults.push(response.data.item);
+        const filterResponse = response.data.item.filter((item) => item.isbn13); //isbn이 있는 도서 선별
+        if (filterResponse.length > 0) state.searchResults.push(filterResponse);
         else break;
       };
     };
