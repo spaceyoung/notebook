@@ -23,16 +23,14 @@ import { useSearchStore } from '@/stores/search';
 import Loading from '@/components/loading/Loading.vue';
 import SearchResultBook from '@/components/card/SearchResultBook.vue';
 
-const { searchBookMore } = useSearchStore();
+const { state, searchBookMore } = useSearchStore();
 const isLoading = computed(() => useSearchStore().isLoading);
 const searchBookList = computed(() => useSearchStore().searchBookList);
 
-const loadMore = async({ done }) => {
-  searchBookMore();
-  setTimeout(() => {
-    if (searchBookList.value.length % 50 === 0) done('ok');
-    else done('empty');
-  }, 500);
+const loadMore = async ({ done }) => {
+  await searchBookMore();
+  if (searchBookList.value.length !== state.searchResults.length) done('ok');
+  else done('empty');
 };
 </script>
 

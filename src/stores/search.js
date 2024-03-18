@@ -4,15 +4,16 @@ import { defineStore } from "pinia";
 
 export const useSearchStore = defineStore("search", () => {
   const ttbKey = import.meta.env.VITE_ALADIN_APP_KEY;
-  const baseURL = `/api/ItemSearch.aspx?ttbkey=${ttbKey}&MaxResults=50&SearchTarget=Book&output=JS&Cover=Big&Version=20131101&Querytype=`;
+  const baseURL = `/api/ItemSearch.aspx?ttbkey=${ttbKey}&MaxResults=40&SearchTarget=Book&output=JS&Cover=Big&Version=20131101&Querytype=`;
   const detailBaseURL = `/api/ItemLookUp.aspx?ttbkey=${ttbKey}&itemIdType=ISBN13&output=JS&Cover=Big&Version=20131101&ItemId=`;
 
   const state = reactive({
     isLoading: false,
     options: ['제목으로 검색', '작가명으로 검색'],
     selectOption: '제목으로 검색',
-    saveSearchWord: '',
-    searchBookList: [],
+    saveSearchWord: '', //사용자 입력 검색어 저장
+    searchResults: [], // 1차 저장할 검색 결과
+    searchBookList: [], // 사용자 화면에 표시할 최종 검색 도서 목록
   });
   const isLoading = computed(() => state.isLoading);
   const searchBookList = computed(() => state.searchBookList);
@@ -20,94 +21,65 @@ export const useSearchStore = defineStore("search", () => {
   // 도서 검색 및 결과 저장
   const searchBook = async (searchWord) => {
     state.isLoading = true;
-    state.searchBookList = [];
-    const results = await searchBookBase(searchWord);
-    await searchBookDetail(results);
-    setTimeout(() => { state.isLoading = false; }, 1000);
+    state.searchBookList = []; // 저장된 이전 목록 초기화
+    await searchBookBase(searchWord);
+    await searchBookDetail(state.searchResults[0]);
+    state.isLoading = false;
   };
 
-  // 더 보기 클릭 시 도서 추가 검색 및 결과 저장
-  const searchBookMore = async (searchWord) => {
-    const results = await searchBookMoreBase(searchWord);
-    await searchBookDetail(results);
-  }
+  // 더 보기 클릭 시 도서 상세정보 추가 검색 및 결과 저장
+  const searchBookMore = async () => {
+    if (state.searchBookList.length === 1 && state.searchResults.length >= 2 ) await searchBookDetail(state.searchResults[1]);
+    else if (state.searchBookList.length === 2 && state.searchResults.length >= 3) await searchBookDetail(state.searchResults[2]);
+    else if (state.searchBookList.length === 3 && state.searchResults.length >= 4) await searchBookDetail(state.searchResults[3]);
+    else if (state.searchBookList.length === 4 && state.searchResults.length === 5) await searchBookDetail(state.searchResults[4]);
+  };
 
   // 도서 기본정보 검색
   const searchBookBase = async (searchWord) => {
-    const results = [];
+    state.searchResults = []; // 저장된 이전 결과 초기화
     // 제목으로 검색
     if (state.selectOption === state.options[0]) {
-      const response = await axios.get(baseURL + `Title&Query=${searchWord}&start=1`);
-      results.push(response.data.item);
+      for (let startPage = 1; startPage <= 5; startPage++) {
+        const response = await axios.get(baseURL + `Title&Query=${searchWord}&start=${startPage}`);
+        if (response.data.item.length > 0) state.searchResults.push(response.data.item);
+        else break;
+      };
     }
     // 작가명으로 검색
     else if (state.selectOption === state.options[1]) {
-      const response = await axios.get(baseURL + `Author&Query=${searchWord}&start=1`);
-      results.push(response.data.item);
+      for (let startPage = 1; startPage <= 5; startPage++) {
+        const response = await axios.get(baseURL + `Author&Query=${searchWord}&start=${startPage}`);
+        if (response.data.item.length > 0) state.searchResults.push(response.data.item);
+        else break;
+      };
     };
-    return results;
   };
-
-  // 더 보기 클릭 시 도서 기본정보 추가 검색
-  const searchBookMoreBase = async () => {
-    const results = [];
-    // 제목으로 검색
-    if (state.selectOption === state.options[0]) {
-      if (state.searchBookList.length === 50) {
-        const response = await axios.get(baseURL + `Title&Query=${state.saveSearchWord}&start=2`);
-        results.push(response.data.item);
-      }
-      else if (state.searchBookList.length === 100) {
-        const response = await axios.get(baseURL + `Title&Query=${state.saveSearchWord}&start=3`);
-        results.push(response.data.item);
-      }
-      else if (state.searchBookList.length === 150){
-        const response = await axios.get(baseURL + `Title&Query=${state.saveSearchWord}&start=4`);
-        results.push(response.data.item);
-      }
-    }
-    // 작가명으로 검색
-    else if (state.selectOption === state.options[1]) {
-      if (state.searchBookList.length === 50) {
-        const response = await axios.get(baseURL + `Author&Query=${state.saveSearchWord}&start=2`);
-        results.push(response.data.item);
-      }
-      else if (state.searchBookList.length === 100) {
-        const response = await axios.get(baseURL + `Author&Query=${state.saveSearchWord}&start=3`);
-        results.push(response.data.item);
-      }
-      else if (state.searchBookList.length === 150){
-        const response = await axios.get(baseURL + `Author&Query=${state.saveSearchWord}&start=4`);
-        results.push(response.data.item);
-      }
-    };
-    return results;
-  }
 
   // 도서 상세정보 검색 및 결과 저장
   const searchBookDetail = async (results) => {
     try {
+      const searchBookListGroup = [];
       for (const result of results) {
-        for (const resultBook of result) {
-          const detailResponse = await axios.get(detailBaseURL + resultBook.isbn13);
-          const detailResult = detailResponse.data.item[0];
-          state.searchBookList.push({
-            title: detailResult.title,
-            cover: detailResult.cover,
-            author: detailResult.author,
-            publisher: detailResult.publisher,
-            pubDate: detailResult.pubDate,
-            isbn: detailResult.isbn13,
-            description: detailResult.description,
-            page: detailResult.subInfo.itemPage
-          });
-        }
+        const detailResponse = await axios.get(detailBaseURL + result.isbn13);
+        const detailResult = detailResponse.data.item[0];
+        searchBookListGroup.push({
+          title: detailResult.title,
+          cover: detailResult.cover,
+          author: detailResult.author,
+          publisher: detailResult.publisher,
+          pubDate: detailResult.pubDate,
+          isbn: detailResult.isbn13,
+          description: detailResult.description,
+          page: detailResult.subInfo.itemPage
+        });
       };
+      state.searchBookList.push(searchBookListGroup);
     } catch (error) {
       console.log('** 다음 오류가 발생했습니다 **');
       if (error instanceof Error) console.log(error.message);
       else console.log(error);
-    }
+    };
   };
 
   return { state, isLoading, searchBookList, searchBook, searchBookMore };
