@@ -2,7 +2,7 @@
   <Loading v-if="isLoading" />
   <template v-else>
     <div class="sec-header mb-3">
-      <h2 class="sec-title my-2"><span>'{{state.saveSearchWord}}'</span> 검색 결과 {{ searchResultsNumber() }}권</h2>
+      <h2 class="sec-title my-2">'<em>{{state.saveSearchWord}}</em>' 검색 결과 {{ searchResultsNumber() }}권</h2>
       <p class="sec-desc">최대 200권까지 검색할 수 있어요 🔎</p>
     </div>
     <div class="view d-flex flex-column">
@@ -65,7 +65,7 @@ const loadMore = async ({ done }) => {
   font-size: 1.6em;
   line-height: 1.3;
 }
-.sec-title span {
+.sec-title em {
   color: #ca4f34;
 }
 .sec-desc {
