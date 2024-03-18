@@ -6,24 +6,31 @@
       <p class="sec-desc">최대 200권까지 검색할 수 있어요 🔎</p>
     </div>
     <div class="view d-flex flex-column">
-      <div v-if="searchBookList.length === 0" class="d-flex justify-center align-center">
-        <p>검색 결과가 존재하지 않아요😢</p>
-      </div>
       <v-sheet>
         <v-infinite-scroll mode="manual" @load="loadMore">
-          <v-list class="d-flex flex-wrap px-0 py-8 pa-sm-8">
+          <v-list v-if="state.searchResults.length > 0" class="d-flex flex-wrap px-0 py-8 pa-sm-8">
             <SearchResultBook :searchBookList="searchBookList" />
           </v-list>
-          <template v-if="state.searchResults.length === 1" v-slot:load-more="{ props }">
+          <!-- 검색 결과가 존재하지 않을 경우 -->
+          <template v-if="state.searchResults.length === 0" v-slot:load-more="{ props }">
+            <div v-bind="props" class="my-12">
+              <p><span>검색 결과가 존재하지 않아요😢</span>다른 검색어로 입력해주세요.</p>
+            </div>
+          </template>
+          <!-- 검색 결과 도서 목록이 한 페이지 이하일 경우 -->
+          <template v-else-if="state.searchResults.length === 1" v-slot:load-more="{ props }">
             <p v-bind="props">마지막 검색 결과에 도달했어요 📕</p>
           </template>
+          <!-- 검색 결과 도서 목록이 두 페이지 이상일 경우 -->
           <template v-else v-slot:load-more="{ props }">
             <v-btn v-bind="props" variant="tonal" size="large">검색 결과 더 보기</v-btn>
           </template>
           <template v-slot:loading>
             <v-progress-circular size="40" color="#ca4f34" indeterminate />
           </template>
-          <template v-slot:empty>마지막 검색 결과에 도달했어요 📕</template>
+          <template v-slot:empty>
+            <p>마지막 검색 결과에 도달했어요 📕</p>
+          </template>
         </v-infinite-scroll>
       </v-sheet>
     </div>
@@ -70,5 +77,19 @@ const loadMore = async ({ done }) => {
 }
 .v-infinite-scroll::v-deep .v-infinite-scroll__side {
   padding: 0;
+}
+.v-infinite-scroll > div > div > p {
+  font-size: 1.5em;
+  font-family: LeeSeoyun, Roboto, "돋움", dotum, AppleGothic, sans-serif;
+  text-align: center;
+}
+
+/******************************
+      max-width: 599px;
+******************************/
+@media all and (max-width: 599px) {
+  .v-infinite-scroll > div > div > p {
+    font-size: 1.3em;
+  }
 }
 </style>
