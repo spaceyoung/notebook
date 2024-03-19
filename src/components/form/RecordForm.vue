@@ -35,18 +35,25 @@ import Review from '@/components/form/contents/Review.vue';
 import FormButtons from '@/components/form/button/FormButtons.vue';
 import CloseButton from '@/components/form/button/CloseButton.vue';
 
+const recordForm = ref(null);
 const currentRoute = useRoute();
 const router = useRouter();
 const id = currentRoute.params.id;
-const searchBookList = computed(() => useSearchStore().searchBookList);
 const { state, addMyReading, addMyReadingEnd } = useRecordStore();
+const searchBookList = computed(() => useSearchStore().searchBookList);
 const currentUser = computed(() => useMemberStore().currentUser);
-const selectBook = searchBookList.value.find((searchBookItem) => searchBookItem.isbn === id);
-const recordBook = ref({ ...selectBook, ...state.recordBookDefault });
 
+// 기록할 도서 정보 처리
+const selectBook = ref('');
+searchBookList.value.forEach(searchBookListGroup => {
+  selectBook.value = searchBookListGroup.find(searchBookItem => searchBookItem.isbn === id);
+});
+const recordBook = ref({ ...selectBook.value, ...state.recordBookDefault });
+
+// 취소하기
 const cancelRecord = () => { router.back(); };
 
-const recordForm = ref(null);
+// 기록하기
 const addRecord = async () => {
   const { valid } = await recordForm.value.validate();
   if (valid && recordBook.value.platform && recordBook.value.readingState) {
