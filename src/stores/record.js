@@ -40,7 +40,7 @@ export const useRecordStore = defineStore("record", () => {
     } catch (error) {
       alert(`독서 중 데이터 조회에서 다음 오류가 발생했습니다 : ${error}`);
     };
-    setTimeout(() => { state.isLoading = false; }, 1000);
+    state.isLoading = false;
   };
 
   // 독서 완료 데이터 조회
@@ -53,7 +53,7 @@ export const useRecordStore = defineStore("record", () => {
     } catch (error) {
       alert(`독서 완료 데이터 조회에서 다음 오류가 발생했습니다 : ${error}`);
     };
-    setTimeout(() => { state.isLoading = false; }, 1000);
+    state.isLoading = false;
   };
 
   // 데이터베이스 myReading에 독서 중 기록 추가
