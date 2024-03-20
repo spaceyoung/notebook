@@ -1,9 +1,10 @@
 <template>
   <Loading v-if="isLoading" />
   <template v-else>
-    <div class="sec-header mb-3">
+    <div class="sec-header d-flex flex-column mb-4">
       <h2 class="sec-title my-2">'<em>{{state.saveSearchWord}}</em>' 검색 결과 {{ searchResultsNumber() }}권</h2>
-      <p class="sec-desc">최대 200권까지 검색할 수 있어요 🔎</p>
+      <p class="sec-desc mb-3">최대 200권까지 검색할 수 있어요 🔎</p>
+      <v-btn class="align-self-end" variant="tonal" @click="goHome">홈으로 이동</v-btn>
     </div>
     <div class="view d-flex flex-column">
       <v-sheet>
@@ -39,13 +40,22 @@
 
 <script setup>
 import { computed } from 'vue';
+import { useRouter } from 'vue-router';
 import { useSearchStore } from '@/stores/search';
+import { useMemberStore } from '@/stores/member';
 import Loading from '@/components/loading/Loading.vue';
 import SearchResultBook from '@/components/card/SearchResultBook.vue';
 
+const router = useRouter();
 const { state, searchBookMore } = useSearchStore();
 const isLoading = computed(() => useSearchStore().isLoading);
 const searchBookList = computed(() => useSearchStore().searchBookList);
+const currentUser = computed(() => useMemberStore().currentUser);
+
+const goHome = () => {
+  if (currentUser.value) router.push({ name: 'home' });
+  else router.push({ name: 'login' });
+}
 
 const searchResultsNumber = () => {
   let sum = 0;
