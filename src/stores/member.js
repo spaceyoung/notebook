@@ -18,7 +18,7 @@ export const useMemberStore = defineStore("member", () => {
       email: '',
       password: '',
     },
-    currentUser: '',
+    currentUser: null,
   });
   const currentUser = computed(() => state.currentUser);
 
@@ -116,7 +116,13 @@ export const useMemberStore = defineStore("member", () => {
     }
   };
 
-  return { state, currentUser, emailRule, passwordRule, passwordCheckRule, loginWithEmail, signUpWithEmail, loginWithGoogle, logout };
+  // 로그인 여부에 따른 홈 화면 이동
+  const goHome = () => {
+    if (state.currentUser) router.push({ name: 'home' });
+    else router.push({ name: 'login' });
+  };
+
+  return { state, currentUser, emailRule, passwordRule, passwordCheckRule, loginWithEmail, signUpWithEmail, loginWithGoogle, logout, goHome };
 },
   {
     persist: true,

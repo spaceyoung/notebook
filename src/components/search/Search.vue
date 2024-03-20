@@ -24,13 +24,8 @@ import { useMemberStore } from '@/stores/member';
 const searchWord = ref('');
 const router = useRouter();
 const { state, searchBook } = useSearchStore();
-const { logout } = useMemberStore();
+const { logout, goHome } = useMemberStore();
 const currentUser = computed(() => useMemberStore().currentUser);
-
-const goHome = () => {
-  if (currentUser.value) router.push({ name: 'home' });
-  else router.push({ name: 'login' });
-}
 
 const searchWordHandler = () => {
   router.push({ name: 'searchResult' });

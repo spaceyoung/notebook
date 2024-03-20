@@ -18,17 +18,10 @@
 
 <script setup>
 import { computed } from 'vue';
-import { useRouter } from 'vue-router';
 import { useMemberStore } from '@/stores/member';
 
-const router = useRouter();
-const { logout } = useMemberStore();
+const { logout, goHome } = useMemberStore();
 const currentUser = computed(() => useMemberStore().currentUser);
-
-const goHome = () => {
-  if (currentUser.value) router.push({ name: 'home' });
-  else router.push({ name: 'login' });
-}
 </script>
 
 <style scoped>

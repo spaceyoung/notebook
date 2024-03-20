@@ -40,22 +40,15 @@
 
 <script setup>
 import { computed } from 'vue';
-import { useRouter } from 'vue-router';
 import { useSearchStore } from '@/stores/search';
 import { useMemberStore } from '@/stores/member';
 import Loading from '@/components/loading/Loading.vue';
 import SearchResultBook from '@/components/card/SearchResultBook.vue';
 
-const router = useRouter();
 const { state, searchBookMore } = useSearchStore();
+const { goHome } = useMemberStore();
 const isLoading = computed(() => useSearchStore().isLoading);
 const searchBookList = computed(() => useSearchStore().searchBookList);
-const currentUser = computed(() => useMemberStore().currentUser);
-
-const goHome = () => {
-  if (currentUser.value) router.push({ name: 'home' });
-  else router.push({ name: 'login' });
-}
 
 const searchResultsNumber = () => {
   let sum = 0;
