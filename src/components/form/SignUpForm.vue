@@ -25,7 +25,7 @@
           </v-card-text>
           <v-card-actions class="flex-column pa-0">
             <v-btn class="emphasis mb-16" size="x-large" flat @click="signUp">가입하기</v-btn>
-            <v-btn class="ma-0" size="large" prepend-icon="mdi-chevron-left" flat @click="router.push({ name: 'login' })">로그인 화면으로 돌아가기</v-btn>
+            <v-btn :ripple="false" class="ma-0" size="large" prepend-icon="mdi-chevron-left" flat @click="router.push({ name: 'login' })">로그인 화면으로 돌아가기</v-btn>
           </v-card-actions>
         </v-window-item>
         <v-window-item :value="2">
@@ -76,19 +76,14 @@ const signUp = async () => {
   font-size: 1em;
   color: #333;
 }
-.v-card .v-card-actions::v-deep a,
 .v-card .v-card-actions .v-btn {
   width: 100%;
-}
-.v-window .v-window-item:nth-child(1) .v-card-actions::v-deep a .v-btn .v-btn__overlay {
-  background-color: transparent;
 }
 .v-window .v-window-item:nth-child(2) .v-card-text{
   font-weight: 400;
   color: #777;
   text-align: center;
 }
-
 
 /******************************
       max-width: 959px;

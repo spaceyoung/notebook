@@ -12,7 +12,7 @@
           <span>{{ searchBookItem.pubDate }}</span>
         </v-card-text>
         <v-card-actions class="align-self-end pa-0">
-          <v-btn class="emphasis px-4" size="large"
+          <v-btn class="px-4" variant="tonal" size="large" color="#ca4f34"
             @click="router.push({ name: 'record/id', params: { id: searchBookItem.isbn } })">기록하기</v-btn>
         </v-card-actions>
       </div>
@@ -37,11 +37,9 @@ const router = useRouter();
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
-.v-card-actions .v-btn {
-  font-size: .95em;
-}
-.v-card-actions .v-btn::v-deep .v-btn__content {
-  color: #fff;
+.v-card-actions .v-btn::v-deep span {
+  font-size: 1.05em;
+  color: inherit;
 }
 
 /******************************

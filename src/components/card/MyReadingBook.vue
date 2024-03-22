@@ -48,10 +48,4 @@ const myReadingProgress = (myReadingItem) => {
   text-align: right;
   color: #ca4f34;
 }
-.v-overlay .v-btn:hover {
-  background-color: #ca4f34;
-}
-.v-overlay .v-btn:hover::v-deep .v-btn__content {
-  color: #fff;
-}
 </style>

@@ -4,7 +4,7 @@
     <div class="sec-header d-flex flex-column mb-4">
       <h2 class="sec-title my-2">'<em>{{state.saveSearchWord}}</em>' 검색 결과 {{ searchResultsNumber() }}권</h2>
       <p class="sec-desc mb-3">최대 200권까지 검색할 수 있어요 🔎</p>
-      <v-btn class="align-self-end" variant="tonal"
+      <v-btn class="align-self-end" variant="outlined"
         @click="router.push(currentUser ? { name: 'home' } : { name: 'login' })">홈으로 이동</v-btn>
     </div>
     <div class="view d-flex flex-column">
@@ -25,7 +25,7 @@
           </template>
           <!-- 검색 결과 도서 목록이 두 페이지 이상일 경우 -->
           <template v-else v-slot:load-more="{ props }">
-            <v-btn v-bind="props" variant="tonal" size="large">검색 결과 더 보기</v-btn>
+            <v-btn v-bind="props" variant="outlined" size="large">검색 결과 더 보기</v-btn>
           </template>
           <template v-slot:loading>
             <v-progress-circular size="40" color="#ca4f34" indeterminate />

@@ -49,9 +49,6 @@ img, input, select, textarea {
               MAIN
 ******************************/
 /* -------------------- MAIN COMMON -------------------- */
-h1, h2 {
-  cursor: pointer;
-}
 .sec-header {
   text-align: center;
 }
@@ -111,11 +108,18 @@ button.v-btn:not(.book-rate .v-rating .v-btn, .v-app-bar .v-btn):hover .v-icon {
 }
 button.v-btn .v-btn__overlay {
   background-color: #000;
+  transition: all .3s;
 }
 button.v-btn.emphasis {
   border-color: #ca4f34;
   color: #fff;
   background-color: #ca4f34;
+}
+.v-overlay .v-btn:hover {
+  background-color: #ca4f34;
+}
+.v-overlay .v-btn:hover .v-btn__content {
+  color: #fff;
 }
 
 /* -------------------- v-chip -------------------- */

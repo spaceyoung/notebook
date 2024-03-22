@@ -23,7 +23,7 @@
       </v-card-actions>
       <v-card-actions class="flex-column pa-0">
         <v-btn class="ma-0 mb-3" variant="tonal" size="large" color="#ca4f34" @click="loginWithGoogle">구글 계정으로 로그인</v-btn>
-        <v-btn class="ma-0" variant="text" size="large" append-icon="mdi-chevron-right" @click="router.push({ name: 'signUp' })">회원 가입</v-btn>
+        <v-btn :ripple="false" class="ma-0" size="large" append-icon="mdi-chevron-right" @click="router.push({ name: 'signUp' })">회원 가입</v-btn>
       </v-card-actions>
     </v-card>
   </v-form>
@@ -63,12 +63,8 @@ const login = async () => {
   font-size: 1em;
   color: #333;
 }
-.v-card .v-card-actions::v-deep a,
 .v-card .v-card-actions .v-btn {
   width: 100%;
-}
-.v-card .v-card-actions::v-deep a .v-btn .v-btn__overlay {
-  background-color: transparent;
 }
 
 /******************************
