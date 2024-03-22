@@ -4,18 +4,18 @@
   </v-btn>
 </template>
   
-  <script setup>
-  defineProps({
-    cancelRecord: { type: Function, required: true },
-  });
-  </script>
-  
-  <style scoped>
-  .v-btn {
-    min-width: 52px;
-    background-color: transparent;
-  }
-  .v-btn::v-deep .v-btn__overlay {
-    background-color: transparent;
-  }
-  </style>
+<script setup>
+defineProps({
+  cancelRecord: { type: Function, required: true },
+});
+</script>
+
+<style scoped>
+.v-btn {
+  min-width: 52px;
+  background-color: transparent;
+}
+.v-btn::v-deep .v-btn__overlay {
+  background-color: transparent;
+}
+</style>

@@ -12,9 +12,8 @@
           <span>{{ searchBookItem.pubDate }}</span>
         </v-card-text>
         <v-card-actions class="align-self-end pa-0">
-          <router-link :to="{ name: 'record/id', params: { id: searchBookItem.isbn } }">
-            <v-btn class="emphasis px-4" size="large">기록하기</v-btn>
-          </router-link>
+          <v-btn class="emphasis px-4" size="large"
+            @click="router.push({ name: 'record/id', params: { id: searchBookItem.isbn } })">기록하기</v-btn>
         </v-card-actions>
       </div>
     </v-card>
@@ -22,9 +21,13 @@
 </template>
 
 <script setup>
+import { useRouter } from 'vue-router';
+
 defineProps({
   searchBookList: { type: Array, required: true },
 });
+
+const router = useRouter();
 </script>
 
 <style scoped>

@@ -40,7 +40,7 @@ export const useMemberStore = defineStore("member", () => {
     }
   ]
 
-  // 비밀번호 입력 필드 확인 유효성 검사
+  // 비밀번호 확인 입력 필드 유효성 검사
   const passwordCheckRule = [
     value => !!value || '비밀번호를 재입력해주세요.',
     value => state.signUpUserData.password === value || '비밀번호가 일치하지 않아요. 다시 확인해주세요.'
@@ -63,7 +63,6 @@ export const useMemberStore = defineStore("member", () => {
       }
     }
   };
-
 
   // 이메일로 로그인
   const loginWithEmail = async () => {
@@ -116,13 +115,7 @@ export const useMemberStore = defineStore("member", () => {
     }
   };
 
-  // 로그인 여부에 따른 홈 화면 이동
-  const goHome = () => {
-    if (state.currentUser) router.push({ name: 'home' });
-    else router.push({ name: 'login' });
-  };
-
-  return { state, currentUser, emailRule, passwordRule, passwordCheckRule, loginWithEmail, signUpWithEmail, loginWithGoogle, logout, goHome };
+  return { state, currentUser, emailRule, passwordRule, passwordCheckRule, loginWithEmail, signUpWithEmail, loginWithGoogle, logout };
 },
   {
     persist: true,

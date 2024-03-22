@@ -33,6 +33,7 @@ import Review from '@/components/form/contents/Review.vue';
 import FormButtons from '@/components/form/button/FormButtons.vue';
 import CloseButton from '@/components/form/button/CloseButton.vue';
 
+const endModifyForm = ref(null);
 const deleteModal = ref(false);
 const currentRoute = useRoute();
 const router = useRouter();
@@ -53,7 +54,6 @@ const deleteRecord = () => {
 
 const cancelRecord = () => { router.back(); };
 
-const endModifyForm = ref(null);
 const endModifyRecord = async () => {
   const { valid } = await endModifyForm.value.validate();
   if (valid && myReadingEndItem.platform && myReadingEndItem.readingState) {

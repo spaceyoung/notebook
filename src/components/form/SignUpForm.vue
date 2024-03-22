@@ -25,18 +25,14 @@
           </v-card-text>
           <v-card-actions class="flex-column pa-0">
             <v-btn class="emphasis mb-16" size="x-large" flat @click="signUp">가입하기</v-btn>
-            <router-link :to="{ name: 'login' }">
-              <v-btn class="ma-0" size="large" prepend-icon="mdi-chevron-left" flat>로그인 화면으로 돌아가기</v-btn>
-            </router-link>
+            <v-btn class="ma-0" size="large" prepend-icon="mdi-chevron-left" flat @click="router.push({ name: 'login' })">로그인 화면으로 돌아가기</v-btn>
           </v-card-actions>
         </v-window-item>
         <v-window-item :value="2">
           <v-card-title class="mb-5">공책에 오신 것을 환영해요!</v-card-title>
           <v-card-text class="mb-10 pa-0">회원 가입 후 자동으로 로그인되었어요.</v-card-text>
           <v-card-actions class="pa-0">
-            <router-link :to="{ name: 'home' }">
-              <v-btn class="emphasis" size="large">나만의 독서 기록 채우러 가기</v-btn>
-            </router-link>
+            <v-btn class="emphasis" size="large" @click="router.push({ name: 'home' })">나만의 독서 기록 채우러 가기</v-btn>
           </v-card-actions>
         </v-window-item>
       </v-window>
@@ -46,13 +42,15 @@
 
 <script setup>
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 import { useMemberStore } from '@/stores/member';
 
+const signUpForm = ref(null);
 const visiblePassword = ref(false);
 const visiblePasswordCheck = ref(false);
+const router = useRouter();
 const { state, emailRule, passwordRule, passwordCheckRule, signUpWithEmail } = useMemberStore();
 
-const signUpForm = ref(null);
 const signUp = async () => {
   const { valid } = await signUpForm.value.validate();
   if (valid) await signUpWithEmail();

@@ -21,9 +21,7 @@
         </v-card-text>
       </div>
       <v-overlay :model-value="isHovering" class="justify-center align-center" scrim="#8c6542" contained>
-        <router-link :to="{ name: 'endmodify/id', params: { id: myReadingEndItem.isbn } }">
-          <v-btn size="large">수정하기</v-btn>
-        </router-link>
+        <v-btn size="large" @click="router.push({ name: 'endmodify/id', params: { id: myReadingEndItem.isbn } })">수정하기</v-btn>
       </v-overlay>
     </v-card>
   </v-hover>
@@ -31,8 +29,10 @@
 
 <script setup>
 import { computed } from 'vue';
+import { useRouter } from 'vue-router';
 import { useRecordStore } from '@/stores/record';
 
+const router = useRouter();
 const myReadingEndList = computed(() => useRecordStore().myReadingEndList);
 </script>
 

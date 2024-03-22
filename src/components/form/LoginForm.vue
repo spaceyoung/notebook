@@ -19,13 +19,11 @@
         </div>
       </v-card-text>
       <v-card-actions class="mb-16 pa-0">
-        <v-btn class="emphasis" size="x-large" flat @click="login">이메일로 로그인하기</v-btn>
+        <v-btn class="emphasis" size="x-large" flat @click="login">이메일로 로그인</v-btn>
       </v-card-actions>
       <v-card-actions class="flex-column pa-0">
         <v-btn class="ma-0 mb-3" variant="tonal" size="large" color="#ca4f34" @click="loginWithGoogle">구글 계정으로 로그인</v-btn>
-        <router-link :to="{ name: 'signUp' }">
-          <v-btn class="ma-0" variant="text" size="large" append-icon="mdi-chevron-right">회원 가입</v-btn>
-        </router-link>
+        <v-btn class="ma-0" variant="text" size="large" append-icon="mdi-chevron-right" @click="router.push({ name: 'signUp' })">회원 가입</v-btn>
       </v-card-actions>
     </v-card>
   </v-form>
@@ -33,12 +31,14 @@
 
 <script setup>
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 import { useMemberStore } from '@/stores/member';
 
+const loginForm = ref(null);
 const visiblePassword = ref(false);
+const router = useRouter();
 const { state, emailRule, passwordRule, loginWithEmail, loginWithGoogle } = useMemberStore();
 
-const loginForm = ref(null);
 const login = async () => {
   const { valid } = await loginForm.value.validate();
   if (valid) await loginWithEmail();

@@ -1,15 +1,17 @@
 <template>
   <div class="inner mx-auto">
     <div class="sec-header mb-10">
-      <h2 class="sec-title mb-5" @click="goHome">공책</h2>
+      <h2 class="sec-title mb-5">
+        <router-link :to="currentUser ? { name: 'home' } : { name: 'login' }">공책</router-link>
+      </h2>
       <h3 class="sec-sub-title">Note, Book</h3>
       <span class="sec-desc"><em>책</em>으로 <em>기록</em>하는 <em>공간</em></span>
     </div>
     <v-form>
       <v-select v-model="state.selectOption" :items="state.options" class="mb-5" variant="outlined" hide-details="auto" />
       <v-text-field v-model.trim="searchWord" label="어떤 책을 기록하시나요?" variant="outlined"
-      append-inner-icon="mdi-magnify" clear-icon="mdi-close-circle-outline" clearable hide-details="auto"
-      @keyup.enter="searchWordHandler" @click:append-inner="searchWordHandler" />
+        append-inner-icon="mdi-magnify" clear-icon="mdi-close-circle-outline" clearable hide-details="auto"
+        @keyup.enter="searchWordHandler" @click:append-inner="searchWordHandler" />
     </v-form>
     <v-btn v-if="currentUser" class="emphasis hidden-md-and-down" size="large" flat @click="logout">로그아웃</v-btn>
   </div>
@@ -24,7 +26,7 @@ import { useMemberStore } from '@/stores/member';
 const searchWord = ref('');
 const router = useRouter();
 const { state, searchBook } = useSearchStore();
-const { logout, goHome } = useMemberStore();
+const { logout } = useMemberStore();
 const currentUser = computed(() => useMemberStore().currentUser);
 
 const searchWordHandler = () => {

@@ -1,7 +1,11 @@
 <template>
   <v-app-bar class="hidden-lg-and-up px-5 px-sm-10" scroll-behavior="elevate">
     <v-app-bar-title class="ma-0">
-      <h1 @click="goHome">공책 <span>Note, Book</span></h1>
+      <h1>
+        <router-link :to="currentUser ? { name: 'home' } : { name: 'login' }">
+          공책 <span>Note, Book</span>
+        </router-link>
+      </h1>
     </v-app-bar-title>
     <v-menu v-if="currentUser" transition="slide-y-transition">
       <template v-slot:activator="{ props }">
@@ -20,7 +24,7 @@
 import { computed } from 'vue';
 import { useMemberStore } from '@/stores/member';
 
-const { logout, goHome } = useMemberStore();
+const { logout } = useMemberStore();
 const currentUser = computed(() => useMemberStore().currentUser);
 </script>
 

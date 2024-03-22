@@ -5,8 +5,8 @@
       <DeleteModal activator="parent" :deleteRecord="deleteRecord" />
     </v-btn>
     <v-btn class="ma-0 px-8" variant="outlined" size="large" @click="cancelRecord">취소하기</v-btn>
-    <v-btn v-if="modifyTerm" class="emphasis order-first order-sm-last ma-0 ml-sm-5 px-8" size="large"
-      flat @click="modifyRecord">수정하기</v-btn>
+    <v-btn v-if="modifyTerm" class="emphasis order-first order-sm-last ma-0 ml-sm-5 px-8" size="large" flat
+      @click="modifyRecord">수정하기</v-btn>
     <v-btn v-else class="emphasis ma-0 ml-sm-5 px-8" size="large" flat @click="addRecord">
       기록하기
       <NonLoginModal v-if="!currentUser" activator="parent" />
