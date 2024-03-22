@@ -24,7 +24,10 @@ const readingEndDateModal = ref(false);
 
 // 독서 완료일 Modal 닫기
 const closeReadingEndDateModal = (date, book) => {
-  const formattedDate = new Intl.DateTimeFormat('kr', { dateStyle: 'medium' }).format(date);
+  const year = date.getFullYear();
+  const month = ('0' + (date.getMonth() + 1)).slice(-2);
+  const day = ('0' + date.getDate()).slice(-2)
+  const formattedDate = `${year}-${month}-${day}`;
   book.formattedReadingEndDate = formattedDate;
   readingEndDateModal.value = false;
 };

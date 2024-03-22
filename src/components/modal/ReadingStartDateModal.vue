@@ -21,11 +21,14 @@ const props = defineProps({
 });
 
 const readingStartDateModal = ref(false);
-const maxStartDate = () => { return props.book.readingEndDate ? props.book.readingEndDate : new Date(); };
+const maxStartDate = () => props.book.readingEndDate ? props.book.readingEndDate : new Date();
 
 // 독서 시작일 Modal 닫기
 const closeReadingStartDateModal = (date, book) => {
-  const formattedDate = new Intl.DateTimeFormat('kr', { dateStyle: 'medium' }).format(date);
+  const year = date.getFullYear();
+  const month = ('0' + (date.getMonth() + 1)).slice(-2);
+  const day = ('0' + date.getDate()).slice(-2)
+  const formattedDate = `${year}-${month}-${day}`;
   book.formattedReadingStartDate = formattedDate;
   readingStartDateModal.value = false;
 };
