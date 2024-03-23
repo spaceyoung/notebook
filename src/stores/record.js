@@ -51,7 +51,7 @@ export const useRecordStore = defineStore('record', () => {
     state.isLoading = true;
     try {
       const docRef = collection(database, 'users', currentUser.value.uid, 'myReading');
-      const q = query(docRef, orderBy('timeStamp', 'asc')); // 가져온 데이터를 오름차순으로 정렬
+      const q = query(docRef, orderBy('createdAt', 'asc')); // 가져온 데이터를 오름차순으로 정렬
       const querySnapshot = await getDocs(q);
       state.myReadingList = querySnapshot.docs.map(doc => doc.data());
     }
@@ -66,7 +66,7 @@ export const useRecordStore = defineStore('record', () => {
     state.isLoading = true;
     try {
       const docRef = collection(database, 'users', currentUser.value.uid, 'myReadingEnd');
-      const q = query(docRef, orderBy('timeStamp', 'asc')); // 가져온 데이터를 오름차순으로 정렬
+      const q = query(docRef, orderBy('createdAt', 'asc')); // 가져온 데이터를 오름차순으로 정렬
       const querySnapshot = await getDocs(q);
       state.myReadingEndList = querySnapshot.docs.map(doc => doc.data());
     }
@@ -78,7 +78,7 @@ export const useRecordStore = defineStore('record', () => {
 
   // 데이터베이스 myReading에 독서 중 기록 추가
   const addMyReading = async (recordBook) => {
-    recordBook.timeStamp = new Date();
+    recordBook.createdAt = new Date();
     const docRef = doc(collection(database, 'users', currentUser.value.uid, 'myReading'));
     await setDoc(docRef, recordBook);
   };
@@ -108,7 +108,7 @@ export const useRecordStore = defineStore('record', () => {
 
   // 데이터베이스 myReadingEnd에 독서 완료 기록 추가
   const addMyReadingEnd = async (recordBook) => {
-    recordBook.timeStamp = new Date();
+    recordBook.createdAt = new Date();
     const docRef = doc(collection(database, 'users', currentUser.value.uid, 'myReadingEnd'));
     await setDoc(docRef, recordBook);
   };
