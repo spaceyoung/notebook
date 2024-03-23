@@ -27,7 +27,7 @@ const state = reactive({
 <style scoped>
 .v-tabs .v-btn {
   width: 50%;
-  font-family: LeeSeoyun, Roboto, "돋움", dotum, AppleGothic, sans-serif;
+  font-family: LeeSeoyun, Roboto, '돋움', dotum, AppleGothic, sans-serif;
   color: #999;
   background-color: transparent;
 }

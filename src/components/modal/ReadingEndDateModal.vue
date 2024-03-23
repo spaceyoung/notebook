@@ -2,12 +2,29 @@
   <v-dialog v-model="readingEndDateModal">
     <v-card>
       <v-locale-provider locale="ko">
-        <v-date-picker v-model="book.readingEndDate" :min="book.readingStartDate" :max="new Date()" title="독서 완료일" hide-header />
+        <v-date-picker
+          v-model="book.readingEndDate"
+          :min="book.readingStartDate"
+          :max="new Date()"
+          title="독서 완료일"
+          hide-header
+        />
       </v-locale-provider>
       <v-card-actions>
         <v-spacer />
-        <v-btn variant="outlined" @click="readingEndDateModal = false">취소</v-btn>
-        <v-btn class="emphasis" flat @click="closeReadingEndDateModal(book.readingEndDate, book)">확인</v-btn>
+        <v-btn
+          variant="outlined"
+          @click="readingEndDateModal = false"
+        >
+          취소
+        </v-btn>
+        <v-btn
+          class="emphasis"
+          flat
+          @click="closeReadingEndDateModal(book.readingEndDate, book)"
+        >
+          확인
+        </v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -17,14 +34,18 @@
 import { ref } from 'vue';
 
 const props = defineProps({
-  book: { type: Object, required: true }
+  book: { type: Object, required: true },
 });
 
 const readingEndDateModal = ref(false);
 
-// 독서 완료일 Modal 닫기
+// 독서 완료일 modal 닫기
 const closeReadingEndDateModal = (date, book) => {
-  const formattedDate = new Intl.DateTimeFormat('kr', { dateStyle: 'medium' }).format(date);
+  // 날짜 형식 설정(yyyy-mm-dd)
+  const year = date.getFullYear();
+  const month = ('0' + (date.getMonth() + 1)).slice(-2);
+  const day = ('0' + date.getDate()).slice(-2);
+  const formattedDate = `${year}-${month}-${day}`;
   book.formattedReadingEndDate = formattedDate;
   readingEndDateModal.value = false;
 };
@@ -33,28 +54,5 @@ const closeReadingEndDateModal = (date, book) => {
 <style scoped>
 .v-dialog::v-deep .v-overlay__content {
   width: auto;
-}
-.v-date-picker::v-deep .v-date-picker-month__day--selected .v-btn {
-  background-color: #ca4f34;
-}
-.v-date-picker::v-deep .v-date-picker-month__day--selected .v-btn:hover {
-  color: #fff;
-}
-
-/******************************
-      max-width: 599px;
-******************************/
-@media all and (max-width: 599px) {
-  .v-date-picker {
-    display: block;
-    width: auto;
-  }
-  .v-date-picker::v-deep .v-date-picker-month {
-    min-width: 0;
-  }
-  .v-date-picker::v-deep .v-date-picker-month__day {
-    width: 40px;
-    height: 40px;
-  }
 }
 </style>

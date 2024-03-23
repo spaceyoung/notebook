@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <Layout />
+    <AppLayout />
     <teleport to="#info-modal">
       <InfoModal />
     </teleport>
@@ -13,7 +13,7 @@ import '@/assets/css/reset.css';
 import '@/assets/css/common.css';
 import '@/assets/css/components/modal.css';
 
-import Layout from '@/layout/Layout.vue';
+import AppLayout from '@/layouts/AppLayout.vue';
 import InfoModal from '@/components/modal/InfoModal.vue';
 </script>
 
