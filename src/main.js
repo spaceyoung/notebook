@@ -1,5 +1,4 @@
 import { createApp } from 'vue';
-// import './style.css';
 import App from './App.vue';
 
 // Vuetify
@@ -10,13 +9,17 @@ import * as components from 'vuetify/components';
 import * as directives from 'vuetify/directives';
 import { aliases, mdi } from 'vuetify/iconsets/mdi';
 import '@mdi/font/css/materialdesignicons.css';
+
 // Router
 import router from './router/index';
+
 // Pinia
 import { createPinia } from 'pinia';
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
+
 // Vuefire
 import { VueFire, VueFireFirestoreOptionsAPI } from 'vuefire';
+
 // Lottie
 import Vue3Lottie from 'vue3-lottie';
 
