@@ -1,8 +1,7 @@
 import { reactive, computed } from 'vue';
 import { defineStore } from 'pinia';
-import { useCollection } from 'vuefire';
 import { database } from '@/datasources/firebase';
-import { collection, doc, setDoc, deleteDoc, updateDoc } from 'firebase/firestore';
+import { collection, query, orderBy, doc, getDocs, setDoc, deleteDoc, updateDoc } from 'firebase/firestore';
 
 // 로그인한 사용자 정보 불러오기
 import { useMemberStore } from '@/stores/member';
@@ -11,7 +10,18 @@ const currentUser = computed(() => memberStore.currentUser);
 
 // 기록할 도서 정보 클래스 선언
 class recordBookInfo {
-  constructor(platform, readingState, readingStartDate, formattedReadingStartDate, readingEndDate, formattedReadingEndDate, readingPage, rating, sentence, review) {
+  constructor(
+    platform,
+    readingState,
+    readingStartDate,
+    formattedReadingStartDate,
+    readingEndDate,
+    formattedReadingEndDate,
+    readingPage,
+    rating,
+    sentence,
+    review
+  ) {
     this.platform = platform;
     this.readingState = readingState;
     this.readingStartDate = readingStartDate;
@@ -40,9 +50,10 @@ export const useRecordStore = defineStore('record', () => {
   const inquiryMyReading = async () => {
     state.isLoading = true;
     try {
-      const myReading = useCollection(collection(database, 'users', currentUser.value.uid, 'myReading'));
-      if (myReading) state.myReadingList = myReading;
-      else alert('독서 중 데이터 조회에 실패했습니다.');
+      const docRef = collection(database, 'users', currentUser.value.uid, 'myReading');
+      const q = query(docRef, orderBy('createdAt', 'asc')); // 가져온 데이터를 오름차순으로 정렬
+      const querySnapshot = await getDocs(q);
+      state.myReadingList = querySnapshot.docs.map(doc => doc.data());
     }
     catch (error) {
       alert(`독서 중 데이터 조회에서 다음 오류가 발생했습니다 : ${error}`);
@@ -54,9 +65,10 @@ export const useRecordStore = defineStore('record', () => {
   const inquiryMyReadingEnd = async () => {
     state.isLoading = true;
     try {
-      const myReadingEnd = useCollection(collection(database, 'users', currentUser.value.uid, 'myReadingEnd'));
-      if (myReadingEnd) state.myReadingEndList = myReadingEnd;
-      else alert('독서 완료 데이터 조회에 실패했습니다.');
+      const docRef = collection(database, 'users', currentUser.value.uid, 'myReadingEnd');
+      const q = query(docRef, orderBy('createdAt', 'asc')); // 가져온 데이터를 오름차순으로 정렬
+      const querySnapshot = await getDocs(q);
+      state.myReadingEndList = querySnapshot.docs.map(doc => doc.data());
     }
     catch (error) {
       alert(`독서 완료 데이터 조회에서 다음 오류가 발생했습니다 : ${error}`);
@@ -66,7 +78,7 @@ export const useRecordStore = defineStore('record', () => {
 
   // 데이터베이스 myReading에 독서 중 기록 추가
   const addMyReading = async (recordBook) => {
-    recordBook.timeStamp = new Date();
+    recordBook.createdAt = new Date();
     const docRef = doc(collection(database, 'users', currentUser.value.uid, 'myReading'));
     await setDoc(docRef, recordBook);
   };
@@ -96,7 +108,7 @@ export const useRecordStore = defineStore('record', () => {
 
   // 데이터베이스 myReadingEnd에 독서 완료 기록 추가
   const addMyReadingEnd = async (recordBook) => {
-    recordBook.timeStamp = new Date();
+    recordBook.createdAt = new Date();
     const docRef = doc(collection(database, 'users', currentUser.value.uid, 'myReadingEnd'));
     await setDoc(docRef, recordBook);
   };

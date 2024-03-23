@@ -103,7 +103,7 @@ export const useMemberStore = defineStore('member', () => {
     await setDoc(docRef, {
       uid: currentUser.uid,
       email: currentUser.email,
-      creationTime: currentUser.metadata.creationTime,
+      createdAt: currentUser.metadata.creationTime,
     });
   };
 
