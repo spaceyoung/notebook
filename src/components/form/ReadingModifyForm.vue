@@ -1,5 +1,9 @@
 <template>
-  <v-form ref="modifyForm" class="view d-flex flex-column px-0 py-10 px-sm-8 px-lg-15 py-lg-5" flat>
+  <v-form
+    ref="readingModifyForm"
+    class="view d-flex flex-column px-0 py-10 px-sm-8 px-lg-15 py-lg-5"
+    flat
+  >
     <v-sheet class="mb-13">
       <BookInfo :book="myReadingItem" />
       <BookDesc :book="myReadingItem" />
@@ -11,7 +15,11 @@
       <Sentence v-if="myReadingItem.readingState === '독서 완료'" :book="myReadingItem" />
       <Review v-if="myReadingItem.readingState === '독서 완료'" :book="myReadingItem" />
     </v-sheet>
-    <FormButtons :deleteRecord="deleteRecord" :cancelRecord="cancelRecord" :modifyRecord="modifyRecord" />
+    <FormButtons
+      :deleteRecord="deleteRecord"
+      :cancelRecord="cancelRecord"
+      :modifyRecord="modifyRecord"
+    />
     <CloseButton :cancelRecord="cancelRecord" />
   </v-form>
 </template>
@@ -33,38 +41,47 @@ import Review from '@/components/form/contents/Review.vue';
 import FormButtons from '@/components/form/button/FormButtons.vue';
 import CloseButton from '@/components/form/button/CloseButton.vue';
 
+const readingModifyForm = ref(null);
 const deleteModal = ref(false);
+
 const currentRoute = useRoute();
 const router = useRouter();
 const id = currentRoute.params.id;
-const { state, updateMyReading, deleteMyReading, addMyReadingEnd } = useRecordStore();
-const myReadingList = computed(() => useRecordStore().myReadingList);
-const myReadingItem = myReadingList.value.find((myReadingItem) => myReadingItem.isbn === id);
 
-// 파이어베이스 TimeStamp 변환
+const recordStore = useRecordStore();
+const { state, updateMyReading, deleteMyReading, addMyReadingEnd } = recordStore;
+const myReadingList = computed(() => recordStore.myReadingList);
+const myReadingItem = myReadingList.value.find(myReadingItem => myReadingItem.isbn === id);
+
+// 파이어베이스 DB에 저장된 timeStamp 형식 변환
 myReadingItem.readingStartDate = new Date(myReadingItem.readingStartDate.seconds * 1000);
 
+// 삭제하기
 const deleteRecord = () => {
   deleteModal.value = false;
   deleteMyReading(myReadingItem.id);
   router.push({ name: 'home' });
 };
 
+// 취소하기
 const cancelRecord = () => { router.back(); };
 
-const modifyForm = ref(null);
+// 수정하기
 const modifyRecord = async () => {
   const { valid } = await modifyForm.value.validate();
   if (valid && myReadingItem.platform && myReadingItem.readingState) {
+    // 독서 상태가 '독서 중'이면 myReading 업데이트
     if (myReadingItem.readingState === '독서 중') {
       updateMyReading(myReadingItem.id, myReadingItem);
-    } else if (myReadingItem.readingState === '독서 완료') {
+    }
+    // 독서 상태가 '독서 완료'면 myReadingEnd에 저장
+    else if (myReadingItem.readingState === '독서 완료') {
       addMyReadingEnd(myReadingItem);
       deleteMyReading(myReadingItem.id);
     }
     router.push({ name: 'home' });
   }
-  else alert ('기록에 필요한 정보를 입력해주세요😢');
+  else alert ('기록에 필요한 정보를 정확하게 입력해주세요😢');
 };
 </script>
 

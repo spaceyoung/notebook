@@ -16,13 +16,13 @@ import LoadingAnimation from '@/assets/loading.json';
 .v-card {
   width: 100%;
   height: 100%;
-  background-color: rgba(255, 255, 255, .8);
+  background-color: rgba(255, 255, 255, 0.8);
   position: absolute;
   z-index: 100;
 }
 .v-card span {
   font-size: 1.8em;
-  font-family: LeeSeoyun, Roboto, "돋움", dotum, AppleGothic, sans-serif;
+  font-family: LeeSeoyun, Roboto, '돋움', dotum, AppleGothic, sans-serif;
   text-align: center;
   color: #333;
 }

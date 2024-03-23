@@ -1,9 +1,14 @@
 <template>
-  <v-btn class="flex-0-0 align-self-end order-first pa-0" size="large" flat @click="cancelRecord">
+  <v-btn
+    class="flex-0-0 align-self-end order-first pa-0"
+    size="large"
+    flat
+    @click="cancelRecord"
+  >
     <v-icon icon="mdi-window-close" size="x-large" />
   </v-btn>
 </template>
-  
+
 <script setup>
 defineProps({
   cancelRecord: { type: Function, required: true },

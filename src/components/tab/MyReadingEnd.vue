@@ -16,9 +16,10 @@ import { useRecordStore } from '@/stores/record';
 import Loading from '@/components/loading/Loading.vue';
 import MyReadingEndBook from '@/components/card/MyReadingEndBook.vue';
 
-const { inquiryMyReadingEnd } = useRecordStore();
-const isLoading = computed(() => useRecordStore().isLoading);
-const myReadingEndList = computed(() => useRecordStore().myReadingEndList);
+const recordStore = useRecordStore();
+const { inquiryMyReadingEnd } = recordStore;
+const isLoading = computed(() => recordStore.isLoading);
+const myReadingEndList = computed(() => recordStore.myReadingEndList);
 
 inquiryMyReadingEnd();
 </script>

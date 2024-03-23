@@ -1,14 +1,14 @@
-import { reactive, computed } from "vue";
-import { defineStore } from "pinia";
+import { reactive, computed } from 'vue';
+import { defineStore } from 'pinia';
 import { useCollection } from 'vuefire';
 import { database } from '@/datasources/firebase';
-import { collection, doc, setDoc, deleteDoc, updateDoc } from "firebase/firestore";
+import { collection, doc, setDoc, deleteDoc, updateDoc } from 'firebase/firestore';
 
 // 로그인한 사용자 정보 불러오기
 import { useMemberStore } from '@/stores/member';
 const currentUser = computed(() => useMemberStore().currentUser);
 
-export const useRecordStore = defineStore("record", () => {
+export const useRecordStore = defineStore('record', () => {
   const state = reactive({
     isLoading: false,
     myReadingList: [],
@@ -36,10 +36,11 @@ export const useRecordStore = defineStore("record", () => {
     try {
       const myReading = useCollection(collection(database, 'users', currentUser.value.uid, 'myReading'));
       if (myReading) state.myReadingList = myReading;
-      else alert('데이터 조회에 실패했습니다.');
-    } catch (error) {
+      else alert('독서 중 데이터 조회에 실패했습니다.');
+    }
+    catch (error) {
       alert(`독서 중 데이터 조회에서 다음 오류가 발생했습니다 : ${error}`);
-    };
+    }
     state.isLoading = false;
   };
 
@@ -49,10 +50,11 @@ export const useRecordStore = defineStore("record", () => {
     try {
       const myReadingEnd = useCollection(collection(database, 'users', currentUser.value.uid, 'myReadingEnd'));
       if (myReadingEnd) state.myReadingEndList = myReadingEnd;
-      else alert('데이터 조회에 실패했습니다.');
-    } catch (error) {
+      else alert('독서 완료 데이터 조회에 실패했습니다.');
+    }
+    catch (error) {
       alert(`독서 완료 데이터 조회에서 다음 오류가 발생했습니다 : ${error}`);
-    };
+    }
     state.isLoading = false;
   };
 
@@ -116,8 +118,22 @@ export const useRecordStore = defineStore("record", () => {
     await deleteDoc(docRef);
   };
 
-  return { state, isLoading, myReadingList, myReadingEndList, inquiryMyReading, inquiryMyReadingEnd, addMyReading, updateMyReading, deleteMyReading, addMyReadingEnd, updateMyReadingEnd, deleteMyReadingEnd };
+  return {
+    state,
+    isLoading,
+    myReadingList,
+    myReadingEndList,
+    inquiryMyReading,
+    inquiryMyReadingEnd,
+    addMyReading,
+    updateMyReading,
+    deleteMyReading,
+    addMyReadingEnd,
+    updateMyReadingEnd,
+    deleteMyReadingEnd,
+  };
 },
   {
     persist: true,
-  });
+  }
+);

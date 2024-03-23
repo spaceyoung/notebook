@@ -1,24 +1,24 @@
-import { reactive, computed } from "vue";
+import { reactive, computed } from 'vue';
 import { useRouter } from 'vue-router';
-import { defineStore } from "pinia";
+import { defineStore } from 'pinia';
 import { auth, database } from '@/datasources/firebase';
-import { GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
-import { doc, setDoc } from "firebase/firestore";
+import { GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from 'firebase/auth';
+import { doc, setDoc } from 'firebase/firestore';
 
-export const useMemberStore = defineStore("member", () => {
+export const useMemberStore = defineStore('member', () => {
   const router = useRouter();
   const state = reactive({
     signUpStep: 1,
     signUpUserData: {
-      email: '',
-      password: '',
-      passwordCheck: '',
+      email: null,
+      password: null,
+      passwordCheck: null,
     },
     loginUserData: {
-      email: '',
-      password: '',
+      email: null,
+      password: null,
     },
-    currentUser: null,
+    currentUser: null, // 현재 로그인한 사용자
   });
   const currentUser = computed(() => state.currentUser);
 
@@ -28,23 +28,23 @@ export const useMemberStore = defineStore("member", () => {
     value => {
       const emailPattern = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
       return emailPattern.test(value) || '이메일 형식으로 입력해주세요.';
-    }
-  ]
+    },
+  ];
 
   // 비밀번호 입력 필드 유효성 검사
   const passwordRule = [
     value => !!value || '비밀번호를 입력해주세요.',
     value => {
       const passwordPattern = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*_]).{8,15}$/;
-      return passwordPattern.test(value) || '영문자, 숫자, 특수문자(!@#$%^&*_) 조합의 8~15자로 입력해주세요.'
-    }
-  ]
+      return passwordPattern.test(value) || '영문자, 숫자, 특수문자(!@#$%^&*_) 조합의 8~15자로 입력해주세요.';
+    },
+  ];
 
   // 비밀번호 확인 입력 필드 유효성 검사
   const passwordCheckRule = [
     value => !!value || '비밀번호를 재입력해주세요.',
-    value => state.signUpUserData.password === value || '비밀번호가 일치하지 않아요. 다시 확인해주세요.'
-  ]
+    value => state.signUpUserData.password === value || '비밀번호가 일치하지 않아요. 다시 입력해주세요.',
+  ];
 
   // 이메일로 회원 가입
   const signUpWithEmail = async () => {
@@ -53,10 +53,11 @@ export const useMemberStore = defineStore("member", () => {
       state.currentUser = auth.currentUser;
       addUserData(auth.currentUser);
       state.signUpStep = 2;
-    } catch (error) {
+    }
+    catch (error) {
       switch (error.code) {
-        case "auth/email-already-in-use":
-          alert("이미 사용 중인 이메일이에요.");
+        case 'auth/email-already-in-use':
+          alert('이미 사용 중인 이메일이에요.');
           break;
         default:
           alert(`회원 가입 중 다음 오류가 발생했습니다 : ${error}`);
@@ -70,15 +71,16 @@ export const useMemberStore = defineStore("member", () => {
       await signInWithEmailAndPassword(auth, state.loginUserData.email, state.loginUserData.password);
       state.currentUser = auth.currentUser;
       router.push({ name: 'home' });
-    } catch (error) {
+    }
+    catch (error) {
       switch (error.code) {
-        case "auth/invalid-credential":
-          alert("이메일 또는 비밀번호가 일치하지 않아요.");
+        case 'auth/invalid-credential':
+          alert('이메일 또는 비밀번호가 일치하지 않아요.');
           break;
         default:
-          alert(`로그인 중 다음 오류가 발생했습니다 : ${error}`)
+          alert(`로그인 중 다음 오류가 발생했습니다 : ${error}`);
       }
-    };
+    }
   };
 
   // 구글 계정으로 로그인
@@ -89,7 +91,8 @@ export const useMemberStore = defineStore("member", () => {
       state.currentUser = auth.currentUser;
       addUserData(auth.currentUser);
       router.push({ name: 'home' });
-    } catch (error) {
+    }
+    catch (error) {
       alert(`구글 로그인 시도 중 다음 오류가 발생했습니다 : ${error}`);
     }
   };
@@ -110,13 +113,25 @@ export const useMemberStore = defineStore("member", () => {
       await signOut(auth);
       state.currentUser = auth.currentUser;
       router.push({ name: 'login' });
-    } catch (error) {
+    }
+    catch (error) {
       alert(`로그아웃 시도 중 다음 오류가 발생했습니다 : ${error}`);
     }
   };
 
-  return { state, currentUser, emailRule, passwordRule, passwordCheckRule, loginWithEmail, signUpWithEmail, loginWithGoogle, logout };
+  return {
+    state,
+    currentUser,
+    emailRule,
+    passwordRule,
+    passwordCheckRule,
+    loginWithEmail,
+    signUpWithEmail,
+    loginWithGoogle,
+    logout,
+  };
 },
   {
     persist: true,
-  });
+  }
+);

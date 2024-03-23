@@ -37,9 +37,9 @@
 .view > div:not(.v-list, .v-sheet, .v-infinite-scroll) {
   height: 100%;
   font-size: 2em;
-  font-family: LeeSeoyun, Roboto, "돋움", dotum, AppleGothic, sans-serif;
+  font-family: LeeSeoyun, Roboto, '돋움', dotum, AppleGothic, sans-serif;
   text-align: center;
-  transition: all .3s;
+  transition: all 0.3s;
 }
 .view > div p span {
   display: block;
@@ -58,7 +58,7 @@
 }
 .v-form .v-sheet > div > span em {
   font-weight: 400;
-  font-size: .9em;
+  font-size: 0.9em;
   color: #bbb;
 }
 
@@ -81,7 +81,7 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  transition: all .3s;
+  transition: all 0.3s;
 }
 .view .v-card span em {
   font-weight: 500;
@@ -97,14 +97,14 @@
   white-space: normal;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
-  transition: all .3s;
+  transition: all 0.3s;
 }
 .view .v-card .v-card-item + .v-card-text span:nth-child(1) {
   font-weight: 600;
   color: #555;
 }
 .view .v-card .v-card-item + .v-card-text span:nth-child(2)::after {
-  content: ' ｜ '
+  content: ' ｜ ';
 }
 
 
