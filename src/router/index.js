@@ -9,8 +9,8 @@ const Login = () => import('@/views/Login.vue');
 const SignUp = () => import('@/views/SignUp.vue');
 const SearchResult = () => import('@/views/SearchResult.vue');
 const Record = () => import('@/views/Record.vue');
-const Modify = () => import('@/views/Modify.vue');
-const EndModify = () => import('@/views/EndModify.vue');
+const ReadingModify = () => import('@/views/ReadingModify.vue');
+const ReadingEndModify = () => import('@/views/ReadingEndModify.vue');
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -18,19 +18,19 @@ const router = createRouter({
     {
       path: '/', name: 'home', component: Home,
       beforeEnter: () => {
-        if (!currentUser.value) return { name: 'login' }
-      }
+        if (!currentUser.value) return { name: 'login' };
+      },
     },
     { path: '/signup', name: 'signUp', component: SignUp },
     { path: '/login', name: 'login', component: Login },
     { path: '/searchresult', name: 'searchResult', component: SearchResult },
     { path: '/record/:id(\\d+)', name: 'record/id', component: Record },
-    { path: '/modify/:id(\\d+)', name: 'modify/id', component: Modify },
-    { path: '/endmodify/:id(\\d+)', name: 'endmodify/id', component: EndModify }
+    { path: '/readingmodify/:id(\\d+)', name: 'readingModify/id', component: ReadingModify },
+    { path: '/readingendmodify/:id(\\d+)', name: 'readingEndModify/id', component: ReadingEndModify },
   ],
   scrollBehavior() {
-    return { top: 0 }
-  }
+    return { top: 0 };
+  },
 });
 
 export default router;
