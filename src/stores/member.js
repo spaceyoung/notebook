@@ -8,7 +8,6 @@ import { doc, setDoc } from 'firebase/firestore';
 export const useMemberStore = defineStore('member', () => {
   const router = useRouter();
   const state = reactive({
-    signUpStep: 1,
     signUpUserData: {
       email: null,
       password: null,
@@ -52,7 +51,6 @@ export const useMemberStore = defineStore('member', () => {
       await createUserWithEmailAndPassword(auth, state.signUpUserData.email, state.signUpUserData.password);
       state.currentUser = auth.currentUser;
       addUserData(auth.currentUser);
-      state.signUpStep = 2;
     }
     catch (error) {
       switch (error.code) {
