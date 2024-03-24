@@ -1,7 +1,7 @@
 <template>
   <v-form ref="signUpForm" class="ma-auto">
     <v-card class="pa-5" flat>
-      <v-window v-model="state.signUpStep">
+      <v-window v-model="signUpStep">
         <!-- 회원 가입 step 1 -->
         <v-window-item :value="1">
           <v-card-title class="mb-9">회원 가입</v-card-title>
@@ -90,6 +90,7 @@ import { useRouter } from 'vue-router';
 import { useMemberStore } from '@/stores/member';
 
 const signUpForm = ref(null);
+const signUpStep = ref(1);
 const visiblePassword = ref(false);
 const visiblePasswordCheck = ref(false);
 
@@ -102,6 +103,7 @@ const { state, emailRule, passwordRule, passwordCheckRule, signUpWithEmail } = m
 const handleSignUp = async () => {
   const { valid } = await signUpForm.value.validate();
   if (valid) await signUpWithEmail();
+  signUpStep.value = 2;
   state.signUpUserData.email = null;
   state.signUpUserData.password = null;
   state.signUpUserData.passwordCheck = null;
