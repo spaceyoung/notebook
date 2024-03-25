@@ -35,7 +35,7 @@
       class="emphasis ma-0 ml-sm-5 px-8"
       size="large"
       flat
-      @click="addRecord"
+      @click="addRecord(currentUser)"
     >
       기록하기
       <NonLoginModal v-if="!currentUser" activator="parent" />
