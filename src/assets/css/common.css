@@ -150,9 +150,13 @@ button.v-btn.emphasis {
   letter-spacing: -1px;
   color: #333;
 }
-/* 폼의 text-field 요소*/
-.v-form .v-text-field .v-field {
+/* 독서 기록/수정 폼의 text-field 요소*/
+.view.v-form .v-text-field .v-field {
   border: 1px solid #bbb;
+  cursor: pointer;
+}
+.view.v-form .v-text-field .v-field .v-field__input input {
+  cursor: pointer;
 }
 
 /* -------------------- v-messages -------------------- */
