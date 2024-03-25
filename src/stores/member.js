@@ -95,6 +95,18 @@ export const useMemberStore = defineStore('member', () => {
     }
   };
 
+  // 테스트 계정으로 로그인
+  const loginWithTestAccount = async () => {
+    try {
+      await signInWithEmailAndPassword(auth, 'test@user.com', '@testuser1');
+      state.currentUser = auth.currentUser;
+      router.push({ name: 'home'});
+    }
+    catch (error) {
+      alert(`테스트 계정으로 로그인 시도 중 다음 오류가 발생했습니다 : ${error}`);
+    }
+  };
+
   // 데이터베이스 users에 사용자 정보 추가
   const addUserData = async (currentUser) => {
     const docRef = doc(database, 'users', currentUser.uid, 'info', currentUser.uid);
@@ -126,6 +138,7 @@ export const useMemberStore = defineStore('member', () => {
     loginWithEmail,
     signUpWithEmail,
     loginWithGoogle,
+    loginWithTestAccount,
     logout,
   };
 },
