@@ -25,7 +25,7 @@ export const useMemberStore = defineStore('member', () => {
   const emailRule = [
     value => !!value || '이메일을 입력해주세요.',
     value => {
-      const emailPattern = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+      const emailPattern = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]+$/i;
       return emailPattern.test(value) || '이메일 형식으로 입력해주세요.';
     },
   ];
