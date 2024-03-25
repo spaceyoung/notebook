@@ -23,7 +23,7 @@ export const useSearchStore = defineStore('search', () => {
     state.isLoading = true;
     state.searchBookList = []; // 저장된 이전 목록 초기화
     await searchBookBase(searchWord);
-    await searchBookDetail(state.searchResults[0]);
+    if (state.searchResults[0]) await searchBookDetail(state.searchResults[0]); // 검색 결과가 있는 경우만 상세정보 검색
     state.isLoading = false;
   };
 
@@ -80,9 +80,6 @@ export const useSearchStore = defineStore('search', () => {
     }
     catch (error) {
       alert(`도서 상세정보 검색 중 서버 오류가 발생했습니다. 새로고침 후 다시 시도해주세요.`);
-      console.log('도서 상세정보 검색 중 다음 오류가 발생했습니다.');
-      if (error instanceof Error) console.log(error.message);
-      else console.log(error);
     }
   };
 
