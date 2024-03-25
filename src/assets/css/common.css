@@ -115,6 +115,12 @@ button.v-btn.emphasis {
   color: #fff;
   background-color: #ca4f34;
 }
+.v-overlay .v-btn:not(.v-date-picker .v-btn, .v-card-actions .v-btn):hover {
+  background-color: #ca4f34;
+}
+.v-overlay .v-btn:not(.v-date-picker .v-btn, .v-card-actions .v-btn):hover .v-btn__content {
+  color: #fff;
+}
 
 /* -------------------- v-chip -------------------- */
 .v-chip-group .v-slide-group__content {
