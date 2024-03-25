@@ -94,7 +94,7 @@ export const useRecordStore = defineStore('record', () => {
   // 데이터베이스 myReading 독서 중 기록 수정
   const updateMyReading = async (id, myReadingItem) => {
     const docRef = doc(database, 'users', currentUser.value.uid, 'myReading', id);
-    await updateDoc(docRef, new recordBookInfo(
+    await updateDoc(docRef, {...new recordBookInfo(
       myReadingItem.platform,
       myReadingItem.readingState,
       myReadingItem.readingStartDate,
@@ -105,7 +105,7 @@ export const useRecordStore = defineStore('record', () => {
       myReadingItem.rating,
       myReadingItem.sentence,
       myReadingItem.review,
-    ));
+    )});
   };
 
   // 데이터베이스 myReading에서 독서 중 기록 삭제
@@ -124,7 +124,7 @@ export const useRecordStore = defineStore('record', () => {
   // 데이터베이스 myReadingEnd 독서 완료 기록 수정
   const updateMyReadingEnd = async (id, myReadingEndItem) => {
     const docRef = doc(database, 'users', currentUser.value.uid, 'myReadingEnd', id);
-    await updateDoc(docRef, new recordBookInfo(
+    await updateDoc(docRef, {...new recordBookInfo(
       myReadingEndItem.platform,
       myReadingEndItem.readingState,
       myReadingEndItem.readingStartDate,
@@ -135,7 +135,7 @@ export const useRecordStore = defineStore('record', () => {
       myReadingEndItem.rating,
       myReadingEndItem.sentence,
       myReadingEndItem.review,
-    ));
+    )});
   };
 
   // 데이터베이스 myReading에서 독서 완료 기록 삭제
