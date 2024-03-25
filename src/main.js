@@ -17,9 +17,6 @@ import router from './router/index';
 import { createPinia } from 'pinia';
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
 
-// Vuefire
-import { VueFire, VueFireFirestoreOptionsAPI } from 'vuefire';
-
 // Lottie
 import Vue3Lottie from 'vue3-lottie';
 
@@ -45,6 +42,4 @@ const app = createApp(App);
 pinia.use(piniaPluginPersistedstate);
 app.use(vuetify).use(router).use(pinia)
   .use(Vue3Lottie, { name: 'LottieAnimation' })
-  .use(VueFire, {
-    modules: [VueFireFirestoreOptionsAPI()],
-  }).mount('#app');
+  .mount('#app');
