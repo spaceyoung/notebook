@@ -49,14 +49,16 @@ const recordBook = ref({ ...selectBook.value, ...state.recordBookDefaultInfo });
 const cancelRecord = () => { router.back(); };
 
 // 기록하기
-const addRecord = async () => {
+const addRecord = async (currentUser) => {
   const { valid } = await recordForm.value.validate();
-  if (valid && recordBook.value.platform && recordBook.value.readingState) {
-    if (recordBook.value.readingState === '독서 중') addMyReading(recordBook.value);
-    else if (recordBook.value.readingState === '독서 완료') addMyReadingEnd(recordBook.value);
-    router.push({ name: 'home' });
+  if (currentUser) {
+    if (valid && recordBook.value.platform && recordBook.value.readingState) {
+      if (recordBook.value.readingState === '독서 중') addMyReading(recordBook.value);
+      else if (recordBook.value.readingState === '독서 완료') addMyReadingEnd(recordBook.value);
+      router.push({ name: 'home' });
+    }
+    else alert('기록에 필요한 정보를 정확하게 입력해주세요😢');
   }
-  else alert('기록에 필요한 정보를 정확하게 입력해주세요😢');
 };
 </script>
 
