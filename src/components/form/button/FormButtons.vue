@@ -1,5 +1,5 @@
 <template>
-  <v-item-group class="d-flex flex-wrap">
+  <v-item-group class="d-flex flex-wrap justify-center">
     <!-- 삭제하기 버튼 -->
     <v-btn
       v-if="modifyTerm"
@@ -67,13 +67,13 @@ const modifyTerm = currentRoute.name === 'readingModify/id' || currentRoute.name
       max-width: 599px;
 ******************************/
 @media all and (max-width: 599px) {
-  v-item-groups {
+  .v-item-group {
     gap: 15px 20px;
   }
-  v-item-groups .v-btn {
+  .v-item-group .v-btn {
     width: calc((100% - 20px) / 2);
   }
-  v-item-groups .v-btn:last-child {
+  .v-item-group .v-btn:last-child {
     width: 100%;
   }
 }

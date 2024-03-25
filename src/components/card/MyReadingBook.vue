@@ -84,4 +84,7 @@ const myReadingProgress = myReadingItem => `${Math.round((myReadingItem.readingP
   text-align: right;
   color: #ca4f34;
 }
+.v-overlay .v-btn::v-deep:hover .v-btn__content {
+  color: #ca4f34;
+}
 </style>

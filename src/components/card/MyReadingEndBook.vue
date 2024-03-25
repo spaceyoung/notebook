@@ -68,4 +68,7 @@ const myReadingEndList = computed(() => recordStore.myReadingEndList);
 </script>
 
 <style scoped>
+.v-overlay .v-btn::v-deep:hover .v-btn__content {
+  color: #ca4f34;
+}
 </style>
