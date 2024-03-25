@@ -4,7 +4,7 @@
     <BookDesc :book="book" />
     <BookPlatform :book="book" />
     <ReadingState :book="book" />
-    <ReadingDate :state="state" :book="book" />
+    <ReadingDate :book="book" />
     <ReadingPage v-if="book.readingState === '독서 중'" :book="book" />
     <Rating v-if="book.readingState === '독서 완료'" :book="book" />
     <Sentence v-if="book.readingState === '독서 완료'" :book="book" />
@@ -24,7 +24,7 @@ import Sentence from '@/components/form/contents/Sentence.vue';
 import Review from '@/components/form/contents/Review.vue';
 
 defineProps({
-  book: { type: Array, required: true },
+  book: { type: Object, required: true },
 });
 </script>
 
