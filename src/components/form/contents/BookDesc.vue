@@ -19,6 +19,7 @@ p {
   border-radius: 8px;
   line-height: 1.5;
   letter-spacing: -1px;
+  border: 1px solid #bbb;
   color: #555;
   background-color: #f9f6ed;
 }

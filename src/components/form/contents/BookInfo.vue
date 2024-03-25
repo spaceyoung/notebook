@@ -4,7 +4,7 @@
     <v-img
       :src="book.cover"
       :alt="book.title"
-      class="flex-0-0 mr-sm-15 mb-8 mb-sm-0"
+      class="flex-0-0 mr-sm-12 mr-lg-15 mb-8 mb-sm-0"
       cover
     />
     <div class="d-flex flex-1-1 flex-column">
@@ -48,6 +48,15 @@ defineProps({
 }
 
 /******************************
+      max-width: 959px;
+******************************/
+@media all and (max-width: 959px) {
+  .v-card .v-card-title {
+    font-size: 1.25em;
+  }
+}
+
+/******************************
       max-width: 599px;
 ******************************/
 @media all and (max-width: 599px) {
@@ -60,9 +69,6 @@ defineProps({
   .v-card .v-img {
     width: 147px;
     height: 200px;
-  }
-  .v-card .v-card-title {
-    font-size: 1.25em;
   }
 }
 </style>

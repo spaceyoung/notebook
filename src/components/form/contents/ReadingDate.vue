@@ -6,7 +6,7 @@
         <v-icon icon="mdi-book-edit-outline" class="mr-2" />
         독서 시작일
       </span>
-      <v-text-field
+      <v-text-field class="qwer"
         :model-value="book.formattedReadingStartDate"
         :rules="startDateRule"
         placeholder="독서 시작일"
