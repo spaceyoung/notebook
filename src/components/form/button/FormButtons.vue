@@ -1,5 +1,5 @@
 <template>
-  <v-item-groups class="d-flex flex-wrap">
+  <v-item-group class="d-flex flex-wrap">
     <!-- 삭제하기 버튼 -->
     <v-btn
       v-if="modifyTerm"
@@ -40,7 +40,7 @@
       기록하기
       <NonLoginModal v-if="!currentUser" activator="parent" />
     </v-btn>
-  </v-item-groups>
+  </v-item-group>
 </template>
 
 <script setup>
@@ -53,7 +53,7 @@ defineProps({
   cancelRecord: { type: Function, required: true },
   modifyRecord: { type: Function, required: false },
   addRecord: { type: Function, required: false },
-  currentUser: { type: String, required: false },
+  currentUser: { type: Object, required: false },
 });
 
 const currentRoute = useRoute();
