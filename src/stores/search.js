@@ -1,4 +1,5 @@
 import { reactive, computed } from 'vue';
+import { useRouter } from 'vue-router';
 import axios from 'axios';
 import { defineStore } from 'pinia';
 
@@ -6,6 +7,8 @@ export const useSearchStore = defineStore('search', () => {
   const ttbKey = import.meta.env.VITE_ALADIN_APP_KEY;
   const baseURL = `/api/ItemSearch.aspx?ttbkey=${ttbKey}&MaxResults=40&SearchTarget=Book&output=JS&Cover=Big&Version=20131101&Querytype=`;
   const detailBaseURL = `/api/ItemLookUp.aspx?ttbkey=${ttbKey}&itemIdType=ISBN13&output=JS&Cover=Big&Version=20131101&ItemId=`;
+
+  const router = useRouter();
 
   const state = reactive({
     isLoading: false,
@@ -79,7 +82,9 @@ export const useSearchStore = defineStore('search', () => {
       state.searchBookList.push(searchBookListGroup);
     }
     catch (error) {
-      alert(`도서 상세정보 검색 중 서버 오류가 발생했습니다. 새로고침 후 다시 시도해주세요.`);
+      alert(`도서 상세정보 검색 중 서버 오류가 발생했습니다😥 다시 시도해주세요.`);
+      await router.push({ name: 'home' });
+      router.go(0);
     }
   };
 
