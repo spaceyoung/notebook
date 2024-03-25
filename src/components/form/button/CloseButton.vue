@@ -1,6 +1,6 @@
 <template>
   <v-btn
-    class="flex-0-0 align-self-end order-first pa-0"
+    class="flex-0-0 align-self-end order-first mb-2 pa-0"
     size="large"
     flat
     @click="cancelRecord"

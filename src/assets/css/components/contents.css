@@ -19,6 +19,7 @@
 .view .v-sheet {
   background-color: transparent;
 }
+/* 도서 검색 결과 리스트 목록 간격 및 너비 설정 */
 .view .v-list {
   gap: 30px 60px;
   background-color: transparent;
@@ -90,7 +91,7 @@
 .view .v-card .v-card-title {
   display: -webkit-box;
   font-weight: 700;
-  font-size: 1.2em;
+  font-size: 1.17em;
   line-height: 1.4;
   letter-spacing: -1px;
   color: #333;
@@ -139,6 +140,7 @@
   /******************************
               LAYOUT
   ******************************/
+  /* 도서 검색 결과 리스트 목록 간격 및 너비 설정 */
   .view .v-list {
     gap: 20px 0;
   }
