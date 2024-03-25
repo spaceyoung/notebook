@@ -94,6 +94,7 @@ button.v-btn {
   border-color: #bbb;
   line-height: 1.5;
   letter-spacing: -1px;
+  text-indent: 0;
   color: #555;
   transition: all .3s;
 }
@@ -113,12 +114,6 @@ button.v-btn.emphasis {
   border-color: #ca4f34;
   color: #fff;
   background-color: #ca4f34;
-}
-.v-overlay .v-btn:not(.v-date-picker .v-btn, .v-card-actions .v-btn):hover {
-  background-color: #ca4f34;
-}
-.v-overlay .v-btn:not(.v-date-picker .v-btn, .v-card-actions .v-btn):hover .v-btn__content {
-  color: #fff;
 }
 
 /* -------------------- v-chip -------------------- */

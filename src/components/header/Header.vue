@@ -60,7 +60,4 @@ header.v-app-bar .v-btn {
   height: 40px;
   color: #fff;
 }
-.v-overlay .v-btn::v-deep .v-btn__overlay {
-  background-color: transparent;
-}
 </style>

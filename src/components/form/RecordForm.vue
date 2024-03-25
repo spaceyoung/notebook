@@ -61,15 +61,11 @@ const addRecord = async () => {
 </script>
 
 <style scoped>
-.v-form::v-deep v-item-groups {
-  justify-content: center;
-}
-
 /******************************
       max-width: 599px;
 ******************************/
 @media all and (max-width: 599px) {
-  .v-form::v-deep v-item-groups .v-btn {
+  .v-form::v-deep .v-item-group .v-btn {
     width: calc((100% - 20px) / 2);
   }
 }
