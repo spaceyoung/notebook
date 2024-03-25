@@ -53,7 +53,11 @@ export const useRecordStore = defineStore('record', () => {
       const docRef = collection(database, 'users', currentUser.value.uid, 'myReading');
       const q = query(docRef, orderBy('createdAt', 'asc')); // 가져온 데이터를 오름차순으로 정렬
       const querySnapshot = await getDocs(q);
-      state.myReadingList = querySnapshot.docs.map(doc => doc.data());
+      state.myReadingList = querySnapshot.docs.map(doc => {
+        const docSnapshot = doc.data();
+        docSnapshot.id = doc.id;
+        return docSnapshot;
+      });
     }
     catch (error) {
       alert(`독서 중 데이터 조회에서 다음 오류가 발생했습니다 : ${error}`);
@@ -68,7 +72,11 @@ export const useRecordStore = defineStore('record', () => {
       const docRef = collection(database, 'users', currentUser.value.uid, 'myReadingEnd');
       const q = query(docRef, orderBy('createdAt', 'asc')); // 가져온 데이터를 오름차순으로 정렬
       const querySnapshot = await getDocs(q);
-      state.myReadingEndList = querySnapshot.docs.map(doc => doc.data());
+      state.myReadingEndList = querySnapshot.docs.map(doc => {
+        const docSnapshot = doc.data();
+        docSnapshot.id = doc.id;
+        return docSnapshot; 
+      });
     }
     catch (error) {
       alert(`독서 완료 데이터 조회에서 다음 오류가 발생했습니다 : ${error}`);
