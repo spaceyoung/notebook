@@ -91,7 +91,7 @@ export const useMemberStore = defineStore('member', () => {
       router.push({ name: 'home' });
     }
     catch (error) {
-      alert(`구글 로그인 시도 중 다음 오류가 발생했습니다 : ${error}`);
+      alert(`구글 로그인 중 다음 오류가 발생했습니다 : ${error}`);
     }
   };
 
@@ -103,7 +103,7 @@ export const useMemberStore = defineStore('member', () => {
       router.push({ name: 'home'});
     }
     catch (error) {
-      alert(`테스트 계정으로 로그인 시도 중 다음 오류가 발생했습니다 : ${error}`);
+      alert(`테스트 계정으로 로그인 중 다음 오류가 발생했습니다 : ${error}`);
     }
   };
 

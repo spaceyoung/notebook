@@ -11,7 +11,7 @@
           variant="outlined"
           @click="loginWithTestAccount"
         >
-          테스트 계정으로 로그인하기
+          테스트 계정으로 로그인
         </v-btn>
       </v-card-actions>
       <v-card-text class="mb-6 pa-0">
@@ -47,7 +47,7 @@
           flat
           @click="handleLogin"
         >
-          이메일로 로그인하기
+          이메일로 로그인
         </v-btn>
       </v-card-actions>
       <v-card-actions class="flex-column pa-0">
@@ -58,7 +58,7 @@
           color="#ca4f34"
           @click="loginWithGoogle"
         >
-          구글 계정으로 로그인하기
+          구글 계정으로 로그인
         </v-btn>
         <v-btn
           :ripple="false"

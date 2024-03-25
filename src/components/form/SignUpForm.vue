@@ -51,7 +51,7 @@
               flat
               @click="handleSignUp"
             >
-              이메일로 회원 가입하기
+              이메일로 회원 가입
             </v-btn>
             <v-btn
               :ripple="false"
