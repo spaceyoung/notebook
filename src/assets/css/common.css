@@ -150,6 +150,10 @@ button.v-btn.emphasis {
   letter-spacing: -1px;
   color: #333;
 }
+/* 폼의 text-field 요소*/
+.v-form .v-text-field .v-field {
+  border: 1px solid #bbb;
+}
 
 /* -------------------- v-messages -------------------- */
 .v-messages .v-messages__message {
@@ -183,7 +187,7 @@ button.v-btn.emphasis {
   }
 
   /* -------------------- v-date-picker -------------------- */
-  .v-date-picker {
+  .v-date-picker.v-picker {
     display: block;
     width: auto;
   }
