@@ -2,7 +2,7 @@
   <div class="inner mx-auto">
     <div class="sec-header mb-10">
       <h2 class="sec-title mb-5">
-        <router-link :to="currentUser ? { name: 'home' } : { name: 'login' }">공책</router-link>
+        <router-link :to="{ name: 'home' }">공책</router-link>
       </h2>
       <h3 class="sec-sub-title">Note, Book</h3>
       <span class="sec-desc">
