@@ -68,7 +68,7 @@ import BottomNavigation from '@/components/navigation/BottomNavigation.vue';
     height: 400px;
   }
   .contents {
-    min-height: calc(100vh - 464px);
+    min-height: calc(100vh - 520px);
   }
 }
 </style>

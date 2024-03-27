@@ -1,7 +1,7 @@
 <template>
   <v-bottom-navigation
     v-model="selectNavigation"
-    class="hidden-sm-and-up rounded-t-xl"
+    class="hidden-sm-and-up rounded-t"
     mandatory
     grow
   >
@@ -35,4 +35,17 @@ const navigateHome = () => {
 </script>
 
 <style scoped>
+.v-btn::v-deep .v-btn__content {
+  font-size: 1.4em;
+  font-family: LeeSeoyun, Roboto, "돋움", dotum, AppleGothic, sans-serif;
+}
+.v-btn::v-deep:hover .v-btn__overlay {
+  background-color: #bbb;
+}
+.v-btn--active {
+  color: #ca4f34;
+}
+.v-btn--active::v-deep .v-btn__overlay {
+  background-color: transparent;
+}
 </style>
