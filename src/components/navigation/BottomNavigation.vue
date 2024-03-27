@@ -6,11 +6,11 @@
     grow
   >
     <v-btn v-if="!currentUser" value="login" @click="navigateHome">
-      <v-icon>mdi-login</v-icon>
+      <v-icon icon="mdi-login" />
       로그인
     </v-btn>
     <v-btn v-else value="home" @click="navigateHome">
-      <v-icon>mdi-book-open-page-variant</v-icon>
+      <v-icon icon="mdi-book-open-page-variant" />
       나의 기록
     </v-btn>
   </v-bottom-navigation>
