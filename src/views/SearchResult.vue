@@ -7,7 +7,7 @@
       </h2>
       <p class="sec-desc mb-3">최대 200권까지 검색할 수 있어요 🔎</p>
       <v-btn
-        class="align-self-end"
+        class="d-none d-sm-flex align-self-end"
         variant="outlined"
         @click="router.push(currentUser ? { name: 'home' } : { name: 'login' })"
       >
