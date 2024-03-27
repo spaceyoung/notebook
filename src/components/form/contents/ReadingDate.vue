@@ -10,11 +10,12 @@
         :model-value="book.formattedReadingStartDate"
         :rules="startDateRule"
         placeholder="독서 시작일"
+        hint="독서를 시작한 날짜를 선택해주세요."
         variant="solo"
         prepend-inner-icon="mdi-calendar-month"
-        hide-details="auto"
         flat
         readonly
+        persistent-hint
       >
         <ReadingStartDateModal activator="parent" :book="book" />
       </v-text-field>
@@ -29,11 +30,12 @@
         :model-value="book.formattedReadingEndDate"
         :rules="endDateRule"
         placeholder="독서 완료일"
+        hint="독서를 완료한 날짜를 선택해주세요."
         variant="solo"
         prepend-inner-icon="mdi-calendar-month"
-        hide-details="auto"
         flat
         readonly
+        persistent-hint
       >
         <ReadingEndDateModal activator="parent" :book="book" />
       </v-text-field>
