@@ -3,7 +3,7 @@
     <!-- 독서 시작일 -->
     <div>
       <span class="d-flex align-center mb-3">
-        <v-icon icon="mdi-book-edit-outline" class="mr-2" />
+        <v-icon class="mr-2" icon="mdi-book-edit" />
         독서 시작일
       </span>
       <v-text-field class="qwer"
@@ -22,7 +22,7 @@
     <!-- 독서 완료일 -->
     <div v-if="book.readingState === '독서 완료'">
       <span class="d-flex align-center mb-3">
-        <v-icon icon="mdi-book-edit-outline" class="mr-2" />
+        <v-icon class="mr-2" icon="mdi-book-edit" />
         독서 완료일
       </span>
       <v-text-field
