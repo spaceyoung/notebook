@@ -6,7 +6,7 @@
     <!-- 로고 -->
     <v-app-bar-title class="ma-0">
       <h1>
-        <router-link :to="currentUser ? { name: 'home' } : { name: 'login' }">
+        <router-link :to="{ name: 'home' }">
           공책
           <span>Note, Book</span>
         </router-link>
