@@ -9,7 +9,7 @@
       <v-btn
         class="d-none d-sm-flex align-self-end"
         variant="outlined"
-        @click="router.push(currentUser ? { name: 'home' } : { name: 'login' })"
+        @click="router.push({ name: 'home' })"
       >
         홈으로 이동
       </v-btn>
@@ -66,19 +66,16 @@
 <script setup>
 import { computed } from 'vue';
 import { useRouter } from 'vue-router';
-import { useMemberStore } from '@/stores/member';
 import { useSearchStore } from '@/stores/search';
 import Loading from '@/components/loading/Loading.vue';
 import SearchResultBook from '@/components/card/SearchResultBook.vue';
 
 const router = useRouter();
 
-const memberStore = useMemberStore();
 const searchStore = useSearchStore();
 const { state, searchBookMore } = searchStore;
 const isLoading = computed(() => searchStore.isLoading);
 const searchBookList = computed(() => searchStore.searchBookList);
-const currentUser = computed(() => memberStore.currentUser);
 
 // 도서 검색 결과 총개수
 const searchResultsNumber = () => {

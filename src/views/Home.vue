@@ -3,7 +3,14 @@
     <h2 class="sec-title mb-4">나의 기록</h2>
   </div>
   <v-tabs v-model="state.selectTab" class="flex-0-0">
-    <v-tab v-for="tab in state.tabs" :key="tab.id" :value="tab.id" class="emphasis">{{ tab.label }}</v-tab>
+    <v-tab
+      v-for="tab in state.tabs"
+      :key="tab.id"
+      :value="tab.id"
+      class="emphasis"
+    >
+      {{ tab.label }}
+    </v-tab>
   </v-tabs>
   <keep-alive>
     <component :is="state.selectTab === 'MyReading' ? MyReading : MyReadingEnd" />
@@ -18,7 +25,7 @@ import MyReadingEnd from '@/components/tab/MyReadingEnd.vue';
 const state = reactive({
   tabs: [
     { id: 'MyReading', label: '독서 중' },
-    { id: 'MyReadingEnd', label: '독서 완료' }
+    { id: 'MyReadingEnd', label: '독서 완료' },
   ],
   selectTab: 'MyReading',
 });
