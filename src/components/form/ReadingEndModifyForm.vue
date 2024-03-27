@@ -1,7 +1,7 @@
 <template>
   <v-form
     ref="readingEndModifyForm"
-    class="view d-flex flex-column px-0 py-10 px-sm-8 px-lg-15 py-lg-5"
+    class="view d-flex flex-column px-0 py-3 px-sm-8 px-lg-15 py-lg-5"
     flat
   >
     <FormContentsLayout :book="myReadingEndItem" />
