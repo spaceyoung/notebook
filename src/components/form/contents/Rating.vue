@@ -1,7 +1,7 @@
 <template>
   <div class="mb-12">
     <span class="d-flex align-center mb-3">
-      <v-icon icon="mdi-book-edit-outline" class="mr-2" />
+      <v-icon class="mr-2" icon="mdi-book-edit" />
       나의 평점
       <em class="ml-1">(선택)</em>
     </span>

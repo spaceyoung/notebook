@@ -1,7 +1,7 @@
 <template>
   <div class="mb-12">
     <span class="d-flex align-center mb-3">
-      <v-icon icon="mdi-book-edit-outline" class="mr-2" />
+      <v-icon class="mr-2" icon="mdi-book-edit" />
       플랫폼
     </span>
     <v-chip-group v-model="book.platform" class="pa-0" mandatory>
