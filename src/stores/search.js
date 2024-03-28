@@ -25,17 +25,31 @@ export const useSearchStore = defineStore('search', () => {
   const searchBook = async (searchWord) => {
     state.isLoading = true;
     state.searchBookList = []; // 저장된 이전 목록 초기화
-    await searchBookBase(searchWord);
-    if (state.searchResults[0]) await searchBookDetail(state.searchResults[0]); // 검색 결과가 있는 경우만 상세정보 검색
+    try {
+      await searchBookBase(searchWord);
+      if (state.searchResults[0]) await searchBookDetail(state.searchResults[0]); // 검색 결과가 있는 경우만 상세정보 검색
+    }
+    catch (error) {
+      alert(`도서 검색 중 서버 오류가 발생했습니다😥 다시 시도해주세요.`);
+      await router.push({ name: 'home' });
+      router.go(0);
+    }
     state.isLoading = false;
   };
 
   // 더 보기 클릭 시 도서 상세정보 추가 검색 및 결과 저장
   const searchBookMore = async () => {
-    if (state.searchBookList.length === 1 && state.searchResults.length >= 2) await searchBookDetail(state.searchResults[1]);
-    else if (state.searchBookList.length === 2 && state.searchResults.length >= 3) await searchBookDetail(state.searchResults[2]);
-    else if (state.searchBookList.length === 3 && state.searchResults.length >= 4) await searchBookDetail(state.searchResults[3]);
-    else if (state.searchBookList.length === 4 && state.searchResults.length === 5) await searchBookDetail(state.searchResults[4]);
+    try {
+      if (state.searchBookList.length === 1 && state.searchResults.length >= 2) await searchBookDetail(state.searchResults[1]);
+      else if (state.searchBookList.length === 2 && state.searchResults.length >= 3) await searchBookDetail(state.searchResults[2]);
+      else if (state.searchBookList.length === 3 && state.searchResults.length >= 4) await searchBookDetail(state.searchResults[3]);
+      else if (state.searchBookList.length === 4 && state.searchResults.length === 5) await searchBookDetail(state.searchResults[4]);
+    }
+    catch (error) {
+      alert(`도서 검색 중 서버 오류가 발생했습니다😥 다시 시도해주세요.`);
+      await router.push({ name: 'home' });
+      router.go(0);
+    }
   };
 
   // 도서 기본정보 검색
@@ -63,29 +77,22 @@ export const useSearchStore = defineStore('search', () => {
 
   // 도서 상세정보 검색 및 결과 저장
   const searchBookDetail = async (results) => {
-    try {
-      const searchBookListGroup = [];
-      for (const result of results) {
-        const detailResponse = await axios.get(detailBaseURL + result.isbn13);
-        const detailResult = detailResponse.data.item[0];
-        searchBookListGroup.push({
-          title: detailResult.title,
-          cover: detailResult.cover,
-          author: detailResult.author,
-          publisher: detailResult.publisher,
-          pubDate: detailResult.pubDate,
-          isbn: detailResult.isbn13,
-          description: detailResult.description,
-          page: detailResult.subInfo.itemPage,
-        });
-      }
-      state.searchBookList.push(searchBookListGroup);
+    const searchBookListGroup = [];
+    for (const result of results) {
+      const detailResponse = await axios.get(detailBaseURL + result.isbn13);
+      const detailResult = detailResponse.data.item[0];
+      searchBookListGroup.push({
+        title: detailResult.title,
+        cover: detailResult.cover,
+        author: detailResult.author,
+        publisher: detailResult.publisher,
+        pubDate: detailResult.pubDate,
+        isbn: detailResult.isbn13,
+        description: detailResult.description,
+        page: detailResult.subInfo.itemPage,
+      });
     }
-    catch (error) {
-      alert(`도서 상세정보 검색 중 서버 오류가 발생했습니다😥 다시 시도해주세요.`);
-      await router.push({ name: 'home' });
-      router.go(0);
-    }
+    state.searchBookList.push(searchBookListGroup);
   };
 
   return {
