@@ -1,7 +1,7 @@
 <template>
   <div>
     <span class="d-flex align-center mb-3">
-      <v-icon icon="mdi-book-edit-outline" class="mr-2" />
+      <v-icon class="mr-2" icon="mdi-book-edit" />
       독서량
     </span>
     <div class="d-flex">
